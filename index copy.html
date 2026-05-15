@@ -843,39 +843,21 @@
 
       .hero-photo { order: -1; }
 
-      .photo-frame { aspect-ratio: 4 / 3; max-height: 380px; }
+      .photo-frame { aspect-ratio: 4 / 3; max-height: 360px; }
 
       .nav-links { display: none; }
 
       .about-stats { grid-template-columns: repeat(3, 1fr); }
 
       .colour-pillars { grid-template-columns: 1fr 1fr; }
-
-      /* yoga card no longer needs to float right */
-      .yoga-card { max-width: 420px; }
     }
 
-    @media (max-width: 600px) {
-      /* nav: hide CTA button on very small screens to avoid overflow */
-      .nav-cta { display: none; }
-
+    @media (max-width: 540px) {
       .about-stats { grid-template-columns: 1fr 1fr; }
       .colour-pillars { grid-template-columns: 1fr; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
-      .hero-ctas .btn-primary,
-      .hero-ctas .btn-ghost { width: 100%; text-align: center; }
+      .hero-ctas { flex-direction: column; }
       .specs-inner { flex-direction: column; align-items: flex-start; }
-
-      /* tighter vertical rhythm on phones */
-      .about-pull-quote { font-size: 1rem; }
-      .big-quote { font-size: clamp(1.5rem, 6vw, 2.4rem); }
-
-      /* footer stacks nicely */
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
-
-    /* prevent horizontal overflow on any narrow device */
-    body { overflow-x: hidden; }
   </style>
 </head>
 <body>
@@ -1029,10 +1011,6 @@
               My family — my mother's quiet fierce resilience, my brother Harsh's steadfast
               love, my children, my closest friends — is the ground I stand on. I am grateful,
               always.
-            </p>
-            <p>
-              Whatever gentleness you find in me, I owe to my father. He gave me that — and I
-              carry it as one of the most precious things I have.
             </p>
           </div>
         </div>

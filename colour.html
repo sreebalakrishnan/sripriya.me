@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Colour Wear — Sripriya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #8B1A1A;
+    --blue: #8FAFC0;
+    --cream: #FAF8F5;
+    --warm: #F5EFE6;
+    --text: #2C2416;
+    --muted: #7A6E62;
+    --border: #E8E0D5;
+    --gold: #C5923A;
+    --panel-bg: #FFFDF9;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-right {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ─── MAIN CARD AREA ─── */
+  main {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 28px 20px 20px;
+  }
+
+  .date-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .date-header .day-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .date-header .date-full {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ─── RECOMMENDATION CARD ─── */
+  .rec-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(44,36,22,0.07);
+  }
+
+  /* colour bar at top */
+  .colour-bar {
+    height: 8px;
+    background: linear-gradient(to right, var(--primary-col, #8B1A1A), var(--accent-col, #C5923A));
+    transition: background 0.5s;
+  }
+
+  .card-body {
+    padding: 24px 22px;
+  }
+
+  .greeting-line {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .planet-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  /* palette row */
+  .palette-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .pal-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .pal-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+  .pal-chip:hover .pal-circle { transform: scale(1.1); }
+  .pal-label {
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.04em;
+    max-width: 48px;
+    line-height: 1.3;
+  }
+
+  /* sections */
+  .why-sections { display: flex; flex-direction: column; gap: 10px; }
+
+  .why-block {
+    background: var(--warm);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .why-block:hover { background: #F0E8DC; }
+
+  .why-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .why-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .why-icon {
+    font-size: 1rem;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .why-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .why-value {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 2px;
+    font-style: italic;
+  }
+  .why-chevron {
+    font-size: 0.7rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .why-block.open .why-chevron { transform: rotate(180deg); }
+  .why-detail {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+  .why-block.open .why-detail { display: block; }
+  .why-detail p + p { margin-top: 6px; }
+  .why-detail strong { color: var(--text); font-weight: 500; }
+
+  /* outfit suggestions */
+  .outfit-section {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .outfit-heading {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .outfit-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .outfit-pill {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  /* weather strip */
+  .weather-strip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--warm);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .weather-icon { font-size: 1.1rem; }
+  .weather-loading { opacity: 0.5; font-style: italic; }
+
+  /* avoid list */
+  .avoid-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .avoid-tag {
+    background: #FFF0F0;
+    color: #8B1A1A;
+    border: 1px solid #F5D0D0;
+    border-radius: 20px;
+    padding: 2px 9px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  /* ─── STICKY PERSONALISE BAR ─── */
+  .pers-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    gap: 12px;
+  }
+  .pers-bar-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    flex: 1;
+  }
+  .pers-btn {
+    background: var(--text);
+    color: var(--cream);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-size: 0.78rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .pers-btn:hover { background: #3D3428; }
+
+  /* ─── SLIDE-UP PANEL ─── */
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(44,36,22,0.35);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .backdrop.visible { opacity: 1; pointer-events: all; }
+
+  .panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 92vh;
+    background: var(--panel-bg);
+    border-radius: 24px 24px 0 0;
+    z-index: 300;
+    transform: translateY(100%);
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel.open { transform: translateY(0); }
+
+  .panel-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 14px auto 0;
+    flex-shrink: 0;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px 10px;
+    flex-shrink: 0;
+  }
+  .panel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+  .panel-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+  }
+
+  .panel-scroll {
+    overflow-y: auto;
+    flex: 1;
+    padding: 4px 22px 24px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* field groups */
+  .field-group {
+    margin-bottom: 22px;
+  }
+  .field-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .field-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  input[type="text"], input[type="number"], select, .city-input {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus { border-color: var(--blue); }
+
+  .dob-row { display: flex; gap: 8px; }
+  .dob-row select { flex: 1; min-width: 0; }
+
+  /* gender pills */
+  .pill-group { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill {
+    border: 1.5px solid var(--border);
+    border-radius: 30px;
+    padding: 7px 16px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    background: white;
+    color: var(--text);
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .pill.selected {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+  }
+
+  /* skin tone swatches */
+  .tone-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tone-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .tone-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: transform 0.18s, border-color 0.18s;
+  }
+  .tone-swatch.selected .tone-circle {
+    border-color: var(--text);
+    transform: scale(1.1);
+  }
+  .tone-name {
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  /* undertone pills */
+  .undertone-row { display: flex; gap: 8px; }
+  .undertone-pill {
+    flex: 1;
+    text-align: center;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background: white;
+    color: var(--text);
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .undertone-pill .ut-swatch {
+    width: 20px; height: 20px; border-radius: 50%;
+    margin: 0 auto 4px;
+  }
+  .undertone-pill.selected {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+  }
+
+  /* ─── BODY SHAPE SELECTOR ─── */
+  .body-shape-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .shape-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px 4px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .shape-option.selected {
+    border-color: var(--text);
+    background: var(--warm);
+  }
+  .shape-svg {
+    width: 36px;
+    height: 56px;
+  }
+  .shape-name {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+  }
+  .shape-option.selected .shape-name { color: var(--text); font-weight: 500; }
+
+  /* ─── HAIR COLOUR ─── */
+  .hair-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .hair-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .hair-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: transform 0.18s, border-color 0.18s;
+  }
+  .hair-swatch.selected .hair-circle {
+    border-color: var(--text);
+    transform: scale(1.1);
+  }
+  .hair-label {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* height row */
+  .height-row { display: flex; gap: 8px; align-items: center; }
+  .height-row input { flex: 1; }
+  .height-unit {
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* city row */
+  .city-row { display: flex; gap: 8px; }
+  .city-row input { flex: 1; }
+  .detect-btn {
+    background: var(--warm);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 13px;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    color: var(--text);
+    white-space: nowrap;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .detect-btn:hover { background: #EDE5D8; }
+
+  .panel-save {
+    background: var(--text);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .panel-save:hover { background: #3D3428; }
+
+  /* dividers */
+  .panel-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 6px 0 20px;
+  }
+  .panel-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  /* ─── NUMEROLOGY BREAKDOWN ─── */
+  .num-breakdown {
+    background: var(--warm);
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+  .num-breakdown .num-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .num-breakdown .num-step + .num-step {
+    border-top: 1px dashed var(--border);
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+  .num-step-label { color: var(--muted); }
+  .num-step-val { color: var(--text); font-weight: 500; font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+
+  /* ─── MOBILE (very small) ─── */
+  @media (max-width: 380px) {
+    .body-shape-grid { grid-template-columns: repeat(3, 1fr); }
+    .hair-row { gap: 6px; }
+    .tone-circle { width: 36px; height: 36px; }
+    .panel-header { padding: 12px 16px 8px; }
+    .panel-scroll { padding: 4px 16px 24px; }
+  }
+
+  /* ─── DESKTOP ─── */
+  @media (min-width: 640px) {
+    /* wider, airy single-column layout */
+    main {
+      max-width: 660px;
+      padding: 40px 32px 120px;
+    }
+
+    .date-header { text-align: left; margin-bottom: 8px; }
+    .date-header .day-name { font-size: 2.6rem; }
+
+    .card-body { padding: 28px 26px; }
+
+    /* sticky bar on desktop: centred with rounded top corners */
+    .pers-bar {
+      max-width: 660px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 20px 20px 0 0;
+      padding: 14px 28px;
+      box-shadow: 0 -2px 16px rgba(44,36,22,0.08);
+    }
+
+    /* panel on desktop: centred, max 560px */
+    .panel {
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      max-width: 560px;
+      width: 100%;
+    }
+    .panel.open {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .pill { padding: 8px 18px; }
+    .body-shape-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  /* ─── PREVENT HORIZONTAL OVERFLOW ─── */
+  body { overflow-x: hidden; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Sripriya</a>
+  <span class="nav-right">Colour Wear</span>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="date-header">
+    <div class="day-name" id="dayName">—</div>
+    <div class="date-full" id="dateFull">—</div>
+  </div>
+
+  <div class="rec-card" id="recCard">
+    <div class="colour-bar" id="colourBar"></div>
+    <div class="card-body" id="cardBody">
+      <div style="text-align:center;padding:40px 0;color:var(--muted);font-size:0.85rem;">
+        Reading the cosmos…
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- STICKY BAR -->
+<div class="pers-bar">
+  <div class="pers-bar-hint" id="persHint">Personalise for a tailored reading</div>
+  <button class="pers-btn" onclick="openPanel()">Personalise</button>
+</div>
+
+<!-- BACKDROP -->
+<div class="backdrop" id="backdrop" onclick="closePanel()"></div>
+
+<!-- SLIDE-UP PANEL -->
+<div class="panel" id="panel">
+  <div class="panel-handle"></div>
+  <div class="panel-header">
+    <span class="panel-title">Your Profile</span>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-scroll">
+
+    <!-- Name -->
+    <div class="field-group">
+      <div class="field-label">Your Name</div>
+      <input type="text" id="nameInput" placeholder="e.g. Priyanka" />
+    </div>
+
+    <!-- DOB -->
+    <div class="field-group">
+      <div class="field-label">Date of Birth</div>
+      <div class="dob-row">
+        <select id="dobDay">
+          <option value="">DD</option>
+        </select>
+        <select id="dobMonth">
+          <option value="">MM</option>
+          <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+          <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+          <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+        </select>
+        <select id="dobYear">
+          <option value="">YYYY</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="field-group">
+      <div class="field-label">I present as</div>
+      <div class="pill-group" id="genderGroup">
+        <div class="pill" data-val="female" onclick="selectPill(this,'gender')">Female</div>
+        <div class="pill" data-val="male" onclick="selectPill(this,'gender')">Male</div>
+        <div class="pill" data-val="androgynous" onclick="selectPill(this,'gender')">Androgynous</div>
+      </div>
+    </div>
+
+    <div class="panel-divider"></div>
+    <div class="panel-section-title">Skin & Colouring</div>
+
+    <!-- Skin Tone -->
+    <div class="field-group">
+      <div class="field-label">Skin Tone</div>
+      <div class="tone-row" id="toneRow">
+        <div class="tone-swatch" data-tone="fair" onclick="selectTone(this)">
+          <div class="tone-circle" style="background:#ffdbac;"></div>
+          <div class="tone-name">Fair</div>
+        </div>
+        <div class="tone-swatch" data-tone="wheatish" onclick="selectTone(this)">
+          <div class="tone-circle" style="background:#f1c27d;"></div>
+          <div class="tone-name">Wheatish</div>
+        </div>
+        <div class="tone-swatch" data-tone="dusky" onclick="selectTone(this)">
+          <div class="tone-circle" style="background:#e0ac69;"></div>
+          <div class="tone-name">Dusky</div>
+        </div>
+        <div class="tone-swatch" data-tone="deep" onclick="selectTone(this)">
+          <div class="tone-circle" style="background:#c68642;"></div>
+          <div class="tone-name">Deep Brown</div>
+        </div>
+        <div class="tone-swatch" data-tone="dark" onclick="selectTone(this)">
+          <div class="tone-circle" style="background:#8d5524;"></div>
+          <div class="tone-name">Dark</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Undertone -->
+    <div class="field-group">
+      <div class="field-label">Undertone</div>
+      <div class="undertone-row" id="undertoneRow">
+        <div class="undertone-pill" data-val="warm" onclick="selectUndertone(this)">
+          <div class="ut-swatch" style="background:#E8C384;"></div>
+          Warm
+        </div>
+        <div class="undertone-pill" data-val="cool" onclick="selectUndertone(this)">
+          <div class="ut-swatch" style="background:#C8A8C8;"></div>
+          Cool
+        </div>
+        <div class="undertone-pill" data-val="neutral" onclick="selectUndertone(this)">
+          <div class="ut-swatch" style="background:#C8B8A8;"></div>
+          Neutral
+        </div>
+      </div>
+    </div>
+
+    <!-- Hair Colour -->
+    <div class="field-group">
+      <div class="field-label">Hair Colour</div>
+      <div class="hair-row" id="hairRow">
+        <div class="hair-swatch" data-hair="black" onclick="selectHair(this)">
+          <div class="hair-circle" style="background:#1a1008;"></div>
+          <div class="hair-label">Black</div>
+        </div>
+        <div class="hair-swatch" data-hair="dark-brown" onclick="selectHair(this)">
+          <div class="hair-circle" style="background:#3B2314;"></div>
+          <div class="hair-label">Dark Brown</div>
+        </div>
+        <div class="hair-swatch" data-hair="medium-brown" onclick="selectHair(this)">
+          <div class="hair-circle" style="background:#7B4F2E;"></div>
+          <div class="hair-label">Medium Brown</div>
+        </div>
+        <div class="hair-swatch" data-hair="light-brown" onclick="selectHair(this)">
+          <div class="hair-circle" style="background:#A0714F;"></div>
+          <div class="hair-label">Light Brown</div>
+        </div>
+        <div class="hair-swatch" data-hair="grey" onclick="selectHair(this)">
+          <div class="hair-circle" style="background:#8A8A8A;"></div>
+          <div class="hair-label">Grey</div>
+        </div>
+        <div class="hair-swatch" data-hair="coloured" onclick="selectHair(this)">
+          <div class="hair-circle" style="background:linear-gradient(135deg,#C5403A,#4A6EA8,#3A9A5A);"></div>
+          <div class="hair-label">Coloured</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-divider"></div>
+    <div class="panel-section-title">Body & Build</div>
+
+    <!-- Body Shape -->
+    <div class="field-group">
+      <div class="field-label">Body Shape</div>
+      <div class="body-shape-grid" id="bodyShapeGrid">
+
+        <!-- Inverted Triangle -->
+        <div class="shape-option" data-shape="inverted-triangle" onclick="selectShape(this)">
+          <svg class="shape-svg" viewBox="0 0 36 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="6" rx="14" ry="4" fill="currentColor" opacity="0.8"/>
+            <path d="M4 6 L18 50 L32 6 Z" fill="currentColor" opacity="0.18"/>
+            <line x1="18" y1="6" x2="18" y2="52" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            <ellipse cx="18" cy="50" rx="3" ry="3" fill="currentColor" opacity="0.5"/>
+          </svg>
+          <div class="shape-name">Inverted Triangle</div>
+        </div>
+
+        <!-- Hourglass -->
+        <div class="shape-option" data-shape="hourglass" onclick="selectShape(this)">
+          <svg class="shape-svg" viewBox="0 0 36 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="6" rx="13" ry="4" fill="currentColor" opacity="0.8"/>
+            <path d="M5 6 Q5 22 18 28 Q31 22 31 6 Z" fill="currentColor" opacity="0.18"/>
+            <path d="M5 50 Q5 34 18 28 Q31 34 31 50 Z" fill="currentColor" opacity="0.18"/>
+            <ellipse cx="18" cy="50" rx="13" ry="4" fill="currentColor" opacity="0.8"/>
+            <line x1="5" y1="6" x2="13" y2="28" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="31" y1="6" x2="23" y2="28" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="13" y1="28" x2="5" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="23" y1="28" x2="31" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+          </svg>
+          <div class="shape-name">Hourglass</div>
+        </div>
+
+        <!-- Rectangle -->
+        <div class="shape-option" data-shape="rectangle" onclick="selectShape(this)">
+          <svg class="shape-svg" viewBox="0 0 36 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="6" rx="11" ry="4" fill="currentColor" opacity="0.8"/>
+            <rect x="7" y="6" width="22" height="44" rx="4" fill="currentColor" opacity="0.18"/>
+            <line x1="7" y1="6" x2="7" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="29" y1="6" x2="29" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <ellipse cx="18" cy="50" rx="11" ry="4" fill="currentColor" opacity="0.8"/>
+          </svg>
+          <div class="shape-name">Rectangle</div>
+        </div>
+
+        <!-- Pear -->
+        <div class="shape-option" data-shape="pear" onclick="selectShape(this)">
+          <svg class="shape-svg" viewBox="0 0 36 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="6" rx="8" ry="4" fill="currentColor" opacity="0.8"/>
+            <path d="M10 6 Q8 26 5 50 L31 50 Q28 26 26 6 Z" fill="currentColor" opacity="0.18"/>
+            <line x1="10" y1="6" x2="5" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="26" y1="6" x2="31" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <ellipse cx="18" cy="50" rx="13" ry="4" fill="currentColor" opacity="0.8"/>
+          </svg>
+          <div class="shape-name">Pear</div>
+        </div>
+
+        <!-- Apple -->
+        <div class="shape-option" data-shape="apple" onclick="selectShape(this)">
+          <svg class="shape-svg" viewBox="0 0 36 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="6" rx="9" ry="4" fill="currentColor" opacity="0.8"/>
+            <ellipse cx="18" cy="28" rx="14" ry="16" fill="currentColor" opacity="0.18"/>
+            <line x1="9" y1="6" x2="4" y2="28" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="27" y1="6" x2="32" y2="28" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="4" y1="28" x2="9" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <line x1="32" y1="28" x2="27" y2="50" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <ellipse cx="18" cy="50" rx="9" ry="4" fill="currentColor" opacity="0.8"/>
+          </svg>
+          <div class="shape-name">Apple</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Height -->
+    <div class="field-group">
+      <div class="field-label">Height</div>
+      <div class="height-row">
+        <input type="number" id="heightCm" placeholder="e.g. 163" min="120" max="220" />
+        <span class="height-unit">cm</span>
+      </div>
+    </div>
+
+    <div class="panel-divider"></div>
+    <div class="panel-section-title">Location</div>
+
+    <!-- City -->
+    <div class="field-group">
+      <div class="field-label">Your City</div>
+      <div class="city-row">
+        <input type="text" id="cityInput" placeholder="e.g. Auroville" />
+        <button class="detect-btn" onclick="detectLocation()">📍 Detect</button>
+      </div>
+      <div id="locStatus" style="font-size:0.72rem;color:var(--muted);margin-top:6px;"></div>
+    </div>
+
+    <button class="panel-save" onclick="saveAndClose()">Save &amp; Refresh Reading ✦</button>
+
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────────────────
+const WEATHER_API_KEY = 'f12d85109324f04cfa597824d701a04f';
+
+let state = {
+  name: '', dob: null, gender: null,
+  tone: null, undertone: null,
+  hair: null, bodyShape: null, heightCm: null,
+  lat: null, lon: null, city: '',
+  weatherCache: null, weatherTs: 0
+};
+
+// ─────────────────────────────────────────────────────────
+//  NUMEROLOGY  (Chaldean)
+// ─────────────────────────────────────────────────────────
+function reduceNum(n) {
+  let s = String(n).split('').reduce((a, d) => a + (+d), 0);
+  return s > 9 ? reduceNum(s) : s;
+}
+
+function reduceSteps(n) {
+  // Returns [{input, output}] for each reduction step
+  const steps = [];
+  let cur = n;
+  while (cur > 9) {
+    const digits = String(cur).split('').map(Number);
+    const sum = digits.reduce((a, d) => a + d, 0);
+    steps.push({ from: cur, digits: digits, to: sum });
+    cur = sum;
+  }
+  return { steps, final: cur };
+}
+
+function lifePath(dobStr) {
+  // dobStr = 'DD-MM-YYYY'
+  const parts = dobStr.split('-').map(Number);
+  const total = parts[0] + parts[1] + reduceNum(parts[2]);
+  return reduceNum(total);
+}
+
+function lifePathFull(dobStr) {
+  const parts = dobStr.split('-').map(Number);
+  const [d, m, y] = parts;
+  const yR = reduceNum(y);
+  const total = d + m + yR;
+  const allDigits = [...String(d).split(''), ...String(m).split(''), ...String(y).split('')].map(Number);
+  const digitSum = allDigits.reduce((a, v) => a + v, 0);
+  const reduction = reduceSteps(digitSum);
+  return { d, m, y, yR, allDigits, digitSum, reduction, lp: reduction.final };
+}
+
+function universalDay(date) {
+  const ud = date.getDate() + (date.getMonth() + 1) + reduceNum(date.getFullYear());
+  return reduceNum(ud);
+}
+
+function personalDay(dobStr, date) {
+  const lp = lifePath(dobStr);
+  const ud = universalDay(date);
+  return reduceNum(lp + ud);
+}
+
+// ─────────────────────────────────────────────────────────
+//  VEDIC PLANETARY COLOURS
+// ─────────────────────────────────────────────────────────
+const PLANETS = {
+  0: { name: 'Sun',     day: 'Sunday',    planet: 'Surya',   colours: ['Copper','Burnt Orange','Gold'],     avoid: ['Black','Dark Blue'], hex: ['#B87333','#CC5500','#C5A028'], hex2:'#CC5500' },
+  1: { name: 'Moon',    day: 'Monday',    planet: 'Chandra', colours: ['White','Silver','Pale Blue'],       avoid: ['Black','Dark Red'],  hex: ['#F8F6F0','#C0C0C0','#B8C8D8'], hex2:'#B8C8D8' },
+  2: { name: 'Mars',    day: 'Tuesday',   planet: 'Mangal',  colours: ['Red','Crimson','Coral'],            avoid: ['Green','Dark Brown'], hex: ['#CC2222','#8B1A1A','#E87060'], hex2:'#CC2222' },
+  3: { name: 'Mercury', day: 'Wednesday', planet: 'Budh',    colours: ['Emerald Green','Lime','Teal'],      avoid: ['Red','Orange'],      hex: ['#2E8B57','#6B8E23','#3A8B7A'], hex2:'#2E8B57' },
+  4: { name: 'Jupiter', day: 'Thursday',  planet: 'Guru',    colours: ['Yellow','Turmeric','Cream'],        avoid: ['Grey','Dark Tones'], hex: ['#E8C840','#D4A017','#F5EFD0'], hex2:'#D4A017' },
+  5: { name: 'Venus',   day: 'Friday',    planet: 'Shukra',  colours: ['Pink','Lilac','Pastel Rose'],       avoid: ['Dark Brown','Black'], hex: ['#E87080','#C090C8','#F0A8B0'], hex2:'#E87080' },
+  6: { name: 'Saturn',  day: 'Saturday',  planet: 'Shani',   colours: ['Black','Dark Indigo','Navy Blue'],  avoid: ['Orange','Bright Red'], hex: ['#1A1A2E','#2C2444','#1C3555'], hex2:'#2C2444' },
+};
+
+// ─────────────────────────────────────────────────────────
+//  SKIN TONE → SHADE MODIFIER
+// ─────────────────────────────────────────────────────────
+const TONE_MODIFIER = {
+  fair:     { warm: 'peach tones', cool: 'true bright shades', neutral: 'soft clear tones' },
+  wheatish: { warm: 'warm earthy tones', cool: 'jewel tones', neutral: 'classic mid-tones' },
+  dusky:    { warm: 'ivory & amber tones', cool: 'royal & deep shades', neutral: 'rich mid-tones' },
+  deep:     { warm: 'rich golden tones', cool: 'deep cool tones', neutral: 'vibrant balanced tones' },
+  dark:     { warm: 'deep amber & copper', cool: 'bold cool shades', neutral: 'rich neutral tones' },
+};
+
+// ─────────────────────────────────────────────────────────
+//  LIFE PATH → COLOUR AFFINITY
+// ─────────────────────────────────────────────────────────
+const LP_COLOURS = {
+  1: { cols: ['Gold', 'Orange', 'Copper'], desc: 'Life path 1 vibrates with the Sun. Bold, radiant, leadership colours suit you.' },
+  2: { cols: ['White', 'Silver', 'Pale Blue'], desc: 'Life path 2 resonates with the Moon. Soft, reflective, cooling tones align with your gentle energy.' },
+  3: { cols: ['Yellow', 'Lilac', 'Cream'], desc: 'Life path 3 channels Jupiter and Venus. Joyful, expansive, communicative colours amplify your expression.' },
+  4: { cols: ['Earth tones', 'Green', 'Brown'], desc: 'Life path 4 is grounded in Saturn. Earthy, stable, rooted colours support your methodical nature.' },
+  5: { cols: ['Turquoise', 'Teal', 'Azure'], desc: 'Life path 5 moves with Mercury. Freedom-loving colours that shift and shimmer suit your restless brilliance.' },
+  6: { cols: ['Blush Pink', 'Soft Green', 'Ivory'], desc: 'Life path 6 flows with Venus. Harmonious, nurturing, beautiful tones match your loving nature.' },
+  7: { cols: ['Violet', 'Indigo', 'Deep Blue'], desc: 'Life path 7 seeks depth. Mysterious, spiritual, introspective colours resonate with your seeking mind.' },
+  8: { cols: ['Dark Blue', 'Charcoal', 'Burgundy'], desc: 'Life path 8 carries Saturn\'s power. Commanding, authoritative, deep tones support your drive.' },
+  9: { cols: ['Crimson', 'Gold', 'Deep Saffron'], desc: 'Life path 9 burns with Mars and universal compassion. Bold, humanitarian, inspired colours suit your soul.' },
+};
+
+// ─────────────────────────────────────────────────────────
+//  BODY SHAPE OUTFIT GUIDANCE
+// ─────────────────────────────────────────────────────────
+const BODY_GUIDANCE = {
+  'inverted-triangle': {
+    focus: 'Balance with volume below',
+    tips: ['Wide-leg or flared trousers', 'A-line skirts', 'Avoid heavy shoulder embellishment', 'Draped fabrics below the hip'],
+    fusion: 'Anarkali-style kurtas, dhoti pants, flared salwars'
+  },
+  hourglass: {
+    focus: 'Define the waist',
+    tips: ['Fitted or belted styles', 'Wrap silhouettes', 'Fitted saree drapes', 'Avoid boxy cuts'],
+    fusion: 'Sarees with fitted blouse, wrap kurtas, flared midi skirts'
+  },
+  rectangle: {
+    focus: 'Create curves with colour blocking',
+    tips: ['Peplum tops', 'Layered necklaces to add dimension', 'High-waisted bottoms', 'Avoid monochrome head-to-toe'],
+    fusion: 'Layered kurta sets, contrast dupattas, structured Indo-Western'
+  },
+  pear: {
+    focus: 'Draw attention upward',
+    tips: ['Embellished necklines', 'Boat or wide-neck tops', 'Dark solid bottoms', 'Avoid details at the hip'],
+    fusion: 'Embroidered blouses, plain salwars, boat-neck kurtas'
+  },
+  apple: {
+    focus: 'Create length and balance',
+    tips: ['Long-line kurtas over leggings', 'V-necklines to elongate', 'Empire-waist silhouettes', 'Avoid cropped tops'],
+    fusion: 'Long Anarkali, straight-cut salwar kurta, maxi saree blouse'
+  },
+};
+
+// ─────────────────────────────────────────────────────────
+//  PANCHANG
+// ─────────────────────────────────────────────────────────
+const NEW_MOON_REF = new Date('2000-01-06T18:14:00Z');
+const SYNODIC = 29.53058867;
+
+function panchang(date) {
+  const diff = (date - NEW_MOON_REF) / 86400000;
+  const phase = ((diff % SYNODIC) + SYNODIC) % SYNODIC;
+  const tithi = Math.floor(phase / (SYNODIC / 30)) + 1;
+  const paksha = tithi <= 15 ? 'Shukla' : 'Krishna';
+  const tithi15 = tithi > 15 ? tithi - 15 : tithi;
+
+  let moonPhase = '', moonEmoji = '';
+  if (phase < 1.5)       { moonPhase = 'Amavasya (New Moon)'; moonEmoji = '🌑'; }
+  else if (phase < 7.4)  { moonPhase = 'Waxing Crescent'; moonEmoji = '🌒'; }
+  else if (phase < 9)    { moonPhase = 'Purnima (Full Moon)'; moonEmoji = '🌕'; }
+  else if (phase < 14)   { moonPhase = 'Waxing Gibbous'; moonEmoji = '🌔'; }
+  else if (phase < 16)   { moonPhase = 'Purnima (Full Moon)'; moonEmoji = '🌕'; }
+  else if (phase < 22)   { moonPhase = 'Waning Gibbous'; moonEmoji = '🌖'; }
+  else if (phase < 23.5) { moonPhase = 'Last Quarter'; moonEmoji = '🌗'; }
+  else if (phase < 28)   { moonPhase = 'Waning Crescent'; moonEmoji = '🌘'; }
+  else                   { moonPhase = 'Amavasya (New Moon)'; moonEmoji = '🌑'; }
+
+  const tithiNames = ['Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami','Shashthi','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dwadashi','Trayodashi','Chaturdashi','Purnima/Amavasya'];
+  const tithiName = tithiNames[Math.min(tithi15-1, 14)];
+
+  // Purnima/Amavasya special
+  const isPurnima = (phase >= 13.5 && phase < 16.5);
+  const isAmavasya = (phase < 1.5 || phase >= 28);
+
+  return { tithi, tithi15, tithiName, paksha, moonPhase, moonEmoji, isPurnima, isAmavasya };
+}
+
+// ─────────────────────────────────────────────────────────
+//  WEATHER
+// ─────────────────────────────────────────────────────────
+async function fetchWeather() {
+  if (!state.lat && !state.city) return null;
+  const now = Date.now();
+  if (state.weatherCache && (now - state.weatherTs) < 1800000) return state.weatherCache;
+
+  try {
+    let url;
+    if (state.lat) {
+      url = `https://api.openweathermap.org/data/2.5/weather?lat=${state.lat}&lon=${state.lon}&appid=${WEATHER_API_KEY}&units=metric`;
+    } else {
+      url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(state.city)}&appid=${WEATHER_API_KEY}&units=metric`;
+    }
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    state.weatherCache = data;
+    state.weatherTs = now;
+    if (!state.city && data.name) state.city = data.name;
+    return data;
+  } catch(e) { return null; }
+}
+
+function weatherFabricAdvice(w) {
+  if (!w) return null;
+  const temp = w.main.temp;
+  const humidity = w.main.humidity;
+  const desc = (w.weather[0].description || '').toLowerCase();
+
+  let fabric = '';
+  if (humidity > 75) fabric = 'light cotton or linen only — high humidity today';
+  else if (temp > 35) fabric = 'breathable cotton, avoid synthetics';
+  else if (temp > 25) fabric = 'cotton or linen, light layers';
+  else if (temp > 18) fabric = 'cotton or light wool blend';
+  else fabric = 'warm layers — wool, shawls welcome';
+
+  let weatherLine = `${Math.round(temp)}°C`;
+  if (desc) weatherLine += `, ${desc}`;
+  weatherLine += ` — humidity ${humidity}%`;
+
+  return { fabric, weatherLine, temp, humidity };
+}
+
+// ─────────────────────────────────────────────────────────
+//  RENDER CARD
+// ─────────────────────────────────────────────────────────
+async function renderCard() {
+  const today = new Date();
+  const dow = today.getDay(); // 0=Sun
+  const planet = PLANETS[dow];
+  const pan = panchang(today);
+
+  // date display
+  document.getElementById('dayName').textContent = planet.day;
+  document.getElementById('dateFull').textContent =
+    today.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // numerology
+  let lpNum = null, pdNum = null, lpInfo = null, lpFull = null;
+  if (state.dob) {
+    lpNum = lifePath(state.dob);
+    pdNum = personalDay(state.dob, today);
+    lpInfo = LP_COLOURS[lpNum];
+    lpFull = lifePathFull(state.dob);
+  }
+
+  // colour palette — modify by undertone/skin
+  let primaryColours = [...planet.colours];
+  let toneNote = '';
+  if (state.tone && state.undertone) {
+    const mod = TONE_MODIFIER[state.tone]?.[state.undertone];
+    if (mod) toneNote = `Lean towards ${mod} of ${planet.colours[0].toLowerCase()}.`;
+  }
+
+  // colour bar
+  document.getElementById('colourBar').style.background =
+    `linear-gradient(to right, ${planet.hex[0]}, ${planet.hex[1] || planet.hex[0]})`;
+
+  // build card
+  const name = state.name ? `, ${state.name}` : '';
+  const greeting = state.name ? `Good morning${name} ✦` : 'Today\'s Reading ✦';
+
+  // Purnima/Amavasya amplification
+  let lunarAmplify = '';
+  if (pan.isPurnima) lunarAmplify = `Purnima amplifies lunar energy — white and silver are especially auspicious.`;
+  if (pan.isAmavasya) lunarAmplify = `Amavasya calls for grounding colours — earthy tones and dark blues.`;
+
+  // body shape
+  let bodyHtml = '';
+  if (state.bodyShape && BODY_GUIDANCE[state.bodyShape]) {
+    const bg = BODY_GUIDANCE[state.bodyShape];
+    bodyHtml = `
+      <div class="why-block" onclick="toggleWhy(this)">
+        <div class="why-header">
+          <div class="why-header-left">
+            <span class="why-icon">👗</span>
+            <div>
+              <div class="why-label">Your Silhouette</div>
+              <div class="why-value">${state.bodyShape.replace(/-/g,' ')} — ${bg.focus.toLowerCase()}</div>
+            </div>
+          </div>
+          <span class="why-chevron">▾</span>
+        </div>
+        <div class="why-detail">
+          <p><strong>Focus:</strong> ${bg.focus}</p>
+          <p><strong>Cuts to favour:</strong> ${bg.tips.join('; ')}.</p>
+          <p><strong>Fusion styling:</strong> ${bg.fusion}.</p>
+        </div>
+      </div>`;
+  }
+
+  // numerology breakdown html
+  let numHtml = '';
+  if (lpFull) {
+    const f = lpFull;
+    const digitStr = f.allDigits.join(' + ');
+    let reductionHtml = `<div class="num-step"><span class="num-step-label">${f.d}/${f.m}/${f.y}</span><span class="num-step-val">${digitStr} = ${f.digitSum}</span></div>`;
+    f.reduction.steps.forEach(s => {
+      reductionHtml += `<div class="num-step"><span class="num-step-label">${s.digits.join(' + ')}</span><span class="num-step-val">= ${s.to}</span></div>`;
+    });
+    reductionHtml += `<div class="num-step"><span class="num-step-label" style="font-weight:500;color:var(--text)">Life Path</span><span class="num-step-val" style="font-size:1.2rem;color:var(--red)">${f.lp}</span></div>`;
+
+    numHtml = `
+      <div class="why-block" onclick="toggleWhy(this)">
+        <div class="why-header">
+          <div class="why-header-left">
+            <span class="why-icon">🔢</span>
+            <div>
+              <div class="why-label">Numerology</div>
+              <div class="why-value">Life Path ${lpNum} · Personal Day ${pdNum}</div>
+            </div>
+          </div>
+          <span class="why-chevron">▾</span>
+        </div>
+        <div class="why-detail">
+          <p><strong>How your Life Path is calculated:</strong></p>
+          <div class="num-breakdown">${reductionHtml}</div>
+          <p style="margin-top:8px">${lpInfo ? lpInfo.desc : ''}</p>
+          ${lpInfo ? `<p style="margin-top:6px"><strong>Your Life Path ${lpNum} colours:</strong> ${lpInfo.cols.join(', ')}.</p>` : ''}
+          <p style="margin-top:6px"><strong>Today (Personal Day ${pdNum}):</strong> ${LP_COLOURS[pdNum] ? LP_COLOURS[pdNum].cols.join(', ') : 'aligns with today\'s cosmic energy'}.</p>
+        </div>
+      </div>`;
+  }
+
+  // hair colour note
+  let hairNote = '';
+  if (state.hair) {
+    const hairMap = {
+      'black': 'Black hair creates strong contrast — bold and deep colours in today\'s palette will be especially striking.',
+      'dark-brown': 'Dark brown hair is warm and versatile — rich jewel tones and warm shades complement you beautifully.',
+      'medium-brown': 'Medium brown hair harmonises well with both warm and earthy tones.',
+      'light-brown': 'Light brown hair suits soft, warm, and golden-adjacent tones.',
+      'grey': 'Grey or silver hair is elegant — cool tones and crisp whites will look refined.',
+      'coloured': 'With coloured hair, choose today\'s secondary or accent colour as your base to let your hair stand out.',
+    };
+    hairNote = hairMap[state.hair] || '';
+  }
+
+  // palette chips
+  const palHtml = planet.hex.map((h, i) => `
+    <div class="pal-chip">
+      <div class="pal-circle" style="background:${h};"></div>
+      <div class="pal-label">${planet.colours[i] || ''}</div>
+    </div>`).join('');
+
+  // outfit suggestions
+  const outfitSuggestions = getOutfits(planet, state);
+
+  const cardHtml = `
+    <div class="greeting-line">${greeting}</div>
+    <div class="planet-title">${planet.colours[0]} &amp; ${planet.colours[1]}<br><span style="font-size:0.9rem;font-weight:300;color:var(--muted)">ruled by ${planet.planet} — ${planet.name}</span></div>
+
+    <div class="palette-row">${palHtml}</div>
+
+    <div class="why-sections">
+
+      <div class="why-block" onclick="toggleWhy(this)">
+        <div class="why-header">
+          <div class="why-header-left">
+            <span class="why-icon">🪐</span>
+            <div>
+              <div class="why-label">Planetary Energy</div>
+              <div class="why-value">${planet.day} · ${planet.planet} · ${planet.name}</div>
+            </div>
+          </div>
+          <span class="why-chevron">▾</span>
+        </div>
+        <div class="why-detail">
+          <p>${planet.day} is ruled by the <strong>${planet.name} (${planet.planet})</strong>.</p>
+          <p>The planet's colours — <strong>${planet.colours.join(', ')}</strong> — invite its qualities: ${getPlanetQuality(dow)}.</p>
+          ${lunarAmplify ? `<p>${lunarAmplify}</p>` : ''}
+        </div>
+      </div>
+
+      <div class="why-block" onclick="toggleWhy(this)">
+        <div class="why-header">
+          <div class="why-header-left">
+            <span class="why-icon">${pan.moonEmoji}</span>
+            <div>
+              <div class="why-label">Panchang</div>
+              <div class="why-value">${pan.paksha} ${pan.tithiName} · ${pan.moonPhase}</div>
+            </div>
+          </div>
+          <span class="why-chevron">▾</span>
+        </div>
+        <div class="why-detail">
+          <p>Today is <strong>Tithi ${pan.tithi15}</strong> of <strong>${pan.paksha} Paksha</strong> — the ${pan.paksha === 'Shukla' ? 'waxing (bright)' : 'waning (dark)'} fortnight.</p>
+          <p>The moon is in its <strong>${pan.moonPhase}</strong> phase ${pan.moonEmoji}. ${pan.isPurnima ? 'Purnima is auspicious for white, silver, and lunar colours.' : pan.isAmavasya ? 'Amavasya is a day for introspection — grounding tones support.' : 'Draw on the lunar energy of ' + (pan.paksha === 'Shukla' ? 'expansion and brightness' : 'release and depth') + '.'}</p>
+        </div>
+      </div>
+
+      ${numHtml}
+
+      ${state.tone ? `
+      <div class="why-block" onclick="toggleWhy(this)">
+        <div class="why-header">
+          <div class="why-header-left">
+            <span class="why-icon">✨</span>
+            <div>
+              <div class="why-label">Skin Tone</div>
+              <div class="why-value">${formatTone(state.tone)}${state.undertone ? ' · ' + state.undertone + ' undertone' : ''}</div>
+            </div>
+          </div>
+          <span class="why-chevron">▾</span>
+        </div>
+        <div class="why-detail">
+          ${toneNote ? `<p>${toneNote}</p>` : ''}
+          ${hairNote ? `<p style="margin-top:6px">${hairNote}</p>` : ''}
+          <p style="margin-top:6px">Today's palette works beautifully — choose the shade that feels most alive against your skin in today's light.</p>
+        </div>
+      </div>` : ''}
+
+      ${bodyHtml}
+
+    </div>
+
+    <div class="avoid-row">
+      <span style="flex-shrink:0;font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;padding-top:2px;">Avoid</span>
+      ${planet.avoid.map(a => `<span class="avoid-tag">${a}</span>`).join('')}
+    </div>
+
+    <div class="outfit-section">
+      <div class="outfit-heading">What to wear today</div>
+      <div class="outfit-pills">
+        ${outfitSuggestions.map(o => `<div class="outfit-pill">${o}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="weather-strip weather-loading" id="weatherSlot">
+      ⛅ Fetching weather…
+    </div>
+  `;
+
+  document.getElementById('cardBody').innerHTML = cardHtml;
+
+  // async weather patch
+  fetchWeather().then(w => {
+    const slot = document.getElementById('weatherSlot');
+    if (!slot) return;
+    const wa = weatherFabricAdvice(w);
+    if (wa) {
+      slot.classList.remove('weather-loading');
+      slot.innerHTML = `<span class="weather-icon">⛅</span><span>${wa.weatherLine} — <strong>${wa.fabric}</strong></span>`;
+    } else if (state.city) {
+      slot.innerHTML = `<span class="weather-icon">📍</span><span>${state.city}</span>`;
+    } else {
+      slot.innerHTML = `<span class="weather-icon">📍</span><span>Add your city for fabric advice</span>`;
+    }
+  });
+}
+
+function getPlanetQuality(dow) {
+  const q = {
+    0: 'vitality, confidence, and clear vision',
+    1: 'intuition, calm, and emotional attunement',
+    2: 'courage, drive, and decisive action',
+    3: 'communication, adaptability, and quick wit',
+    4: 'wisdom, expansion, and auspicious beginnings',
+    5: 'beauty, harmony, and creative inspiration',
+    6: 'discipline, patience, and karmic work',
+  };
+  return q[dow] || 'cosmic flow';
+}
+
+function formatTone(t) {
+  return { fair:'Fair', wheatish:'Wheatish', dusky:'Dusky', deep:'Deep Brown', dark:'Dark' }[t] || t;
+}
+
+function getOutfits(planet, s) {
+  const gender = s.gender;
+  const shape = s.bodyShape;
+  const base = planet.colours[0];
+  const accentCol = planet.colours[1] || planet.colours[0];
+
+  const outfits = [];
+
+  if (gender === 'male') {
+    outfits.push(`${base} linen shirt`);
+    outfits.push(`${accentCol} or white trousers`);
+    outfits.push(`Kurta in ${base.toLowerCase()} with dhoti pants`);
+    if (shape === 'rectangle') outfits.push(`Contrast dupatta or scarf to add dimension`);
+    if (shape === 'inverted-triangle') outfits.push(`Wide-leg or straight trousers to balance`);
+  } else if (gender === 'female') {
+    outfits.push(`${base} cotton or linen kurta`);
+    outfits.push(`Saree in ${accentCol.toLowerCase()}`);
+    outfits.push(`Salwar set with ${base.toLowerCase()} dupatta`);
+    if (shape === 'hourglass') outfits.push(`Fitted wrap kurta or belted saree`);
+    if (shape === 'pear') outfits.push(`Embroidered blouse to draw the eye upward`);
+    if (shape === 'inverted-triangle') outfits.push(`Flared Anarkali or A-line kurta`);
+    if (shape === 'apple') outfits.push(`Long straight-cut kurta over leggings`);
+  } else {
+    outfits.push(`${base} relaxed kurta or oversized shirt`);
+    outfits.push(`${accentCol} fluid trousers or wide-leg pants`);
+    outfits.push(`Layered look: inner in ${base.toLowerCase()} + neutral outer layer`);
+  }
+
+  // always suggest an accessory
+  outfits.push(`Accessory in ${planet.colours[2] || accentCol}`);
+
+  return outfits;
+}
+
+function toggleWhy(el) {
+  el.classList.toggle('open');
+}
+
+// ─────────────────────────────────────────────────────────
+//  PANEL OPEN / CLOSE
+// ─────────────────────────────────────────────────────────
+function openPanel() {
+  document.getElementById('panel').classList.add('open');
+  document.getElementById('backdrop').classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePanel() {
+  document.getElementById('panel').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+// ─────────────────────────────────────────────────────────
+//  SELECTION HELPERS
+// ─────────────────────────────────────────────────────────
+function selectPill(el, group) {
+  document.querySelectorAll('#genderGroup .pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  state.gender = el.dataset.val;
+}
+
+function selectTone(el) {
+  document.querySelectorAll('#toneRow .tone-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  state.tone = el.dataset.tone;
+}
+
+function selectUndertone(el) {
+  document.querySelectorAll('#undertoneRow .undertone-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  state.undertone = el.dataset.val;
+}
+
+function selectHair(el) {
+  document.querySelectorAll('#hairRow .hair-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  state.hair = el.dataset.hair;
+}
+
+function selectShape(el) {
+  document.querySelectorAll('#bodyShapeGrid .shape-option').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  state.bodyShape = el.dataset.shape;
+}
+
+// ─────────────────────────────────────────────────────────
+//  LOCATION DETECTION
+// ─────────────────────────────────────────────────────────
+function detectLocation() {
+  const statusEl = document.getElementById('locStatus');
+  statusEl.textContent = 'Detecting…';
+  if (!navigator.geolocation) {
+    statusEl.textContent = 'Location not supported on this device.';
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(pos => {
+    state.lat = pos.coords.latitude;
+    state.lon = pos.coords.longitude;
+    state.weatherCache = null;
+    fetchWeather().then(w => {
+      if (w && w.name) {
+        state.city = w.name;
+        document.getElementById('cityInput').value = w.name;
+        statusEl.textContent = `📍 ${w.name} detected`;
+      } else {
+        statusEl.textContent = `📍 Location detected (${state.lat.toFixed(2)}°N)`;
+      }
+    });
+  }, err => {
+    statusEl.textContent = 'Could not detect — enter city manually.';
+  });
+}
+
+function silentDetectLoc() {
+  if (!navigator.geolocation || state.lat) return;
+  navigator.geolocation.getCurrentPosition(pos => {
+    state.lat = pos.coords.latitude;
+    state.lon = pos.coords.longitude;
+    renderCard();
+  }, () => {});
+}
+
+// ─────────────────────────────────────────────────────────
+//  SAVE & CLOSE
+// ─────────────────────────────────────────────────────────
+function saveAndClose() {
+  state.name = document.getElementById('nameInput').value.trim();
+
+  const d = document.getElementById('dobDay').value;
+  const m = document.getElementById('dobMonth').value;
+  const y = document.getElementById('dobYear').value;
+  if (d && m && y) {
+    state.dob = `${d.padStart(2,'0')}-${m.padStart(2,'0')}-${y}`;
+  }
+
+  const cityVal = document.getElementById('cityInput').value.trim();
+  if (cityVal && cityVal !== state.city) {
+    state.city = cityVal;
+    state.weatherCache = null;
+    state.lat = null;
+    state.lon = null;
+  }
+
+  const hVal = document.getElementById('heightCm').value;
+  if (hVal) state.heightCm = parseInt(hVal);
+
+  saveState();
+  closePanel();
+  renderCard();
+
+  const hint = document.getElementById('persHint');
+  if (state.name) hint.textContent = `Reading for ${state.name}`;
+  else hint.textContent = 'Personalise for a tailored reading';
+}
+
+// ─────────────────────────────────────────────────────────
+//  PERSIST STATE
+// ─────────────────────────────────────────────────────────
+function saveState() {
+  const toSave = { ...state, weatherCache: null };
+  try { localStorage.setItem('srcp_v2', JSON.stringify(toSave)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem('srcp_v2');
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    Object.assign(state, saved);
+    // restore UI
+    if (state.name) document.getElementById('nameInput').value = state.name;
+    if (state.city) document.getElementById('cityInput').value = state.city;
+    if (state.heightCm) document.getElementById('heightCm').value = state.heightCm;
+    if (state.gender) {
+      document.querySelectorAll('#genderGroup .pill').forEach(p => {
+        if (p.dataset.val === state.gender) p.classList.add('selected');
+      });
+    }
+    if (state.dob) {
+      const parts = state.dob.split('-');
+      document.getElementById('dobDay').value = parseInt(parts[0]);
+      document.getElementById('dobMonth').value = parseInt(parts[1]);
+      document.getElementById('dobYear').value = parts[2];
+    }
+    if (state.tone) {
+      document.querySelectorAll('#toneRow .tone-swatch').forEach(s => {
+        if (s.dataset.tone === state.tone) s.classList.add('selected');
+      });
+    }
+    if (state.undertone) {
+      document.querySelectorAll('#undertoneRow .undertone-pill').forEach(p => {
+        if (p.dataset.val === state.undertone) p.classList.add('selected');
+      });
+    }
+    if (state.hair) {
+      document.querySelectorAll('#hairRow .hair-swatch').forEach(s => {
+        if (s.dataset.hair === state.hair) s.classList.add('selected');
+      });
+    }
+    if (state.bodyShape) {
+      document.querySelectorAll('#bodyShapeGrid .shape-option').forEach(s => {
+        if (s.dataset.shape === state.bodyShape) s.classList.add('selected');
+      });
+    }
+  } catch(e) {}
+}
+
+// ─────────────────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────────────────
+function populateDOBSelects() {
+  const dayEl = document.getElementById('dobDay');
+  for (let i = 1; i <= 31; i++) {
+    const o = document.createElement('option');
+    o.value = i; o.textContent = String(i).padStart(2,'0');
+    dayEl.appendChild(o);
+  }
+  const yearEl = document.getElementById('dobYear');
+  for (let y = new Date().getFullYear() - 10; y >= 1930; y--) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y;
+    yearEl.appendChild(o);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateDOBSelects();
+  loadState();
+  renderCard();
+  if (!state.lat) silentDetectLoc();
+
+  const hint = document.getElementById('persHint');
+  if (state.name) hint.textContent = `Reading for ${state.name}`;
+});
+</script>
+</body>
+</html>
