@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sripriya — Yoga · Image · Colour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────── */
+    :root {
+      --red:        #8B1A1A;
+      --red-light:  #B8403A;
+      --blue:       #8FAFC0;
+      --blue-pale:  #D6E6EE;
+      --blue-wash:  #EEF5F9;
+      --cream:      #FAF8F5;
+      --warm-white: #FFFFFF;
+      --ink:        #1E1E1E;
+      --ink-muted:  #5A5A5A;
+      --rule:       #E2DDD8;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w:      1120px;
+      --gap:        clamp(2rem, 6vw, 5rem);
+    }
+
+    /* ─────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: clamp(15px, 1.5vw, 17px);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section { padding-block: var(--gap); }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .serif-heading {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .divider {
+      width: 3rem;
+      height: 1px;
+      background: var(--red);
+      display: block;
+      margin-block: 1.5rem;
+    }
+
+    /* ─────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      border: 1px solid var(--red);
+      color: var(--red);
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      padding-top: calc(64px + clamp(3rem, 8vw, 6rem));
+      padding-bottom: clamp(3rem, 8vw, 6rem);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    .hero-text {}
+
+    .hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--ink-muted);
+      font-weight: 300;
+      max-width: 36ch;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--red-light); }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--blue);
+      color: var(--ink-muted);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--ink-muted);
+      color: var(--ink);
+    }
+
+    /* Hero photo */
+    .hero-photo {
+      position: relative;
+    }
+
+    .photo-frame {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--blue-pale);
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, var(--blue-pale) 0%, var(--blue-wash) 50%, #C8D8E4 100%);
+    }
+
+    /* Shown only when no <img> is present */
+    .photo-placeholder-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--blue);
+    }
+
+    .photo-frame img ~ .photo-placeholder-label { display: none; }
+
+    .photo-placeholder-label svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.5;
+    }
+
+    .photo-placeholder-label p {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      opacity: 0.6;
+    }
+
+    .photo-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      z-index: 1;
+    }
+
+    .photo-accent {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      width: 60%;
+      height: 60%;
+      border: 1px solid var(--blue-pale);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      background: var(--blue-wash);
+      color: #4A6E82;
+    }
+
+    /* ─────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────── */
+    #about {
+      background: var(--warm-white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .about-left {}
+
+    .about-heading {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      margin-bottom: 0;
+    }
+
+    .about-pull-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--red);
+      line-height: 1.5;
+      border-left: 2px solid var(--red);
+      padding-left: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .about-body {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.85;
+    }
+
+    .about-body p + p { margin-top: 1.25rem; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 0.4rem;
+    }
+
+    .location-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-top: 2rem;
+    }
+
+    .location-tag svg {
+      width: 14px;
+      height: 14px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       SPECIALISATIONS STRIP
+    ───────────────────────────────────────── */
+    .specs-strip {
+      background: var(--blue-wash);
+      padding-block: clamp(1.5rem, 3vw, 2.5rem);
+      border-bottom: 1px solid #C8D9E5;
+    }
+
+    .specs-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2.5rem;
+      align-items: center;
+    }
+
+    .specs-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #4A6E82;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .specs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .spec-chip {
+      font-size: 0.78rem;
+      padding: 0.35rem 1rem;
+      border-radius: 2px;
+      background: #fff;
+      color: #4A6E82;
+      border: 1px solid #C8D9E5;
+      font-weight: 400;
+    }
+
+    /* ─────────────────────────────────────────
+       YOGA / AEVAN
+    ───────────────────────────────────────── */
+    #yoga {
+      background: var(--cream);
+    }
+
+    .yoga-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .yoga-heading {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    }
+
+    .yoga-body {
+      color: var(--ink-muted);
+      line-height: 1.85;
+    }
+
+    .yoga-body p + p { margin-top: 1.2rem; }
+
+    .yoga-features {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .yoga-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+    }
+
+    .yoga-feature-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+      margin-top: 0.5em;
+    }
+
+    .yoga-card {
+      background: var(--warm-white);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .yoga-card-logo {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .yoga-card-logo span { color: var(--red); }
+
+    .yoga-card-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .yoga-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      transition: gap 0.2s;
+    }
+
+    .yoga-card-link:hover { gap: 0.85rem; }
+
+    .yoga-card-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .yoga-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ─────────────────────────────────────────
+       COLOUR APP / VISION
+    ───────────────────────────────────────── */
+    #colour {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    #colour .eyebrow { color: var(--blue); }
+
+    .colour-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .colour-heading {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      color: #fff;
+    }
+
+    .colour-heading em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .colour-body {
+      color: rgba(255,255,255,0.65);
+      line-height: 1.85;
+    }
+
+    .colour-body p + p { margin-top: 1.2rem; }
+
+    .colour-divider {
+      width: 3rem;
+      height: 1px;
+      background: var(--blue);
+      display: block;
+      margin-block: 1.5rem;
+    }
+
+    .colour-pillars {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .colour-pillar {
+      padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .colour-pillar-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .colour-pillar-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.35rem;
+    }
+
+    .colour-pillar-text {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    .colour-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .colour-mock {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .mock-header {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2rem;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .swatch-label {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.35rem;
+      letter-spacing: 0.06em;
+    }
+
+    .swatch-item {
+      text-align: center;
+    }
+
+    .mock-insight {
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .mock-insight strong { color: var(--blue); font-weight: 500; }
+
+    .badge-coming {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      background: rgba(143, 175, 192, 0.2);
+      color: var(--blue);
+      border: 1px solid rgba(143,175,192,0.3);
+      margin-top: 1.5rem;
+    }
+
+    /* ─────────────────────────────────────────
+       PHILOSOPHY / QUOTE
+    ───────────────────────────────────────── */
+    .philosophy {
+      background: var(--warm-white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+      padding-block: clamp(3rem, 7vw, 6rem);
+    }
+
+    .big-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 300;
+      max-width: 20ch;
+      margin-inline: auto;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .big-quote em {
+      color: var(--red);
+      font-style: italic;
+    }
+
+    .quote-attr {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ─────────────────────────────────────────
+       CONTACT / FOOTER
+    ───────────────────────────────────────── */
+    #connect {
+      background: var(--cream);
+    }
+
+    .connect-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .connect-heading {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+    }
+
+    .connect-body {
+      color: var(--ink-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .connect-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .channel {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--warm-white);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+
+    .channel:hover { border-color: var(--blue); }
+
+    .channel-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--blue-wash);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .channel-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--blue);
+    }
+
+    .channel-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .channel-value {
+      font-size: 0.88rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    footer {
+      padding-block: 2rem;
+      border-top: 1px solid var(--rule);
+      background: var(--cream);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-mantra {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .hero-grid,
+      .about-grid,
+      .yoga-grid,
+      .colour-grid,
+      .connect-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo { order: -1; }
+
+      .photo-frame { aspect-ratio: 4 / 3; max-height: 360px; }
+
+      .nav-links { display: none; }
+
+      .about-stats { grid-template-columns: repeat(3, 1fr); }
+
+      .colour-pillars { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 540px) {
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .colour-pillars { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .specs-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">Sri<span>priya</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#yoga">Yoga</a></li>
+        <li><a href="#colour">Colour</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+      <a href="#connect" class="nav-cta">Book a session</a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-text">
+          <span class="eyebrow">Yoga · Image · Colour</span>
+          <h1 class="hero-name">
+            Move<br>
+            with<br>
+            <em>intention.</em>
+          </h1>
+          <p class="hero-tagline">
+            I'm Sripriya — a yoga teacher, image consultant, and lifelong seeker
+            based near Auroville. I help people find their rhythm — on the mat,
+            in the mirror, and in the colours they wear.
+          </p>
+          <div class="hero-ctas">
+            <a href="#yoga" class="btn-primary">Explore yoga with me</a>
+            <a href="#about" class="btn-ghost">My story</a>
+          </div>
+          <div class="hero-pills">
+            <span class="pill">20+ yrs practice</span>
+            <span class="pill">10 yrs teaching</span>
+            <span class="pill">Online &amp; in-person</span>
+            <span class="pill">Near Auroville</span>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <div class="photo-frame">
+            <img src="assets/sripriya.jpg" alt="Sripriya" />
+            <div class="photo-placeholder-label">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              </svg>
+              <p>Your photo here</p>
+            </div>
+          </div>
+          <div class="photo-accent"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       SPECIALISATIONS STRIP
+  ═══════════════════════════════════════ -->
+  <div class="specs-strip">
+    <div class="container">
+      <div class="specs-inner">
+        <span class="specs-label">Specialisations</span>
+        <div class="specs-list">
+          <span class="spec-chip">PCOD / PCOS</span>
+          <span class="spec-chip">Prenatal Yoga</span>
+          <span class="spec-chip">Postnatal Yoga</span>
+          <span class="spec-chip">Perimenopause</span>
+          <span class="spec-chip">Menopause</span>
+          <span class="spec-chip">Vedic &amp; Tantric Studies</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-left">
+          <span class="eyebrow">My story</span>
+          <h2 class="serif-heading about-heading">
+            Rooted in<br>tradition,<br>open to life.
+          </h2>
+          <blockquote class="about-pull-quote">
+            "The only advice I carry forever — follow your passion."
+          </blockquote>
+          <div class="about-stats">
+            <div>
+              <div class="stat-num">20+</div>
+              <div class="stat-label">Years as a student of yoga</div>
+            </div>
+            <div>
+              <div class="stat-num">10</div>
+              <div class="stat-label">Years teaching</div>
+            </div>
+            <div>
+              <div class="stat-num">8</div>
+              <div class="stat-label">Years in NGO work</div>
+            </div>
+          </div>
+          <div class="location-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
+            </svg>
+            Near Auroville, Pondicherry, India
+          </div>
+        </div>
+
+        <div class="about-right">
+          <span class="divider"></span>
+          <div class="about-body">
+            <p>
+              I was born in Nagpur and grew up in a household where education was held sacred.
+              It was in Bombay — where I moved for further studies — that I found my voice:
+              my love for fashion, colour, beauty, and the deep curiosity about how we present
+              ourselves to the world.
+            </p>
+            <p>
+              Yoga arrived early and never left. Two decades as a student taught me that the mat
+              is not separate from life — it <em>is</em> life, distilled. Today I teach online
+              and, when the moment calls for it, in person near Auroville — a place that mirrors
+              everything I believe about conscious living.
+            </p>
+            <p>
+              Alongside yoga, I've spent years studying Vedic and tantric wisdom, volunteering
+              with NGOs, and exploring image consulting — the art of helping people understand
+              the language of what they wear. These aren't separate pursuits; they are one
+              conversation about how we inhabit ourselves.
+            </p>
+            <p>
+              My family — my mother's quiet fierce resilience, my brother Harsh's steadfast
+              love, my children, my closest friends — is the ground I stand on. I am grateful,
+              always.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       YOGA / AEVAN
+  ═══════════════════════════════════════ -->
+  <section id="yoga" class="section">
+    <div class="container">
+      <div class="yoga-grid">
+
+        <div>
+          <span class="eyebrow">Online yoga</span>
+          <h2 class="serif-heading yoga-heading">
+            Practice from<br>wherever you are.
+          </h2>
+          <span class="divider"></span>
+          <div class="yoga-body">
+            <p>
+              Since the early days of COVID, I've been teaching online — and I've discovered
+              that presence has nothing to do with being in the same room. Students across the
+              world have made real, lasting changes to their wellbeing from their living rooms.
+            </p>
+            <p>
+              I offer personalised sessions for women navigating hormonal health — PCOD, PCOS,
+              pregnancy, postpartum recovery, perimenopause, and menopause. The body knows how
+              to heal; yoga simply clears the path.
+            </p>
+          </div>
+          <div class="yoga-features">
+            <div class="yoga-feature">
+              <span class="yoga-feature-dot"></span>
+              <span>One-on-one and small group classes, fully online</span>
+            </div>
+            <div class="yoga-feature">
+              <span class="yoga-feature-dot"></span>
+              <span>Personalised practice for women's health conditions</span>
+            </div>
+            <div class="yoga-feature">
+              <span class="yoga-feature-dot"></span>
+              <span>Rooted in traditional yoga — accessible to all levels</span>
+            </div>
+            <div class="yoga-feature">
+              <span class="yoga-feature-dot"></span>
+              <span>Flexible scheduling — book a slot that works for you</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="yoga-card">
+            <div class="yoga-card-logo">AE<span>V</span>AM</div>
+            <p class="yoga-card-desc">
+              Aevan is my online yoga home — a space to book sessions, explore class formats,
+              and begin or deepen a practice that truly fits your life.
+            </p>
+            <a href="https://aevan.in" target="_blank" rel="noopener" class="yoga-card-link">
+              Visit aevan.in
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+              </svg>
+            </a>
+            <div class="yoga-tag-row">
+              <span class="pill">Women's health</span>
+              <span class="pill">Prenatal</span>
+              <span class="pill">Postnatal</span>
+              <span class="pill">PCOD / PCOS</span>
+              <span class="pill">Menopause</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       COLOUR APP VISION
+  ═══════════════════════════════════════ -->
+  <section id="colour" class="section">
+    <div class="container">
+      <div class="colour-grid">
+
+        <div>
+          <span class="eyebrow">Coming soon</span>
+          <h2 class="serif-heading colour-heading">
+            Colour as a<br><em>living language.</em>
+          </h2>
+          <span class="colour-divider"></span>
+          <div class="colour-body">
+            <p>
+              What if the colour you wear today were chosen not just for aesthetics,
+              but aligned with your numerology, the energy of the day, the positions
+              of the planets, even the weather outside your window?
+            </p>
+            <p>
+              I've been studying this question for years — and I'm building a tool that
+              bridges colour wisdom, astrology, and numerology into one simple, personal
+              daily guide. There's a gap in the market for something real, grounded, and
+              practical. This is it.
+            </p>
+          </div>
+          <div class="colour-pillars">
+            <div class="colour-pillar">
+              <div class="colour-pillar-icon">🔢</div>
+              <div class="colour-pillar-title">Numerology</div>
+              <div class="colour-pillar-text">Colours matched to your life path number and the day's vibration.</div>
+            </div>
+            <div class="colour-pillar">
+              <div class="colour-pillar-icon">🌙</div>
+              <div class="colour-pillar-title">Astrology</div>
+              <div class="colour-pillar-text">Planetary energy woven into daily colour recommendations.</div>
+            </div>
+            <div class="colour-pillar">
+              <div class="colour-pillar-icon">📅</div>
+              <div class="colour-pillar-title">Day of week</div>
+              <div class="colour-pillar-text">Traditional colour–day correspondences from Vedic knowledge.</div>
+            </div>
+            <div class="colour-pillar">
+              <div class="colour-pillar-icon">🌤</div>
+              <div class="colour-pillar-title">Weather + mood</div>
+              <div class="colour-pillar-text">Contextual suggestions so every choice feels effortless.</div>
+            </div>
+          </div>
+          <span class="badge-coming">App in development — stay tuned</span>
+        </div>
+
+        <div class="colour-demo">
+          <div class="colour-mock">
+            <div class="mock-header">Today's palette for you</div>
+            <div class="swatches">
+              <div class="swatch-item">
+                <div class="swatch" style="background:#8B1A1A;"></div>
+                <div class="swatch-label">Deep Red</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#B8CFD8;"></div>
+                <div class="swatch-label">Powder Blue</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#E8D5B5;"></div>
+                <div class="swatch-label">Warm Sand</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#4A1942;"></div>
+                <div class="swatch-label">Deep Plum</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#C8A45A;"></div>
+                <div class="swatch-label">Turmeric</div>
+              </div>
+            </div>
+            <div class="mock-insight">
+              <strong>Friday · Moon in Libra</strong> — lean into harmony colours today.<br>
+              Your number 1 energy calls for clarity: <strong>white</strong> or <strong>soft pink</strong> as a base.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       PHILOSOPHY QUOTE
+  ═══════════════════════════════════════ -->
+  <div class="philosophy">
+    <div class="container">
+      <p class="big-quote">
+        "Stay happy,<br>stay hydrated,<br><em>keep moving."</em>
+      </p>
+      <p class="quote-attr">— Sripriya</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CONNECT / CONTACT
+  ═══════════════════════════════════════ -->
+  <section id="connect" class="section">
+    <div class="container">
+      <div class="connect-inner">
+        <div>
+          <span class="eyebrow">Get in touch</span>
+          <h2 class="serif-heading connect-heading">
+            Let's begin<br>something<br>together.
+          </h2>
+          <p class="connect-body">
+            Whether you want to start a yoga practice, explore image consulting,
+            or simply say hello — reach out. I'm available via WhatsApp or email,
+            and I'd love to hear from you.
+          </p>
+        </div>
+        <div class="connect-channels">
+          <a href="https://wa.me/919008085070" target="_blank" rel="noopener" class="channel">
+            <div class="channel-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+              </svg>
+            </div>
+            <div>
+              <div class="channel-label">WhatsApp</div>
+              <div class="channel-value">+91 90080 85070</div>
+            </div>
+          </a>
+          <a href="mailto:sripriya@sripriya.me" class="channel">
+            <div class="channel-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+              </svg>
+            </div>
+            <div>
+              <div class="channel-label">Email</div>
+              <div class="channel-value">sripriya@sripriya.me</div>
+            </div>
+          </a>
+          <a href="https://aevan.in" target="_blank" rel="noopener" class="channel">
+            <div class="channel-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253M3 12c0 .778.099 1.533.284 2.253" />
+              </svg>
+            </div>
+            <div>
+              <div class="channel-label">Book a class</div>
+              <div class="channel-value">aevan.in</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="container footer-inner">
+      <a href="#" class="footer-logo">Sri<span>priya</span></a>
+      <p class="footer-mantra">Follow your passion. Always.</p>
+      <p class="footer-copy">© 2026 Sripriya · sripriya.me</p>
+    </div>
+  </footer>
+
+</body>
+</html>
