@@ -8,28 +8,45 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
+  /* ─── DESIGN TOKENS ─── */
   :root {
-    --red: #8B1A1A;
-    --blue: #8FAFC0;
-    --cream: #FAF8F5;
-    --warm: #F5EFE6;
-    --text: #2C2416;
-    --muted: #7A6E62;
-    --border: #E8E0D5;
-    --gold: #C5923A;
-    --panel-bg: #FFFDF9;
+    /* page (dark) */
+    --bg:         #0C0A07;
+    --bg2:        #181410;
+    --card-bg:    #1C1812;
+    --card-surf:  #231E16;
+    --page-text:  #F0EBE0;
+    --page-muted: #9A8878;
+    --page-border:rgba(255,255,255,0.08);
+    --gold:       #C5923A;
+    --gold-light: #E8B96A;
+    /* panel (light — kept warm ivory) */
+    --cream:      #FAF8F5;
+    --warm:       #F5EFE6;
+    --text:       #2C2416;
+    --muted:      #7A6E62;
+    --border:     #E8E0D5;
+    --panel-bg:   #FFFDF9;
+    --blue:       #8FAFC0;
+    --red:        #8B1A1A;
+    /* planet accent (set via JS) */
+    --p1: #C5923A;
+    --p2: #E8B96A;
+    --p3: #A07028;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--cream);
-    color: var(--text);
+    background: var(--bg);
+    color: var(--page-text);
     min-height: 100vh;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
+    overflow-x: hidden;
+    /* subtle radial glow from planet colour */
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in srgb, var(--p1) 18%, transparent), transparent);
   }
 
   /* ─── NAV ─── */
@@ -37,131 +54,192 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 24px;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    background: rgba(12,10,7,0.8);
+    border-bottom: 1px solid var(--page-border);
     position: sticky;
     top: 0;
     z-index: 10;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.25rem;
     font-weight: 500;
-    color: var(--text);
+    color: var(--page-text);
     text-decoration: none;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
   }
   .nav-right {
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    color: var(--page-muted);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
-  /* ─── MAIN CARD AREA ─── */
+  /* ─── MAIN ─── */
   main {
     max-width: 480px;
     margin: 0 auto;
-    padding: 28px 20px 20px;
+    padding: 28px 20px 24px;
   }
 
+  /* ─── DATE HEADER ─── */
   .date-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
   .date-header .day-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 300;
-    letter-spacing: 0.04em;
-    color: var(--text);
+    letter-spacing: 0.06em;
+    color: var(--page-text);
     line-height: 1;
   }
   .date-header .date-full {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+    color: var(--page-muted);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 5px;
+  }
+
+  /* ─── PROFILE CHIPS ROW ─── */
+  .profile-chips-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+    min-height: 32px;
+  }
+  .profile-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--page-border);
+    border-radius: 30px;
+    padding: 5px 12px;
+    font-size: 0.72rem;
+    color: var(--page-muted);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .profile-chip:hover { background: rgba(255,255,255,0.12); color: var(--page-text); }
+  .profile-chip.setup-cta {
+    border-color: rgba(197,146,58,0.4);
+    color: var(--gold-light);
+    background: rgba(197,146,58,0.08);
+  }
+  .profile-chip.setup-cta:hover { background: rgba(197,146,58,0.15); }
+  .chip-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
   /* ─── RECOMMENDATION CARD ─── */
   .rec-card {
-    background: white;
-    border-radius: 20px;
+    background: var(--card-bg);
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 2px 20px rgba(44,36,22,0.07);
+    border: 1px solid var(--page-border);
+    box-shadow: 0 8px 48px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
   }
 
-  /* colour bar at top */
+  /* coloured hero header */
   .colour-bar {
-    height: 8px;
-    background: linear-gradient(to right, var(--primary-col, #8B1A1A), var(--accent-col, #C5923A));
-    transition: background 0.5s;
+    padding: 22px 22px 18px;
+    background: linear-gradient(135deg, var(--p1), var(--p3));
+    position: relative;
+    overflow: hidden;
+  }
+  .colour-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 20%, rgba(255,255,255,0.12), transparent);
+    pointer-events: none;
+  }
+  .card-hero-planet {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 4px;
+  }
+  .card-hero-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  .card-hero-colours {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
+    align-items: center;
+  }
+  .hero-swatch {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .hero-swatch:hover { transform: scale(1.15); }
+  .hero-swatch-name {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.04em;
   }
 
   .card-body {
-    padding: 24px 22px;
+    padding: 20px 20px 22px;
   }
 
   .greeting-line {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+    color: var(--page-muted);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 14px;
   }
 
   .planet-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-    line-height: 1.15;
-    margin-bottom: 14px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--page-text);
   }
 
-  /* palette row */
-  .palette-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-  .pal-chip {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-  }
-  .pal-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid rgba(0,0,0,0.06);
-    transition: transform 0.2s;
-  }
-  .pal-chip:hover .pal-circle { transform: scale(1.1); }
-  .pal-label {
-    font-size: 0.62rem;
-    color: var(--muted);
-    text-align: center;
-    letter-spacing: 0.04em;
-    max-width: 48px;
-    line-height: 1.3;
-  }
+  /* palette row (keep for fallback / body section) */
+  .palette-row { display: none; } /* moved to hero */
 
   /* sections */
-  .why-sections { display: flex; flex-direction: column; gap: 10px; }
+  .why-sections { display: flex; flex-direction: column; gap: 8px; }
 
   .why-block {
-    background: var(--warm);
+    background: var(--card-surf);
     border-radius: 12px;
     padding: 12px 14px;
     cursor: pointer;
     transition: background 0.2s;
+    border-left: 3px solid var(--p1);
   }
-  .why-block:hover { background: #F0E8DC; }
+  .why-block:hover { background: #2A2318; }
 
   .why-header {
     display: flex;
@@ -181,21 +259,21 @@
     flex-shrink: 0;
   }
   .why-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--text);
+    color: var(--page-text);
   }
   .why-value {
-    font-size: 0.82rem;
-    color: var(--muted);
+    font-size: 0.8rem;
+    color: var(--page-muted);
     margin-top: 2px;
     font-style: italic;
   }
   .why-chevron {
     font-size: 0.7rem;
-    color: var(--muted);
+    color: var(--page-muted);
     transition: transform 0.2s;
     flex-shrink: 0;
   }
@@ -203,41 +281,37 @@
   .why-detail {
     font-size: 0.8rem;
     line-height: 1.65;
-    color: var(--muted);
+    color: var(--page-muted);
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--page-border);
     display: none;
   }
   .why-block.open .why-detail { display: block; }
   .why-detail p + p { margin-top: 6px; }
-  .why-detail strong { color: var(--text); font-weight: 500; }
+  .why-detail strong { color: var(--page-text); font-weight: 500; }
 
   /* outfit suggestions */
   .outfit-section {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--page-border);
   }
   .outfit-heading {
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    color: var(--page-muted);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 10px;
   }
-  .outfit-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+  .outfit-pills { display: flex; flex-wrap: wrap; gap: 6px; }
   .outfit-pill {
-    background: var(--warm);
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--page-border);
     border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 0.75rem;
-    color: var(--text);
+    padding: 5px 13px;
+    font-size: 0.74rem;
+    color: var(--page-text);
     line-height: 1.3;
   }
 
@@ -246,15 +320,17 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--warm);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--page-border);
     border-radius: 10px;
     padding: 10px 14px;
     margin-top: 12px;
     font-size: 0.78rem;
-    color: var(--muted);
+    color: var(--page-muted);
   }
   .weather-icon { font-size: 1.1rem; }
   .weather-loading { opacity: 0.5; font-style: italic; }
+  .weather-strip strong { color: var(--page-text); }
 
   /* avoid list */
   .avoid-row {
@@ -263,53 +339,63 @@
     gap: 8px;
     margin-top: 12px;
     font-size: 0.78rem;
-    color: var(--muted);
+    color: var(--page-muted);
     line-height: 1.5;
   }
   .avoid-tag {
-    background: #FFF0F0;
-    color: #8B1A1A;
-    border: 1px solid #F5D0D0;
+    background: rgba(139,26,26,0.2);
+    color: #E8A0A0;
+    border: 1px solid rgba(139,26,26,0.3);
     border-radius: 20px;
     padding: 2px 9px;
     font-size: 0.7rem;
     white-space: nowrap;
   }
 
-  /* ─── STICKY PERSONALISE BAR ─── */
-  .pers-bar {
+  /* ─── FAB BUTTON ─── */
+  .fab-btn {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-top: 1px solid var(--border);
-    padding: 12px 20px;
+    bottom: 28px;
+    right: 22px;
+    z-index: 100;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--p1), var(--p3));
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    z-index: 100;
-    gap: 12px;
+    justify-content: center;
+    transition: transform 0.18s, box-shadow 0.18s;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: white;
+    letter-spacing: 0.02em;
   }
-  .pers-bar-hint {
-    font-size: 0.75rem;
-    color: var(--muted);
-    flex: 1;
+  .fab-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 32px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,255,255,0.15);
   }
-  .pers-btn {
-    background: var(--text);
-    color: var(--cream);
-    border: none;
-    border-radius: 30px;
-    padding: 10px 22px;
-    font-size: 0.78rem;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.06em;
-    cursor: pointer;
+  .fab-btn:active { transform: scale(0.96); }
+  .fab-label {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--page-border);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 0.68rem;
+    color: var(--page-muted);
     white-space: nowrap;
-    transition: background 0.2s;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
   }
-  .pers-btn:hover { background: #3D3428; }
+  .fab-btn:hover .fab-label { opacity: 1; }
 
   /* ─── SLIDE-UP PANEL ─── */
   .backdrop {
@@ -611,13 +697,14 @@
 
   /* ─── NUMEROLOGY BREAKDOWN ─── */
   .num-breakdown {
-    background: var(--warm);
+    background: rgba(0,0,0,0.2);
     border-radius: 10px;
     padding: 10px 13px;
     font-size: 0.78rem;
-    color: var(--muted);
+    color: var(--page-muted);
     line-height: 1.7;
     margin-top: 8px;
+    border: 1px solid var(--page-border);
   }
   .num-breakdown .num-step {
     display: flex;
@@ -626,12 +713,12 @@
     gap: 8px;
   }
   .num-breakdown .num-step + .num-step {
-    border-top: 1px dashed var(--border);
+    border-top: 1px dashed var(--page-border);
     margin-top: 5px;
     padding-top: 5px;
   }
-  .num-step-label { color: var(--muted); }
-  .num-step-val { color: var(--text); font-weight: 500; font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+  .num-step-label { color: var(--page-muted); }
+  .num-step-val { color: var(--page-text); font-weight: 500; font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
 
   /* ─── SHARE BUTTON ─── */
   .share-row {
@@ -639,7 +726,7 @@
     gap: 8px;
     margin-top: 16px;
     padding-top: 14px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--page-border);
   }
   .share-btn {
     flex: 1;
@@ -663,11 +750,11 @@
   }
   .share-btn-wa:hover { background: #1EBF5A; }
   .share-btn-copy {
-    background: var(--warm);
-    color: var(--text);
-    border: 1.5px solid var(--border) !important;
+    background: rgba(255,255,255,0.06);
+    color: var(--page-text);
+    border: 1.5px solid var(--page-border) !important;
   }
-  .share-btn-copy:hover { background: #EDE5D8; }
+  .share-btn-copy:hover { background: rgba(255,255,255,0.1); }
   .share-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
   .copy-confirm {
     font-size: 0.72rem;
@@ -702,30 +789,31 @@
   .week-strip::-webkit-scrollbar { display: none; }
   .week-card {
     flex-shrink: 0;
-    background: white;
+    background: var(--card-bg);
     border-radius: 14px;
     padding: 12px 10px;
     min-width: 72px;
     text-align: center;
-    box-shadow: 0 1px 8px rgba(44,36,22,0.06);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     cursor: default;
     transition: transform 0.18s, box-shadow 0.18s;
-    border: 2px solid transparent;
+    border: 1px solid var(--page-border);
   }
   .week-card.today {
-    border-color: var(--text);
-    background: var(--warm);
+    border-color: var(--p1);
+    background: var(--card-surf);
+    box-shadow: 0 0 0 1px var(--p1), 0 4px 20px rgba(0,0,0,0.4);
   }
-  .week-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(44,36,22,0.1); }
+  .week-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
   .week-day-name {
     font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--page-muted);
     margin-bottom: 6px;
   }
-  .week-card.today .week-day-name { color: var(--text); }
+  .week-card.today .week-day-name { color: var(--gold-light); }
   .week-dot-row {
     display: flex;
     justify-content: center;
@@ -740,23 +828,115 @@
   }
   .week-planet {
     font-size: 0.58rem;
-    color: var(--muted);
+    color: var(--page-muted);
     line-height: 1.3;
     margin-bottom: 3px;
   }
   .week-pd {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
-    color: var(--red);
+    color: var(--gold-light);
     margin-top: 4px;
   }
   .week-pd-label {
     font-size: 0.52rem;
-    color: var(--muted);
+    color: var(--page-muted);
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+
+  /* ─── PHOTO SCAN ─── */
+  .photo-upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-upload-zone:hover, .photo-upload-zone:active {
+    border-color: var(--blue);
+    background: #F5F8FA;
+  }
+  .photo-zone-icon { font-size: 2rem; margin-bottom: 8px; line-height: 1; }
+  .photo-zone-text {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .photo-zone-sub {
+    font-size: 0.7rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  /* analysing state */
+  .photo-zone-scanning {
+    font-size: 0.82rem;
+    color: var(--blue);
+    font-style: italic;
+  }
+  /* preview state */
+  .photo-preview-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+  }
+  .photo-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: top center;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+  }
+  .photo-detected-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .detected-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 7px; }
+  .detected-chip {
+    background: var(--warm);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    color: var(--text);
+  }
+  .photo-rescan-btn {
+    background: none;
+    border: none;
+    font-size: 0.7rem;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .photo-rescan-btn:hover { color: var(--text); }
+  /* accuracy note */
+  .scan-note {
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.5;
+    padding: 7px 10px;
+    background: var(--warm);
+    border-radius: 8px;
+    display: none;
+  }
+  .scan-note.visible { display: block; }
 
   /* ─── MOBILE (very small) ─── */
   @media (max-width: 380px) {
@@ -772,7 +952,7 @@
     /* wider, airy single-column layout */
     main {
       max-width: 660px;
-      padding: 40px 32px 120px;
+      padding: 40px 32px 100px;
     }
 
     .date-header { text-align: left; margin-bottom: 8px; }
@@ -824,10 +1004,13 @@
     <div class="date-full" id="dateFull">—</div>
   </div>
 
+  <!-- PROFILE CHIPS (populated by JS) -->
+  <div class="profile-chips-row" id="profileChipsRow"></div>
+
   <div class="rec-card" id="recCard">
     <div class="colour-bar" id="colourBar"></div>
     <div class="card-body" id="cardBody">
-      <div style="text-align:center;padding:40px 0;color:var(--muted);font-size:0.85rem;">
+      <div style="text-align:center;padding:40px 0;color:var(--page-muted);font-size:0.85rem;">
         Reading the cosmos…
       </div>
     </div>
@@ -837,11 +1020,11 @@
   <div id="weekAhead"></div>
 </main>
 
-<!-- STICKY BAR -->
-<div class="pers-bar">
-  <div class="pers-bar-hint" id="persHint">Personalise for a tailored reading</div>
-  <button class="pers-btn" onclick="openPanel()">Personalise</button>
-</div>
+<!-- FAB PERSONALISE BUTTON -->
+<button class="fab-btn" id="fabBtn" onclick="openPanel()" title="Personalise your reading">
+  <span class="fab-label">Personalise</span>
+  ✦
+</button>
 
 <!-- BACKDROP -->
 <div class="backdrop" id="backdrop" onclick="closePanel()"></div>
@@ -854,6 +1037,21 @@
     <button class="panel-close" onclick="closePanel()">✕</button>
   </div>
   <div class="panel-scroll">
+
+    <!-- PHOTO SCAN -->
+    <div class="field-group">
+      <div class="field-label">Scan Your Photo <span style="color:var(--blue);font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">Auto-detect</span></div>
+      <div class="photo-upload-zone" id="photoZone" onclick="triggerPhotoUpload()">
+        <div class="photo-zone-icon">📷</div>
+        <div class="photo-zone-text">Upload a selfie or photo</div>
+        <div class="photo-zone-sub">Detects skin tone, undertone &amp; hair colour automatically</div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" capture="user" style="display:none" onchange="handlePhotoUpload(event)" />
+      <canvas id="analyseCanvas" style="display:none"></canvas>
+      <div class="scan-note" id="scanNote">💡 Best results with a clear selfie in natural light, face centred. You can still adjust the detected values below.</div>
+    </div>
+
+    <div class="panel-divider"></div>
 
     <!-- Name -->
     <div class="field-group">
@@ -1060,11 +1258,11 @@
 
     <!-- City -->
     <div class="field-group">
-      <div class="field-label">Your City</div>
-      <div class="city-row">
-        <input type="text" id="cityInput" placeholder="e.g. Auroville" />
-        <button class="detect-btn" onclick="detectLocation()">📍 Detect</button>
-      </div>
+      <div class="field-label">Your City <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:0.68rem;color:var(--muted);">— for weather &amp; fabric advice</span></div>
+      <input type="text" id="cityInput" placeholder="Type your city, e.g. Auroville" style="margin-bottom:8px;" />
+      <button class="detect-btn" onclick="detectLocation()" style="width:100%;justify-content:center;">
+        📍 Or detect my location automatically
+      </button>
       <div id="locStatus" style="font-size:0.72rem;color:var(--muted);margin-top:6px;"></div>
     </div>
 
@@ -1317,9 +1515,27 @@ async function renderCard() {
     if (mod) toneNote = `Lean towards ${mod} of ${planet.colours[0].toLowerCase()}.`;
   }
 
-  // colour bar
-  document.getElementById('colourBar').style.background =
-    `linear-gradient(to right, ${planet.hex[0]}, ${planet.hex[1] || planet.hex[0]})`;
+  // Set planet CSS variables for the whole page theme
+  const root = document.documentElement;
+  root.style.setProperty('--p1', planet.hex[0]);
+  root.style.setProperty('--p2', planet.hex[1] || planet.hex[0]);
+  root.style.setProperty('--p3', planet.hex[2] || planet.hex[0]);
+
+  // Build rich hero header
+  const heroSwatchesHtml = planet.hex.map((h, i) => `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <div class="hero-swatch" style="background:${h};"></div>
+      <div class="hero-swatch-name">${planet.colours[i] || ''}</div>
+    </div>`).join('');
+
+  document.getElementById('colourBar').innerHTML = `
+    <div class="card-hero-planet">${planet.planet} · ${planet.name}</div>
+    <div class="card-hero-day">${planet.colours[0]} &amp; ${planet.colours[1]}</div>
+    <div class="card-hero-colours">${heroSwatchesHtml}</div>`;
+
+  // Update FAB gradient to match planet
+  const fab = document.getElementById('fabBtn');
+  if (fab) fab.style.background = `linear-gradient(135deg, ${planet.hex[0]}, ${planet.hex[2] || planet.hex[0]})`;
 
   // build card
   const name = state.name ? `, ${state.name}` : '';
@@ -1527,7 +1743,7 @@ async function renderCard() {
     } else if (state.city) {
       slot.innerHTML = `<span class="weather-icon">📍</span><span>${state.city}</span>`;
     } else {
-      slot.innerHTML = `<span class="weather-icon">📍</span><span>Add your city for fabric advice</span>`;
+      slot.innerHTML = `<span class="weather-icon">📍</span><span>Add your city in Personalise for fabric &amp; weather advice</span>`;
     }
     // re-render week ahead now that weather may have city
     renderWeekAhead();
@@ -1726,6 +1942,245 @@ function renderWeekAhead() {
 }
 
 // ─────────────────────────────────────────────────────────
+//  PHOTO ANALYSIS  (Phase A — pixel sampling)
+// ─────────────────────────────────────────────────────────
+
+function triggerPhotoUpload() {
+  document.getElementById('photoInput').click();
+}
+
+function handlePhotoUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  // show scanning state
+  const zone = document.getElementById('photoZone');
+  zone.innerHTML = `<div class="photo-zone-scanning">🔍 Scanning your photo…</div>`;
+  zone.style.pointerEvents = 'none';
+
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    // slight delay so user sees the scanning message
+    setTimeout(() => {
+      const result = analyseImage(img);
+      applyPhotoResults(result, url);
+      zone.style.pointerEvents = '';
+    }, 600);
+  };
+  img.onerror = () => {
+    zone.innerHTML = `<div class="photo-zone-text">⚠️ Could not read image. Try a different file.</div>`;
+    zone.style.pointerEvents = '';
+  };
+  img.src = url;
+  // reset input so same file can be re-uploaded
+  event.target.value = '';
+}
+
+function hexToRgb(hex) {
+  const h = hex.replace('#','');
+  return {
+    r: parseInt(h.slice(0,2),16),
+    g: parseInt(h.slice(2,4),16),
+    b: parseInt(h.slice(4,6),16)
+  };
+}
+
+// Weighted perceptual colour distance
+function colourDist(r1,g1,b1, r2,g2,b2) {
+  const dr=r1-r2, dg=g1-g2, db=b1-b2;
+  return Math.sqrt(2*dr*dr + 4*dg*dg + 3*db*db);
+}
+
+// Sample a rectangular region, ignoring near-black shadows and near-white overexposure
+function sampleRegion(ctx, x, y, w, h) {
+  if (w < 1 || h < 1) return null;
+  let data;
+  try { data = ctx.getImageData(x, y, w, h).data; } catch(e) { return null; }
+  let r=0, g=0, b=0, count=0;
+  for (let i=0; i<data.length; i+=4) {
+    const pr=data[i], pg=data[i+1], pb=data[i+2];
+    const brightness = (pr+pg+pb)/3;
+    if (brightness < 45 || brightness > 235) continue; // skip shadows & blown-out pixels
+    r+=pr; g+=pg; b+=pb; count++;
+  }
+  if (count < 50) return null; // not enough valid pixels
+  return { r:r/count, g:g/count, b:b/count };
+}
+
+// ── Skin tone matching ──
+const TONE_DEFS = [
+  { key:'fair',     hex:'#ffdbac', label:'Fair' },
+  { key:'wheatish', hex:'#f1c27d', label:'Wheatish' },
+  { key:'dusky',    hex:'#e0ac69', label:'Dusky' },
+  { key:'deep',     hex:'#c68642', label:'Deep Brown' },
+  { key:'dark',     hex:'#8d5524', label:'Dark' },
+];
+
+function nearestSkinTone(r,g,b) {
+  let best=null, bestD=Infinity;
+  TONE_DEFS.forEach(t => {
+    const c=hexToRgb(t.hex);
+    const d=colourDist(r,g,b,c.r,c.g,c.b);
+    if (d<bestD) { bestD=d; best=t; }
+  });
+  return best;
+}
+
+// ── Undertone from RGB ratios ──
+// Warm: golden/yellow → R and G both high relative to B
+// Cool: pinkish/rosy → B relatively elevated, or R>>G
+// Neutral: balanced
+function detectUndertone(r,g,b) {
+  const total = r+g+b+1;
+  // warmth = how much R+G exceeds 2*B (yellow-orange component)
+  const warmth = (r + g - 2*b) / total;
+  if (warmth > 0.10) return 'warm';
+  // coolness = B elevated or strong R-G gap (rosy)
+  const cool = (b - g) / total;
+  if (cool > 0.01 || (r-g)/total > 0.08) return 'cool';
+  return 'neutral';
+}
+
+// ── Hair colour matching ──
+const HAIR_DEFS = [
+  { key:'black',        hex:'#1a1008', label:'Black' },
+  { key:'dark-brown',   hex:'#3B2314', label:'Dark Brown' },
+  { key:'medium-brown', hex:'#7B4F2E', label:'Medium Brown' },
+  { key:'light-brown',  hex:'#A0714F', label:'Light Brown' },
+  { key:'grey',         hex:'#8A8A8A', label:'Grey' },
+];
+
+function nearestHairColour(r,g,b) {
+  // Check for grey/silver: low saturation
+  const max=Math.max(r,g,b), min=Math.min(r,g,b);
+  const sat = max>0 ? (max-min)/max : 0;
+  const brightness = (r+g+b)/3;
+  if (sat < 0.18 && brightness > 70) return { key:'grey', label:'Grey' };
+
+  let best=null, bestD=Infinity;
+  HAIR_DEFS.slice(0,4).forEach(h => { // skip grey — already handled
+    const c=hexToRgb(h.hex);
+    const d=colourDist(r,g,b,c.r,c.g,c.b);
+    if (d<bestD) { bestD=d; best=h; }
+  });
+  return best;
+}
+
+// ── Main analysis ──
+function analyseImage(img) {
+  const canvas = document.getElementById('analyseCanvas');
+  // Resize to max 400px for performance
+  const MAX = 400;
+  let w=img.width, h=img.height;
+  const scale = Math.min(MAX/w, MAX/h, 1);
+  w=Math.round(w*scale); h=Math.round(h*scale);
+  canvas.width=w; canvas.height=h;
+  const ctx = canvas.getContext('2d', { willReadFrequently:true });
+  ctx.drawImage(img, 0, 0, w, h);
+
+  // ── Skin region: centre of image (good for portrait selfies)
+  // x: 25–75%, y: 20–65%
+  const sx=Math.round(w*0.25), sy=Math.round(h*0.20);
+  const sw=Math.round(w*0.50), sh=Math.round(h*0.45);
+  const skin = sampleRegion(ctx, sx, sy, sw, sh);
+
+  // Fallback: sample broader centre if first sample is too bright/dark
+  const skinFallback = sampleRegion(ctx, Math.round(w*0.15), Math.round(h*0.15),
+    Math.round(w*0.70), Math.round(h*0.60));
+  const skinPx = skin || skinFallback;
+
+  // ── Hair region: top 20% of image, outer left + right thirds
+  // Avoids centre forehead which can be mistaken for skin
+  const hh = Math.round(h*0.22);
+  const hair1 = sampleRegion(ctx, Math.round(w*0.03), 0, Math.round(w*0.30), hh);
+  const hair2 = sampleRegion(ctx, Math.round(w*0.67), 0, Math.round(w*0.30), hh);
+  // Also try the very top centre (crown) as secondary signal
+  const hair3 = sampleRegion(ctx, Math.round(w*0.30), 0, Math.round(w*0.40), Math.round(h*0.10));
+
+  // Average whichever hair samples succeeded
+  const hairSamples = [hair1, hair2, hair3].filter(Boolean);
+  let hairPx = null;
+  if (hairSamples.length > 0) {
+    hairPx = {
+      r: hairSamples.reduce((a,s)=>a+s.r,0)/hairSamples.length,
+      g: hairSamples.reduce((a,s)=>a+s.g,0)/hairSamples.length,
+      b: hairSamples.reduce((a,s)=>a+s.b,0)/hairSamples.length,
+    };
+  }
+
+  const result = {};
+  if (skinPx) {
+    result.tone      = nearestSkinTone(skinPx.r, skinPx.g, skinPx.b);
+    result.undertone = detectUndertone(skinPx.r, skinPx.g, skinPx.b);
+    result.skinRgb   = skinPx;
+  }
+  if (hairPx) {
+    result.hair    = nearestHairColour(hairPx.r, hairPx.g, hairPx.b);
+    result.hairRgb = hairPx;
+  }
+  return result;
+}
+
+// ── Apply detected values to state and UI ──
+function applyPhotoResults(result, imgUrl) {
+  const zone = document.getElementById('photoZone');
+  const note = document.getElementById('scanNote');
+
+  // Apply to state
+  if (result.tone)      { state.tone      = result.tone.key; }
+  if (result.undertone) { state.undertone = result.undertone; }
+  if (result.hair)      { state.hair      = result.hair.key; }
+
+  // Build detected chips
+  let chips = '';
+  if (result.tone) {
+    const toneHex = TONE_DEFS.find(t=>t.key===result.tone.key)?.hex || '#ccc';
+    chips += `<span class="detected-chip">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${toneHex};vertical-align:middle;margin-right:4px;border:1px solid rgba(0,0,0,0.1);"></span>${result.tone.label}
+    </span>`;
+  }
+  if (result.undertone) {
+    const utLabel = result.undertone.charAt(0).toUpperCase() + result.undertone.slice(1);
+    chips += `<span class="detected-chip">🌡 ${utLabel}</span>`;
+  }
+  if (result.hair) {
+    const hDef = HAIR_DEFS.find(h=>h.key===result.hair.key);
+    const hairHex = hDef?.hex || '#555';
+    chips += `<span class="detected-chip">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${hairHex};vertical-align:middle;margin-right:4px;border:1px solid rgba(0,0,0,0.1);"></span>${result.hair.label} hair
+    </span>`;
+  }
+  if (!chips) chips = `<span class="detected-chip">⚠️ Low detail — adjust manually below</span>`;
+
+  // Render preview
+  zone.innerHTML = `
+    <div class="photo-preview-inner">
+      <img src="${imgUrl}" class="photo-thumb" alt="Your photo" />
+      <div>
+        <div class="photo-detected-label">Detected from photo</div>
+        <div class="detected-chips">${chips}</div>
+        <button class="photo-rescan-btn" onclick="event.stopPropagation();triggerPhotoUpload()">↺ Use a different photo</button>
+      </div>
+    </div>`;
+
+  // Sync the visual selectors below
+  syncPhotoSelectionsToUI();
+
+  // Show accuracy note
+  note.classList.add('visible');
+}
+
+function syncPhotoSelectionsToUI() {
+  document.querySelectorAll('#toneRow .tone-swatch').forEach(s =>
+    s.classList.toggle('selected', s.dataset.tone === state.tone));
+  document.querySelectorAll('#undertoneRow .undertone-pill').forEach(p =>
+    p.classList.toggle('selected', p.dataset.val === state.undertone));
+  document.querySelectorAll('#hairRow .hair-swatch').forEach(s =>
+    s.classList.toggle('selected', s.dataset.hair === state.hair));
+}
+
+// ─────────────────────────────────────────────────────────
 //  PANEL OPEN / CLOSE
 // ─────────────────────────────────────────────────────────
 function openPanel() {
@@ -1801,13 +2256,52 @@ function detectLocation() {
   });
 }
 
-function silentDetectLoc() {
-  if (!navigator.geolocation || state.lat) return;
-  navigator.geolocation.getCurrentPosition(pos => {
-    state.lat = pos.coords.latitude;
-    state.lon = pos.coords.longitude;
-    renderCard();
-  }, () => {});
+// silentDetectLoc removed — we no longer auto-prompt for location on load.
+// Location is captured only when the user explicitly taps "Detect" in the panel.
+
+// ─────────────────────────────────────────────────────────
+//  PROFILE CHIPS
+// ─────────────────────────────────────────────────────────
+function updateProfileChips() {
+  const row = document.getElementById('profileChipsRow');
+  if (!row) return;
+
+  const chips = [];
+  if (state.name) {
+    chips.push(`<span class="profile-chip" onclick="openPanel()">
+      <span style="color:var(--gold-light);">✦</span> ${state.name}
+    </span>`);
+  }
+  if (state.tone) {
+    const tHex = TONE_DEFS.find(t=>t.key===state.tone)?.hex || '#aaa';
+    chips.push(`<span class="profile-chip" onclick="openPanel()">
+      <span class="chip-dot" style="background:${tHex};"></span> ${formatTone(state.tone)}
+    </span>`);
+  }
+  if (state.undertone) {
+    chips.push(`<span class="profile-chip" onclick="openPanel()">🌡 ${state.undertone}</span>`);
+  }
+  if (state.hair) {
+    const hDef = HAIR_DEFS.find(h=>h.key===state.hair);
+    if (hDef) {
+      chips.push(`<span class="profile-chip" onclick="openPanel()">
+        <span class="chip-dot" style="background:${hDef.hex};"></span> ${hDef.label}
+      </span>`);
+    }
+  }
+  if (state.bodyShape) {
+    chips.push(`<span class="profile-chip" onclick="openPanel()">👗 ${state.bodyShape.replace(/-/g,' ')}</span>`);
+  }
+  if (state.city) {
+    chips.push(`<span class="profile-chip" onclick="openPanel()">📍 ${state.city}</span>`);
+  }
+
+  if (chips.length === 0) {
+    row.innerHTML = `<span class="profile-chip setup-cta" onclick="openPanel()">✦ Personalise your reading</span>`;
+  } else {
+    chips.push(`<span class="profile-chip" onclick="openPanel()" style="opacity:0.6;">✎ Edit</span>`);
+    row.innerHTML = chips.join('');
+  }
 }
 
 // ─────────────────────────────────────────────────────────
@@ -1837,10 +2331,7 @@ function saveAndClose() {
   saveState();
   closePanel();
   renderCard();
-
-  const hint = document.getElementById('persHint');
-  if (state.name) hint.textContent = `Reading for ${state.name}`;
-  else hint.textContent = 'Personalise for a tailored reading';
+  updateProfileChips();
 }
 
 // ─────────────────────────────────────────────────────────
@@ -1918,10 +2409,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadState();
   renderCard();
   renderWeekAhead();
-  if (!state.lat) silentDetectLoc();
-
-  const hint = document.getElementById('persHint');
-  if (state.name) hint.textContent = `Reading for ${state.name}`;
+  updateProfileChips();
+  // No auto location prompt — user initiates via "Detect" button in panel
 });
 </script>
 </body>
