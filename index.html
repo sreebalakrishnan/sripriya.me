@@ -876,6 +876,133 @@
 
     /* prevent horizontal overflow on any narrow device */
     body { overflow-x: hidden; }
+
+    /* ─────────────────────────────────────────
+       DARK MODE  (prefers-color-scheme: dark)
+    ───────────────────────────────────────── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --red:        #C5923A;
+        --red-light:  #E8B96A;
+        --blue:       #8FAFC0;
+        --blue-pale:  rgba(143,175,192,0.14);
+        --blue-wash:  rgba(143,175,192,0.06);
+        --cream:      #0C0A07;
+        --warm-white: #1C1812;
+        --ink:        #F0EBE0;
+        --ink-muted:  #9A8878;
+        --rule:       rgba(255,255,255,0.08);
+      }
+
+      body { background: #0C0A07; }
+
+      nav {
+        background: rgba(12,10,7,0.88);
+        border-bottom-color: rgba(255,255,255,0.08);
+      }
+
+      /* Colour section: --ink is now light text, so force a distinct dark bg */
+      #colour {
+        background: #0B0B18;
+        color: #F0EBE0;
+      }
+
+      /* Hero photo tint */
+      .photo-frame::before {
+        background: linear-gradient(135deg,
+          rgba(143,175,192,0.12) 0%,
+          rgba(143,175,192,0.08) 50%,
+          rgba(143,175,192,0.15) 100%
+        );
+      }
+
+      /* Spec strip */
+      .specs-strip {
+        background: rgba(143,175,192,0.06);
+        border-bottom-color: rgba(255,255,255,0.08);
+      }
+      .specs-label { color: #8FAFC0; }
+      .spec-chip {
+        background: rgba(255,255,255,0.05);
+        color: #8FAFC0;
+        border-color: rgba(255,255,255,0.1);
+      }
+
+      /* Eyebrow on dark sections */
+      .eyebrow { color: #C5923A; }
+
+      /* About pull-quote border */
+      .about-pull-quote {
+        border-left-color: #C5923A;
+      }
+
+      /* Hero pills */
+      .pill {
+        background: rgba(143,175,192,0.08);
+        color: #8FAFC0;
+      }
+
+      /* Divider line */
+      .divider { background: #C5923A; }
+
+      /* Yoga card */
+      .yoga-card {
+        background: #1C1812;
+        border-color: rgba(255,255,255,0.08);
+      }
+      .yoga-tag-row { border-top-color: rgba(255,255,255,0.08); }
+
+      /* Philosophy section */
+      .philosophy {
+        background: #181410;
+        border-top-color: rgba(255,255,255,0.08);
+        border-bottom-color: rgba(255,255,255,0.08);
+      }
+
+      /* Contact channels */
+      .channel {
+        background: #1C1812;
+        border-color: rgba(255,255,255,0.08);
+      }
+      .channel:hover { border-color: #8FAFC0; }
+      .channel-icon { background: rgba(143,175,192,0.1); }
+      .channel-value { color: #F0EBE0; }
+
+      /* Colour section heading italics */
+      .colour-heading em { color: #8FAFC0; }
+
+      /* Colour demo mock card */
+      .colour-mock {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.08);
+      }
+
+      /* Badge */
+      .badge-coming {
+        background: rgba(143,175,192,0.1);
+        color: #8FAFC0;
+        border-color: rgba(143,175,192,0.25);
+      }
+
+      /* Ghost button */
+      .btn-ghost {
+        border-color: rgba(143,175,192,0.4);
+        color: #9A8878;
+      }
+      .btn-ghost:hover {
+        border-color: #8FAFC0;
+        color: #F0EBE0;
+      }
+
+      /* Footer */
+      footer {
+        background: #0C0A07;
+        border-top-color: rgba(255,255,255,0.08);
+      }
+
+      /* Photo accent border */
+      .photo-accent { border-color: rgba(143,175,192,0.12); }
+    }
   </style>
 </head>
 <body>
