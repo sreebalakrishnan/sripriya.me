@@ -185,9 +185,9 @@
   }
   .card-hero-colours {
     display: flex;
-    gap: 7px;
+    gap: 0;
     margin-top: 12px;
-    align-items: center;
+    align-items: flex-end;
   }
   .hero-swatch {
     width: 28px; height: 28px;
@@ -1706,7 +1706,7 @@ async function renderCard() {
 
   // Build rich hero header
   const heroSwatchesHtml = planet.hex.map((h, i) => `
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
       <div class="hero-swatch" style="background:${h};"></div>
       <div class="hero-swatch-name">${planet.colours[i] || ''}</div>
     </div>`).join('');
