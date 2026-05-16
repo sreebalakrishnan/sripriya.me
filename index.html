@@ -863,6 +863,7 @@
       .about-grid,
       .yoga-grid,
       .colour-grid,
+      .consult-grid,
       .connect-inner {
         grid-template-columns: 1fr;
       }
@@ -902,6 +903,223 @@
 
     /* prevent horizontal overflow on any narrow device */
     body { overflow-x: hidden; }
+
+    /* ─────────────────────────────────────────
+       COLOUR SECTION — TIGHTER TEASERS
+    ───────────────────────────────────────── */
+    .colour-teasers {
+      margin-top: 2rem;
+      display: flex;
+      gap: 0.85rem;
+    }
+
+    .colour-teaser {
+      flex: 1;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .colour-teaser-icon {
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .colour-teaser-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .colour-teaser-text {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.55;
+    }
+
+    .colour-teaser-more {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0.7;
+    }
+
+    /* Live palette mock */
+    .live-palette-label {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .live-badge {
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(143,175,192,0.18);
+      color: var(--blue);
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+    }
+
+    .live-swatches {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .live-swatch-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .live-swatch {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 6px;
+    }
+
+    .live-swatch-name {
+      font-size: 0.58rem;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+    }
+
+    .live-planet-row {
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.55;
+    }
+
+    .live-planet-row strong { color: var(--blue); font-weight: 500; }
+
+    /* ─────────────────────────────────────────
+       PERSONAL COLOUR CONSULT SECTION
+    ───────────────────────────────────────── */
+    #colour-consult {
+      background: var(--cream);
+    }
+
+    .consult-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .consult-heading {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+    }
+
+    .consult-heading em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .consult-body {
+      color: var(--ink-muted);
+      line-height: 1.85;
+      font-size: 0.96rem;
+    }
+
+    .consult-body + .consult-body { margin-top: 1.2rem; }
+
+    .consult-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-top: 2rem;
+      padding: 0.85rem 1.6rem;
+      background: #25D366;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .consult-wa-btn:hover { opacity: 0.88; color: #fff; }
+
+    .consult-wa-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .consult-card {
+      background: var(--ink);
+      color: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .consult-card-title {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.25rem;
+    }
+
+    .consult-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .consult-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .consult-list li::before {
+      content: '✦';
+      color: var(--red);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+      margin-top: 0.35em;
+    }
+
+    .consult-quote {
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.55);
+    }
 
     /* ─────────────────────────────────────────
        DARK MODE  (prefers-color-scheme: dark)
@@ -1024,6 +1242,20 @@
 
       /* Photo accent border */
       .photo-accent { border-color: rgba(143,175,192,0.12); }
+
+      /* Colour teasers (dark section) */
+      .colour-teaser {
+        border-color: rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.03);
+      }
+
+      /* Consult section */
+      #colour-consult { background: #0C0A07; }
+
+      .consult-card {
+        background: #1C1812;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
     }
   </style>
 </head>
@@ -1039,6 +1271,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#yoga">Yoga</a></li>
         <li><a href="#colour">Colour</a></li>
+        <li><a href="#colour-consult">Consult</a></li>
         <li><a href="#connect">Connect</a></li>
       </ul>
       <a href="#connect" class="nav-cta">Book a session</a>
@@ -1290,26 +1523,16 @@
               practical. This is it.
             </p>
           </div>
-          <div class="colour-pillars">
-            <div class="colour-pillar">
-              <div class="colour-pillar-icon">🔢</div>
-              <div class="colour-pillar-title">Numerology</div>
-              <div class="colour-pillar-text">Colours matched to your life path number and the day's vibration.</div>
+          <div class="colour-teasers">
+            <div class="colour-teaser">
+              <div class="colour-teaser-icon">🔢</div>
+              <div class="colour-teaser-title">Numerology</div>
+              <div class="colour-teaser-text">Colours matched to your life path number and the day's vibration. <span class="colour-teaser-more">+ more inside →</span></div>
             </div>
-            <div class="colour-pillar">
-              <div class="colour-pillar-icon">🌙</div>
-              <div class="colour-pillar-title">Astrology</div>
-              <div class="colour-pillar-text">Planetary energy woven into daily colour recommendations.</div>
-            </div>
-            <div class="colour-pillar">
-              <div class="colour-pillar-icon">📅</div>
-              <div class="colour-pillar-title">Day of week</div>
-              <div class="colour-pillar-text">Traditional colour–day correspondences from Vedic knowledge.</div>
-            </div>
-            <div class="colour-pillar">
-              <div class="colour-pillar-icon">🌤</div>
-              <div class="colour-pillar-title">Weather + mood</div>
-              <div class="colour-pillar-text">Contextual suggestions so every choice feels effortless.</div>
+            <div class="colour-teaser">
+              <div class="colour-teaser-icon">🌤</div>
+              <div class="colour-teaser-title">Weather + Panchang</div>
+              <div class="colour-teaser-text">Live weather, moon phase, and Vedic day correspondences. <span class="colour-teaser-more">+ more inside →</span></div>
             </div>
           </div>
           <a href="colour.html" class="colour-cta-btn">
@@ -1322,34 +1545,61 @@
         </div>
 
         <div class="colour-demo">
-          <div class="colour-mock">
-            <div class="mock-header">Today's palette for you</div>
-            <div class="swatches">
-              <div class="swatch-item">
-                <div class="swatch" style="background:#8B1A1A;"></div>
-                <div class="swatch-label">Deep Red</div>
-              </div>
-              <div class="swatch-item">
-                <div class="swatch" style="background:#B8CFD8;"></div>
-                <div class="swatch-label">Powder Blue</div>
-              </div>
-              <div class="swatch-item">
-                <div class="swatch" style="background:#E8D5B5;"></div>
-                <div class="swatch-label">Warm Sand</div>
-              </div>
-              <div class="swatch-item">
-                <div class="swatch" style="background:#4A1942;"></div>
-                <div class="swatch-label">Deep Plum</div>
-              </div>
-              <div class="swatch-item">
-                <div class="swatch" style="background:#C8A45A;"></div>
-                <div class="swatch-label">Turmeric</div>
-              </div>
-            </div>
-            <div class="mock-insight">
-              <strong>Friday · Moon in Libra</strong> — lean into harmony colours today.<br>
-              Your number 1 energy calls for clarity: <strong>white</strong> or <strong>soft pink</strong> as a base.
-            </div>
+          <div class="colour-mock" id="homePaletteMock">
+            <!-- filled by renderHomePalette() -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       PERSONAL COLOUR CONSULT
+  ═══════════════════════════════════════ -->
+  <section id="colour-consult" class="section">
+    <div class="container">
+      <div class="consult-grid">
+
+        <div>
+          <span class="eyebrow">Personal Colour Consult</span>
+          <h2 class="serif-heading consult-heading">
+            Some people are<br>born <em>seeing colour.</em>
+          </h2>
+          <span class="divider"></span>
+          <p class="consult-body">
+            Sripriya is one of those people. Long before she studied colour theory or
+            Vedic astrology, she could walk into a room and immediately sense what colour
+            belonged on each person — not just what was fashionable, but what was <em>true</em> to them.
+            It is an intuition that can't be learned from a book; it is a gift, cultivated over decades.
+          </p>
+          <p class="consult-body">
+            In a personal consult, she brings this rare eye to you: looking at your skin tone,
+            your undertone, your energy, your season of life — and offering colour combinations
+            that even trained stylists miss. Not a formula. A reading, given with care.
+          </p>
+          <a href="https://wa.me/919008085070" target="_blank" rel="noopener" class="consult-wa-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.115 1.529 5.845L.057 23.571a.75.75 0 0 0 .93.898l5.883-1.54A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.498-5.207-1.37l-.374-.217-3.875 1.015 1.03-3.765-.232-.386A10 10 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            Try a colour consult on WhatsApp
+          </a>
+        </div>
+
+        <div>
+          <div class="consult-card">
+            <div class="consult-card-title">What a consult covers</div>
+            <ul class="consult-list">
+              <li>Your skin undertone &amp; seasonal colour family</li>
+              <li>Colours that drain vs. colours that illuminate you</li>
+              <li>Occasion-specific palettes — daily wear, ceremony, rest</li>
+              <li>How colour shifts with your current life phase &amp; energy</li>
+            </ul>
+            <blockquote class="consult-quote">
+              "Colour is the first thing people notice.<br>Let it say the right thing."
+            </blockquote>
           </div>
         </div>
 
@@ -1439,5 +1689,72 @@
     </div>
   </footer>
 
+
+  <script>
+    // ─── VEDIC PLANET DATA (mirrors colour.html) ───────────────────────────
+    const HOME_PLANETS = {
+      0: { name:'Sun',     day:'Sunday',    planet:'Surya',   colours:['Copper','Burnt Orange','Gold'],        hex:['#B87333','#CC5500','#C5A028'] },
+      1: { name:'Moon',    day:'Monday',    planet:'Chandra', colours:['White','Silver','Pale Blue'],          hex:['#F8F6F0','#C0C0C0','#B8C8D8'] },
+      2: { name:'Mars',    day:'Tuesday',   planet:'Mangal',  colours:['Red','Crimson','Coral'],               hex:['#CC2222','#8B1A1A','#E87060'] },
+      3: { name:'Mercury', day:'Wednesday', planet:'Budh',    colours:['Emerald','Lime','Teal'],               hex:['#2E8B57','#6B8E23','#3A8B7A'] },
+      4: { name:'Jupiter', day:'Thursday',  planet:'Guru',    colours:['Yellow','Turmeric','Cream'],           hex:['#E8C840','#D4A017','#F5EFD0'] },
+      5: { name:'Venus',   day:'Friday',    planet:'Shukra',  colours:['Pink','Lilac','Pastel Rose'],          hex:['#E87080','#C090C8','#F0A8B0'] },
+      6: { name:'Saturn',  day:'Saturday',  planet:'Shani',   colours:['Dark Indigo','Navy','Deep Violet'],    hex:['#1A1A2E','#2C2444','#1C3555'] },
+    };
+
+    // ─── MOON PHASE ────────────────────────────────────────────────────────
+    function moonPhaseLabel(date) {
+      const REF = new Date('2000-01-06T18:14:00Z');
+      const msDay = 86400000;
+      const cycle = 29.53058867;
+      const diff = (date - REF) / msDay;
+      const age = ((diff % cycle) + cycle) % cycle;
+      if (age < 1.85)   return 'New Moon 🌑';
+      if (age < 7.38)   return 'Waxing Crescent 🌒';
+      if (age < 9.22)   return 'First Quarter 🌓';
+      if (age < 14.76)  return 'Waxing Gibbous 🌔';
+      if (age < 16.61)  return 'Full Moon 🌕';
+      if (age < 22.15)  return 'Waning Gibbous 🌖';
+      if (age < 23.99)  return 'Last Quarter 🌗';
+      if (age < 29.53)  return 'Waning Crescent 🌘';
+      return 'New Moon 🌑';
+    }
+
+    // ─── RENDER ────────────────────────────────────────────────────────────
+    function renderHomePalette() {
+      const el = document.getElementById('homePaletteMock');
+      if (!el) return;
+
+      const now = new Date();
+      const dow = now.getDay(); // 0=Sun…6=Sat
+      const p = HOME_PLANETS[dow];
+      const moon = moonPhaseLabel(now);
+
+      const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const dayName = DAYS[dow];
+
+      // Build swatches
+      const swatchesHtml = p.hex.map((hex, i) => `
+        <div class="live-swatch-item">
+          <div class="live-swatch" style="background:${hex};"></div>
+          <div class="live-swatch-name">${p.colours[i]}</div>
+        </div>`).join('');
+
+      el.innerHTML = `
+        <div class="live-palette-label">
+          <span>Today's palette</span>
+          <span class="live-badge">Live · ${dayName}</span>
+        </div>
+        <div class="live-swatches">${swatchesHtml}</div>
+        <div class="live-planet-row">
+          <strong>${dayName} · ${p.planet} (${p.name})</strong> — ${moon}<br>
+          Planetary colours align with <strong>${p.colours[0]}</strong>, <strong>${p.colours[1]}</strong>
+          &amp; <strong>${p.colours[2]}</strong> today.
+          <br><a href="colour.html" style="color:var(--blue);opacity:0.8;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-block;margin-top:0.6rem;">See your full personal reading →</a>
+        </div>`;
+    }
+
+    document.addEventListener('DOMContentLoaded', renderHomePalette);
+  </script>
 </body>
 </html>
