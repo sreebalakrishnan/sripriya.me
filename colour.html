@@ -852,7 +852,7 @@
     background: var(--card-bg);
     border-radius: 14px;
     padding: 12px 10px;
-    min-width: 72px;
+    min-width: 76px;
     text-align: center;
     box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     cursor: pointer;
@@ -892,6 +892,16 @@
     line-height: 1.3;
     margin-bottom: 3px;
   }
+  .week-quality-word {
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+    line-height: 1;
+  }
+  .week-card.today .week-quality-word { opacity: 1; }
+
   .week-pd {
     font-size: 0.78rem;
     font-family: 'Cormorant Garamond', serif;
@@ -1699,6 +1709,19 @@ const PLANETS = {
   4: { name: 'Jupiter', day: 'Thursday',  planet: 'Guru',    colours: ['Yellow','Turmeric','Cream'],        avoid: ['Grey','Dark Tones'], hex: ['#E8C840','#D4A017','#F5EFD0'], hex2:'#D4A017' },
   5: { name: 'Venus',   day: 'Friday',    planet: 'Shukra',  colours: ['Pink','Lilac','Pastel Rose'],       avoid: ['Dark Brown','Black'], hex: ['#E87080','#C090C8','#F0A8B0'], hex2:'#E87080' },
   6: { name: 'Saturn',  day: 'Saturday',  planet: 'Shani',   colours: ['Black','Dark Indigo','Navy Blue'],  avoid: ['Orange','Bright Red'], hex: ['#1A1A2E','#2C2444','#1C3555'], hex2:'#2C2444' },
+};
+
+// ─────────────────────────────────────────────────────────
+//  PLANET QUALITY WORDS  (one word per day — shown in week strip)
+// ─────────────────────────────────────────────────────────
+const PLANET_QUALITY = {
+  0: 'Vitality',   // Sun
+  1: 'Intuition',  // Moon
+  2: 'Courage',    // Mars
+  3: 'Clarity',    // Mercury
+  4: 'Wisdom',     // Jupiter
+  5: 'Harmony',    // Venus
+  6: 'Patience',   // Saturn
 };
 
 // ─────────────────────────────────────────────────────────
@@ -2530,15 +2553,8 @@ function renderWeekAhead() {
     const variant = PLANET_VARIANTS[dow][getWeekVariant(d)];
     const isToday = i === 0;
 
-    // personal day number
-    let pdHtml = '';
-    if (state.dob) {
-      const pd = personalDay(state.dob, d);
-      pdHtml = `<div class="week-pd">${pd}</div><div class="week-pd-label">Day</div>`;
-    }
-
-    // colour dots from weekly variant
-    const dotsHtml = variant.hex.slice(0,2).map(h =>
+    // 3 colour dots from weekly variant
+    const dotsHtml = variant.hex.map(h =>
       `<div class="week-dot" style="background:${h};"></div>`
     ).join('');
 
@@ -2550,8 +2566,8 @@ function renderWeekAhead() {
         <div style="font-size:0.6rem;color:var(--page-muted);margin-bottom:6px;">${dateLabel}</div>
         <div class="week-dot-row">${dotsHtml}</div>
         <div class="week-planet">${p.planet}</div>
-        <div style="font-size:0.6rem;color:var(--page-muted);font-style:italic;line-height:1.3;">${variant.colours[0]}</div>
-        ${pdHtml}
+        <div style="font-size:0.6rem;color:var(--page-muted);font-style:italic;line-height:1.3;margin-bottom:4px;">${variant.colours[0]}</div>
+        <div class="week-quality-word">${PLANET_QUALITY[dow]}</div>
       </div>`;
   });
 
