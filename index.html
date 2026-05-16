@@ -1084,36 +1084,48 @@
 
     .consult-body + .consult-body { margin-top: 1.2rem; }
 
-    /* 2×2 feature pill grid */
-    .consult-pills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
+    /* Strip list — icon + text rows */
+    .consult-strip {
+      display: flex;
+      flex-direction: column;
     }
 
-    .consult-pill {
-      padding: 1.1rem;
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      background: var(--cream);
+    .consult-strip-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--rule);
     }
 
-    .consult-pill-icon {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
+    .consult-strip-row:first-child {
+      border-top: 1px solid var(--rule);
     }
 
-    .consult-pill-text {
-      font-size: 0.82rem;
+    .consult-strip-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(197,146,58,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .consult-strip-text {
+      font-size: 0.88rem;
       color: var(--ink-muted);
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    /* Pull-quote above WA button */
+    /* Pull-quote below strip */
     .consult-quote-line {
-      margin-top: 1rem;
+      margin-top: 1.25rem;
       padding-left: 1rem;
       border-left: 2px solid var(--red);
+      border-radius: 0;
       font-family: var(--font-serif);
       font-style: italic;
       font-size: 1rem;
@@ -1282,13 +1294,9 @@
         border-bottom-color: rgba(255,255,255,0.08);
       }
 
-      .consult-pill {
-        background: #1C1812;
-        border-color: rgba(255,255,255,0.08);
-      }
-
-      .consult-pill-text { color: rgba(255,255,255,0.5); }
-
+      .consult-strip-row { border-color: rgba(255,255,255,0.08); }
+      .consult-strip-icon { background: rgba(197,146,58,0.12); }
+      .consult-strip-text { color: rgba(255,255,255,0.5); }
       .consult-quote-line { color: rgba(255,255,255,0.4); }
     }
   </style>
@@ -1602,35 +1610,34 @@
           </h2>
           <span class="divider"></span>
           <p class="consult-body">
-            Sripriya is one of those people. Long before she studied colour theory or
-            Vedic astrology, she could walk into a room and immediately sense what colour
-            belonged on each person — not just what was fashionable, but what was <em>true</em> to them.
-            It is an intuition that can't be learned from a book; it is a gift, cultivated over decades.
+            Sripriya is one of those people. Long before she studied colour theory, she could
+            walk into a room and sense what colour truly belonged on each person — not what was
+            fashionable, but what was <em>right</em> for them. An intuition that can't be
+            learned from a book; a gift, cultivated over decades.
           </p>
           <p class="consult-body">
-            In a personal consult, she brings this rare eye to you: looking at your skin tone,
-            your undertone, your energy, your season of life — and offering colour combinations
-            that even trained stylists miss. Not a formula. A reading, given with care.
+            In a consult she brings this rare eye to you — your skin, your undertone, your
+            energy, your season of life. Not a formula. A reading, given with care.
           </p>
         </div>
 
         <div>
-          <div class="consult-pills-grid">
-            <div class="consult-pill">
-              <div class="consult-pill-icon">🎨</div>
-              <div class="consult-pill-text">Your skin undertone &amp; seasonal colour family</div>
+          <div class="consult-strip">
+            <div class="consult-strip-row">
+              <div class="consult-strip-icon">🎨</div>
+              <div class="consult-strip-text">Your skin undertone &amp; seasonal colour family</div>
             </div>
-            <div class="consult-pill">
-              <div class="consult-pill-icon">✨</div>
-              <div class="consult-pill-text">Colours that drain vs. colours that illuminate you</div>
+            <div class="consult-strip-row">
+              <div class="consult-strip-icon">✨</div>
+              <div class="consult-strip-text">Colours that drain vs. colours that illuminate you</div>
             </div>
-            <div class="consult-pill">
-              <div class="consult-pill-icon">👗</div>
-              <div class="consult-pill-text">Occasion palettes — daily wear, ceremony, rest</div>
+            <div class="consult-strip-row">
+              <div class="consult-strip-icon">👗</div>
+              <div class="consult-strip-text">Occasion palettes — daily wear, ceremony, rest</div>
             </div>
-            <div class="consult-pill">
-              <div class="consult-pill-icon">🌙</div>
-              <div class="consult-pill-text">How colour shifts with your life phase &amp; energy</div>
+            <div class="consult-strip-row">
+              <div class="consult-strip-icon">🌙</div>
+              <div class="consult-strip-text">How colour shifts with your life phase &amp; energy</div>
             </div>
           </div>
           <blockquote class="consult-quote-line">
