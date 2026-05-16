@@ -672,18 +672,44 @@
 
     .mock-insight strong { color: var(--blue); font-weight: 500; }
 
-    .badge-coming {
-      display: inline-block;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
+    .colour-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--red);
+      color: #fff;
+      border-radius: 6px;
+      padding: 1rem 1.4rem;
+      text-decoration: none;
+      margin-top: 2rem;
+      transition: opacity 0.2s;
+    }
+    .colour-cta-btn:hover { opacity: 0.88; color: #fff; }
+    .colour-cta-sub {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-weight: 600;
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      background: rgba(143, 175, 192, 0.2);
-      color: var(--blue);
-      border: 1px solid rgba(143,175,192,0.3);
-      margin-top: 1.5rem;
+      opacity: 0.7;
+      margin-bottom: 3px;
+    }
+    .colour-cta-main {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .colour-cta-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
     }
 
     /* ─────────────────────────────────────────
@@ -977,12 +1003,8 @@
         border-color: rgba(255,255,255,0.08);
       }
 
-      /* Badge */
-      .badge-coming {
-        background: rgba(143,175,192,0.1);
-        color: #8FAFC0;
-        border-color: rgba(143,175,192,0.25);
-      }
+      /* Colour CTA — keep gold in dark mode (--red already maps to gold) */
+      .colour-cta-btn { background: #C5923A; }
 
       /* Ghost button */
       .btn-ghost {
@@ -1250,7 +1272,7 @@
       <div class="colour-grid">
 
         <div>
-          <span class="eyebrow">Coming soon</span>
+          <span class="eyebrow">Colour Wear · Live now</span>
           <h2 class="serif-heading colour-heading">
             Colour as a<br><em>living language.</em>
           </h2>
@@ -1290,7 +1312,13 @@
               <div class="colour-pillar-text">Contextual suggestions so every choice feels effortless.</div>
             </div>
           </div>
-          <a href="colour.html" class="badge-coming" style="cursor:pointer;text-decoration:none;display:inline-block;">Try the beta app →</a>
+          <a href="colour.html" class="colour-cta-btn">
+            <div>
+              <div class="colour-cta-sub">Free · no sign-up needed</div>
+              <div class="colour-cta-main">Open today's colour reading →</div>
+            </div>
+            <div class="colour-cta-icon">✦</div>
+          </a>
         </div>
 
         <div class="colour-demo">

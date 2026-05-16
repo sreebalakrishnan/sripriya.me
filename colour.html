@@ -397,6 +397,66 @@
   }
   .fab-btn:hover .fab-label { opacity: 1; }
 
+  /* ─── PEEK SHEET (first-visit) ─── */
+  .peek-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    border-radius: 24px 24px 0 0;
+    z-index: 300;
+    transform: translateY(100%);
+    transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+    padding: 0 24px 36px;
+    border-top: 1px solid var(--page-border);
+  }
+  .peek-sheet.open { transform: translateY(0); }
+  .peek-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--page-text);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .peek-body {
+    font-size: 0.82rem;
+    color: var(--page-muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .peek-body strong { color: var(--gold-light); font-weight: 400; }
+  .peek-actions { display: flex; gap: 8px; }
+  .peek-btn-primary {
+    flex: 1;
+    background: linear-gradient(135deg, var(--gold), var(--p3, #A07028));
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 20px;
+    font-size: 0.84rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: opacity 0.18s;
+  }
+  .peek-btn-primary:hover { opacity: 0.88; }
+  .peek-btn-later {
+    background: rgba(255,255,255,0.05);
+    color: var(--page-muted);
+    border: 1px solid var(--page-border);
+    border-radius: 30px;
+    padding: 13px 18px;
+    font-size: 0.82rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s;
+  }
+  .peek-btn-later:hover { background: rgba(255,255,255,0.09); }
+
   /* ─── SLIDE-UP PANEL ─── */
   .backdrop {
     position: fixed;
@@ -1106,7 +1166,7 @@
       box-shadow: 0 -2px 16px rgba(44,36,22,0.08);
     }
 
-    /* panel on desktop: centred, max 560px */
+    /* panel + peek on desktop: centred, max 560px */
     .panel {
       left: 50%;
       transform: translateX(-50%) translateY(100%);
@@ -1114,6 +1174,15 @@
       width: 100%;
     }
     .panel.open {
+      transform: translateX(-50%) translateY(0);
+    }
+    .peek-sheet {
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      max-width: 480px;
+      width: 100%;
+    }
+    .peek-sheet.open {
       transform: translateX(-50%) translateY(0);
     }
 
@@ -1210,7 +1279,23 @@
 </button>
 
 <!-- BACKDROP -->
-<div class="backdrop" id="backdrop" onclick="closePanel()"></div>
+<div class="backdrop" id="backdrop" onclick="handleBackdropClick()"></div>
+
+<!-- FIRST-VISIT PEEK SHEET -->
+<div class="peek-sheet" id="peekSheet">
+  <div class="panel-handle"></div>
+  <div style="padding-top:18px;">
+    <div class="peek-title">Make this reading yours ✦</div>
+    <p class="peek-body">
+      Right now this is a reading for everyone. Add your <strong>name</strong>, <strong>date of birth</strong>,
+      <strong>skin tone</strong> and <strong>body shape</strong> — and every day becomes a reading written just for you.
+    </p>
+    <div class="peek-actions">
+      <button class="peek-btn-primary" onclick="peekToFull()">✦ Personalise now</button>
+      <button class="peek-btn-later" onclick="dismissPeek()">Later</button>
+    </div>
+  </div>
+</div>
 
 <!-- SLIDE-UP PANEL -->
 <div class="panel" id="panel">
@@ -2036,7 +2121,7 @@ function buildShareText() {
     text += `\n`;
   }
 
-  text += `\n🌈 _via sripriya.me/colour_`;
+  text += `\n🌈 _via ${window.location.href.split('?')[0]}_`;
   return text;
 }
 
@@ -2508,6 +2593,44 @@ function syncPhotoSelectionsToUI() {
 }
 
 // ─────────────────────────────────────────────────────────
+//  FIRST-VISIT PEEK
+// ─────────────────────────────────────────────────────────
+const PEEK_KEY = 'srcp_peeked';
+
+function showPeekIfNeeded() {
+  // Skip if already seen or profile already has any data
+  if (localStorage.getItem(PEEK_KEY)) return;
+  if (state.name || state.dob || state.tone || state.hair || state.bodyShape) return;
+  // Delay so the card renders first
+  setTimeout(() => {
+    document.getElementById('peekSheet').classList.add('open');
+    document.getElementById('backdrop').classList.add('visible');
+  }, 1100);
+}
+
+function dismissPeek() {
+  document.getElementById('peekSheet').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('visible');
+  try { localStorage.setItem(PEEK_KEY, '1'); } catch(e) {}
+}
+
+function peekToFull() {
+  document.getElementById('peekSheet').classList.remove('open');
+  try { localStorage.setItem(PEEK_KEY, '1'); } catch(e) {}
+  // Slight pause so peek slides away before panel opens
+  setTimeout(() => openPanel(), 220);
+}
+
+function handleBackdropClick() {
+  const peek = document.getElementById('peekSheet');
+  if (peek && peek.classList.contains('open')) {
+    dismissPeek();
+  } else {
+    closePanel();
+  }
+}
+
+// ─────────────────────────────────────────────────────────
 //  PANEL OPEN / CLOSE
 // ─────────────────────────────────────────────────────────
 function openPanel() {
@@ -2737,6 +2860,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCard();
   renderWeekAhead();
   updateProfileChips();
+  showPeekIfNeeded();
   // No auto location prompt — user initiates via "Detect" button in panel
 });
 </script>
