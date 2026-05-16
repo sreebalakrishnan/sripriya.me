@@ -857,8 +857,14 @@
 
     /* ─────────────────────────────────────────
        RESPONSIVE
+       Breakpoints:
+         960px  — all phones (incl. Pro Max landscape 932px) + small tablets
+         600px  — small phones
+         480px  — very small phones
     ───────────────────────────────────────── */
-    @media (max-width: 860px) {
+
+    /* ── ≤960px: all phones + small tablets ── */
+    @media (max-width: 960px) {
       .hero-grid,
       .about-grid,
       .yoga-grid,
@@ -868,37 +874,66 @@
         grid-template-columns: 1fr;
       }
 
+      /* Photo comes first on mobile */
       .hero-photo { order: -1; }
 
-      .photo-frame { aspect-ratio: 4 / 3; max-height: 380px; }
+      /* Photo: landscape crop, full container width, no decorative accent */
+      .photo-frame {
+        aspect-ratio: 4 / 3;
+        max-height: 420px;
+        border-radius: 8px;
+      }
+      .photo-accent { display: none; }
 
+      /* Nav: hide links, keep logo + CTA */
       .nav-links { display: none; }
 
+      /* Yoga card: don't over-constrain width when stacked */
+      .yoga-card { max-width: 100%; }
+
+      /* About stats: 3-col still fine at tablet width */
       .about-stats { grid-template-columns: repeat(3, 1fr); }
 
-      .colour-pillars { grid-template-columns: 1fr 1fr; }
+      /* Consult card: breathe when stacked */
+      .consult-card { margin-top: 0; }
 
-      /* yoga card no longer needs to float right */
-      .yoga-card { max-width: 420px; }
+      /* Reduce section gap on phones */
+      :root { --gap: clamp(2rem, 5vw, 3.5rem); }
     }
 
+    /* ── ≤600px: small phones ── */
     @media (max-width: 600px) {
-      /* nav: hide CTA button on very small screens to avoid overflow */
+      /* Tighten horizontal container padding */
+      .container { padding-inline: 1.1rem; }
+
+      /* Nav: hide CTA to save space */
       .nav-cta { display: none; }
 
+      /* About stats: 2-col */
       .about-stats { grid-template-columns: 1fr 1fr; }
-      .colour-pillars { grid-template-columns: 1fr; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
+
+      /* Hero CTAs: full-width stacked */
+      .hero-ctas { flex-direction: column; align-items: stretch; }
       .hero-ctas .btn-primary,
       .hero-ctas .btn-ghost { width: 100%; text-align: center; }
+
+      /* Specs strip: vertical */
       .specs-inner { flex-direction: column; align-items: flex-start; }
 
-      /* tighter vertical rhythm on phones */
+      /* Typography rhythm */
       .about-pull-quote { font-size: 1rem; }
       .big-quote { font-size: clamp(1.5rem, 6vw, 2.4rem); }
 
-      /* footer stacks nicely */
+      /* Footer: stack */
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+
+    /* ── ≤480px: very small phones — stack colour teasers ── */
+    @media (max-width: 480px) {
+      .colour-teasers { flex-direction: column; }
+
+      /* Photo: slightly taller crop on SE-sized screens */
+      .photo-frame { aspect-ratio: 3 / 2; }
     }
 
     /* prevent horizontal overflow on any narrow device */
