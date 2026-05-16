@@ -894,8 +894,8 @@
       /* About stats: 3-col still fine at tablet width */
       .about-stats { grid-template-columns: repeat(3, 1fr); }
 
-      /* Consult card: breathe when stacked */
-      .consult-card { margin-top: 0; }
+      /* Consult card: hide on phones — story + WA button is enough */
+      .consult-card { display: none; }
 
       /* Reduce section gap on phones */
       :root { --gap: clamp(2rem, 5vw, 3.5rem); }
