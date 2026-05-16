@@ -1134,6 +1134,81 @@
   }
   .scan-note.visible { display: block; }
 
+  /* ─── OUTFIT COMBO CARDS (week detail) ─── */
+  .outfit-combos { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+  .outfit-combo {
+    border: 1px solid var(--page-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .outfit-combo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--card-surf);
+  }
+  .outfit-combo-row + .outfit-combo-row {
+    border-top: 1px solid var(--page-border);
+  }
+  .outfit-combo-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  }
+  .outfit-combo-info { flex: 1; min-width: 0; }
+  .outfit-combo-piece {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--page-muted);
+    margin-bottom: 1px;
+  }
+  .outfit-combo-name {
+    font-size: 0.8rem;
+    color: var(--page-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .outfit-combo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 12px 6px;
+    background: var(--card-bg);
+  }
+  .outfit-combo-note {
+    font-size: 0.68rem;
+    color: var(--page-muted);
+    font-style: italic;
+  }
+  .outfit-type-badge {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--page-border);
+    color: var(--page-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* week variant label */
+  .week-variant-label {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
   /* ─── MOBILE (very small) ─── */
   @media (max-width: 380px) {
     .body-shape-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1238,6 +1313,16 @@
     .wd-pill { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); color: #2C2416; }
     .wd-avoid-pill { background: rgba(139,26,26,0.08); color: #8B1A1A; border-color: rgba(139,26,26,0.15); }
     .fab-btn { box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.06); }
+    /* outfit combos in light mode */
+    .outfit-combo { border-color: rgba(0,0,0,0.09); }
+    .outfit-combo-row { background: #F5EFE6; }
+    .outfit-combo-row + .outfit-combo-row { border-top-color: rgba(0,0,0,0.08); }
+    .outfit-combo-footer { background: #FFFFFF; }
+    .outfit-combo-note { color: #7A6E62; }
+    .outfit-type-badge { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); color: #7A6E62; }
+    .outfit-combo-piece { color: #9A8878; }
+    .outfit-combo-name { color: #2C2416; }
+    .week-variant-label { color: rgba(255,255,255,0.55); }
   }
 </style>
 </head>
@@ -1614,6 +1699,272 @@ const PLANETS = {
   4: { name: 'Jupiter', day: 'Thursday',  planet: 'Guru',    colours: ['Yellow','Turmeric','Cream'],        avoid: ['Grey','Dark Tones'], hex: ['#E8C840','#D4A017','#F5EFD0'], hex2:'#D4A017' },
   5: { name: 'Venus',   day: 'Friday',    planet: 'Shukra',  colours: ['Pink','Lilac','Pastel Rose'],       avoid: ['Dark Brown','Black'], hex: ['#E87080','#C090C8','#F0A8B0'], hex2:'#E87080' },
   6: { name: 'Saturn',  day: 'Saturday',  planet: 'Shani',   colours: ['Black','Dark Indigo','Navy Blue'],  avoid: ['Orange','Bright Red'], hex: ['#1A1A2E','#2C2444','#1C3555'], hex2:'#2C2444' },
+};
+
+// ─────────────────────────────────────────────────────────
+//  ISO WEEK + WEEKLY VARIANT HELPER
+// ─────────────────────────────────────────────────────────
+function getISOWeek(date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+  const yearStart = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+}
+function getWeekVariant(date) { return getISOWeek(date) % 4; } // 0-3
+
+// ─────────────────────────────────────────────────────────
+//  PLANET VARIANTS  (7 planets × 4 weekly rotations)
+//  Each variant: colours[], hex[], outfits[]
+//  Outfit: { topColour, topHex, bottomColour, bottomHex, type, note }
+//  type: 'Mono' | 'Analog' | 'Comp'
+// ─────────────────────────────────────────────────────────
+const PLANET_VARIANTS = {
+  // ── 0 · SUNDAY · Sun / Surya ──────────────────────────
+  0: [
+    { name:'Copper & Rust',
+      colours:['Copper','Burnt Orange','Gold'], hex:['#B87333','#CC5500','#C5A028'],
+      outfits:[
+        { topColour:'Copper kurta',         topHex:'#B87333', bottomColour:'Cream trousers',      bottomHex:'#F5EFD0', type:'Analog', note:'Warm earthy harmony' },
+        { topColour:'Burnt orange dupatta',  topHex:'#CC5500', bottomColour:'Deep brown salwar',   bottomHex:'#5A3010', type:'Mono',   note:'Deep-to-light tonal play' },
+        { topColour:'Gold blouse / shirt',   topHex:'#C5A028', bottomColour:'Indigo or navy',      bottomHex:'#1C2455', type:'Comp',   note:'Gold-indigo — classic royal' },
+      ]
+    },
+    { name:'Saffron & Marigold',
+      colours:['Saffron','Marigold','Deep Gold'], hex:['#E8A030','#F0B840','#C07810'],
+      outfits:[
+        { topColour:'Saffron top',          topHex:'#E8A030', bottomColour:'Ivory wide-leg',       bottomHex:'#FFF5E0', type:'Analog', note:'Bright-to-soft warmth' },
+        { topColour:'Marigold dupatta',     topHex:'#F0B840', bottomColour:'Off-white or white',   bottomHex:'#FEFEFA', type:'Mono',   note:'Luminous monochromatic glow' },
+        { topColour:'Deep gold kurta',      topHex:'#C07810', bottomColour:'Slate blue trousers',  bottomHex:'#607090', type:'Comp',   note:'Gold & blue — classic pairing' },
+      ]
+    },
+    { name:'Terracotta & Ochre',
+      colours:['Terracotta','Burnt Sienna','Warm Ochre'], hex:['#C44A2A','#E8763A','#D4982A'],
+      outfits:[
+        { topColour:'Terracotta kurta',     topHex:'#C44A2A', bottomColour:'Ochre salwar',          bottomHex:'#D4982A', type:'Analog', note:'Earthy analogous glow' },
+        { topColour:'Burnt sienna blouse',  topHex:'#E8763A', bottomColour:'Deep rust skirt',       bottomHex:'#8A3018', type:'Mono',   note:'Rich tonal depth' },
+        { topColour:'Warm ochre top',       topHex:'#D4982A', bottomColour:'Teal trousers',         bottomHex:'#2A7878', type:'Comp',   note:'Ochre-teal vibrant contrast' },
+      ]
+    },
+    { name:'Amber & Honey',
+      colours:['Amber','Honey Gold','Warm Tan'], hex:['#D4A050','#E8C070','#A07838'],
+      outfits:[
+        { topColour:'Honey gold kurta',     topHex:'#E8C070', bottomColour:'Warm tan dhoti',        bottomHex:'#A07838', type:'Mono',   note:'Sun-soaked tonal look' },
+        { topColour:'Amber dupatta',        topHex:'#D4A050', bottomColour:'Sage green trousers',   bottomHex:'#789060', type:'Analog', note:'Warm amber-to-green flow' },
+        { topColour:'Warm tan top',         topHex:'#A07838', bottomColour:'Deep blue-violet',      bottomHex:'#3A2868', type:'Comp',   note:'Earthy split-complement' },
+      ]
+    },
+  ],
+  // ── 1 · MONDAY · Moon / Chandra ───────────────────────
+  1: [
+    { name:'Pure White & Silver',
+      colours:['Pure White','Silver','Pale Blue'], hex:['#F8F6F0','#C0C0C0','#B8C8D8'],
+      outfits:[
+        { topColour:'White kurta / blouse',  topHex:'#F8F6F0', bottomColour:'Silver-grey trousers', bottomHex:'#C0C0C0', type:'Mono',   note:'Clean lunar monochrome' },
+        { topColour:'Silver stole',          topHex:'#C8C8C8', bottomColour:'Pale blue salwar',     bottomHex:'#B8C8D8', type:'Analog', note:'White-to-blue cool flow' },
+        { topColour:'Pure white top',        topHex:'#F8F6F0', bottomColour:'Pale blush-peach',     bottomHex:'#F0D0C0', type:'Comp',   note:'Soft white-peach glow' },
+      ]
+    },
+    { name:'Ivory & Cream',
+      colours:['Ivory','Cream','Warm Pearl'], hex:['#FFF8E8','#F0E8D0','#E0D0B0'],
+      outfits:[
+        { topColour:'Ivory kurta',           topHex:'#FFF8E8', bottomColour:'Cream wide-leg',       bottomHex:'#F0E8D0', type:'Mono',   note:'Warm luminous tonal layering' },
+        { topColour:'Cream dupatta',         topHex:'#F0E8D0', bottomColour:'Pale rose-gold',       bottomHex:'#E8C8B0', type:'Analog', note:'Ivory to rose — honeyed glow' },
+        { topColour:'Warm pearl blouse',     topHex:'#E0D0B0', bottomColour:'Dusty lavender',       bottomHex:'#C0A8C8', type:'Comp',   note:'Ivory-lavender — soft & striking' },
+      ]
+    },
+    { name:'Pale Yellow-White',
+      colours:['Lemon White','Butter Yellow','Soft Vanilla'], hex:['#FFFFF0','#F5F5D0','#EDEA90'],
+      outfits:[
+        { topColour:'Lemon white kurta',     topHex:'#FFFFF0', bottomColour:'Butter yellow salwar', bottomHex:'#F5F5D0', type:'Mono',   note:'Pale sun-glow tonal look' },
+        { topColour:'Soft vanilla top',      topHex:'#EDEA90', bottomColour:'Light sage green',     bottomHex:'#C8D8A0', type:'Analog', note:'Yellow-to-green spring palette' },
+        { topColour:'Butter yellow dupatta', topHex:'#F5F5D0', bottomColour:'Soft periwinkle',      bottomHex:'#A0A8D0', type:'Comp',   note:'Pale yellow-blue — airy contrast' },
+      ]
+    },
+    { name:'Cool Silver-Blue',
+      colours:['Steel Blue','Pale Teal','Mist Grey'], hex:['#D8E0E8','#B0C0D0','#A8B8C8'],
+      outfits:[
+        { topColour:'Steel blue kurta',      topHex:'#D8E0E8', bottomColour:'Mist grey trousers',   bottomHex:'#A8B8C8', type:'Mono',   note:'Cool serene monochrome' },
+        { topColour:'Pale teal blouse',      topHex:'#B0C0D0', bottomColour:'Soft white linen',     bottomHex:'#F0F2F5', type:'Analog', note:'Blue-to-white coastal calm' },
+        { topColour:'Mist grey top',         topHex:'#A8B8C8', bottomColour:'Pale champagne',       bottomHex:'#F0E8D0', type:'Comp',   note:'Cool-warm balance — elegant' },
+      ]
+    },
+  ],
+  // ── 2 · TUESDAY · Mars / Mangal ───────────────────────
+  2: [
+    { name:'Classic Red & Coral',
+      colours:['Red','Crimson','Coral'], hex:['#CC2222','#8B1A1A','#E87060'],
+      outfits:[
+        { topColour:'Red kurta / blouse',    topHex:'#CC2222', bottomColour:'Ivory or white',       bottomHex:'#FAF8F5', type:'Comp',   note:'Bold red on white — powerful' },
+        { topColour:'Coral dupatta',         topHex:'#E87060', bottomColour:'Deep crimson salwar',  bottomHex:'#8B1A1A', type:'Mono',   note:'Tonal fire gradient' },
+        { topColour:'Crimson kurta',         topHex:'#8B1A1A', bottomColour:'Forest green',         bottomHex:'#2A6030', type:'Comp',   note:'Red-green — classic complementary' },
+      ]
+    },
+    { name:'Deep Burgundy',
+      colours:['Burgundy','Wine','Blush Red'], hex:['#7A0028','#A01838','#C85060'],
+      outfits:[
+        { topColour:'Burgundy kurta',        topHex:'#7A0028', bottomColour:'Blush pink salwar',    bottomHex:'#F0A8B0', type:'Mono',   note:'Deep-to-light red harmony' },
+        { topColour:'Wine blouse',           topHex:'#A01838', bottomColour:'Dusty rose bottom',    bottomHex:'#C8907A', type:'Analog', note:'Warm red-to-rose flow' },
+        { topColour:'Blush red top',         topHex:'#C85060', bottomColour:'Deep turquoise',       bottomHex:'#2A7878', type:'Comp',   note:'Rich complementary drama' },
+      ]
+    },
+    { name:'Coral & Peach Fire',
+      colours:['Coral','Warm Peach','Rose Rust'], hex:['#E87060','#F09080','#D06050'],
+      outfits:[
+        { topColour:'Coral kurta',           topHex:'#E87060', bottomColour:'Warm peach salwar',    bottomHex:'#F09080', type:'Mono',   note:'Gentle coral glow' },
+        { topColour:'Rose rust blouse',      topHex:'#D06050', bottomColour:'Terracotta trousers',  bottomHex:'#C44A2A', type:'Analog', note:'Warm orange-pink earth' },
+        { topColour:'Warm peach top',        topHex:'#F09080', bottomColour:'Deep teal linen',      bottomHex:'#2A6868', type:'Comp',   note:'Peach-teal — vibrant & modern' },
+      ]
+    },
+    { name:'Deep Rose & Magenta',
+      colours:['Deep Rose','Hot Magenta','Dusty Red'], hex:['#C02050','#E02880','#A03040'],
+      outfits:[
+        { topColour:'Deep rose kurta',       topHex:'#C02050', bottomColour:'Ivory or pearl',       bottomHex:'#FFF5EC', type:'Comp',   note:'Deep rose on white — fierce' },
+        { topColour:'Hot magenta dupatta',   topHex:'#E02880', bottomColour:'Dusty red salwar',     bottomHex:'#A03040', type:'Mono',   note:'Pink-red tonal boldness' },
+        { topColour:'Deep rose blouse',      topHex:'#C02050', bottomColour:'Jade green',           bottomHex:'#2E8B57', type:'Comp',   note:'Rose-jade — festival pairing' },
+      ]
+    },
+  ],
+  // ── 3 · WEDNESDAY · Mercury / Budh ────────────────────
+  3: [
+    { name:'Deep Emerald & Jade',
+      colours:['Emerald','Lime','Teal'], hex:['#2E8B57','#6B8E23','#3A8B7A'],
+      outfits:[
+        { topColour:'Emerald kurta',         topHex:'#2E8B57', bottomColour:'Teal trousers',        bottomHex:'#3A8B7A', type:'Mono',   note:'Jewel-toned green harmony' },
+        { topColour:'Lime green dupatta',    topHex:'#6B8E23', bottomColour:'Deep emerald salwar',  bottomHex:'#1E6B3A', type:'Analog', note:'Lime to forest — lush gradient' },
+        { topColour:'Teal blouse / shirt',   topHex:'#3A8B7A', bottomColour:'Coral or brick red',   bottomHex:'#C04A30', type:'Comp',   note:'Teal-red — electric complementary' },
+      ]
+    },
+    { name:'Bright Lime & Apple',
+      colours:['Apple Green','Bright Lime','Fern'], hex:['#78C840','#90D840','#50A830'],
+      outfits:[
+        { topColour:'Apple green kurta',     topHex:'#78C840', bottomColour:'White or ivory',       bottomHex:'#FAFAF5', type:'Comp',   note:'Bright green on white — fresh' },
+        { topColour:'Fern green blouse',     topHex:'#50A830', bottomColour:'Lime top layer',       bottomHex:'#90D840', type:'Mono',   note:'Light-to-deep green flow' },
+        { topColour:'Bright lime dupatta',   topHex:'#90D840', bottomColour:'Deep purple trousers', bottomHex:'#5A2878', type:'Comp',   note:'Lime-purple — bold Mercury' },
+      ]
+    },
+    { name:'Teal & Seafoam',
+      colours:['Teal','Seafoam','Deep Teal'], hex:['#2A8878','#70B0A0','#1A6860'],
+      outfits:[
+        { topColour:'Teal kurta',            topHex:'#2A8878', bottomColour:'Seafoam salwar',       bottomHex:'#70B0A0', type:'Mono',   note:'Ocean tonal flow' },
+        { topColour:'Seafoam blouse',        topHex:'#70B0A0', bottomColour:'Pale blue linen',      bottomHex:'#A0C0D0', type:'Analog', note:'Teal-to-blue watery palette' },
+        { topColour:'Deep teal top',         topHex:'#1A6860', bottomColour:'Warm coral-blush',     bottomHex:'#E09080', type:'Comp',   note:'Deep teal-peach — striking' },
+      ]
+    },
+    { name:'Forest & Sage',
+      colours:['Forest Green','Sage','Moss'], hex:['#3A6840','#789060','#507050'],
+      outfits:[
+        { topColour:'Sage kurta',            topHex:'#789060', bottomColour:'Forest green salwar',  bottomHex:'#3A6840', type:'Mono',   note:'Grounded earth-green harmony' },
+        { topColour:'Moss blouse',           topHex:'#507050', bottomColour:'Warm beige taupe',     bottomHex:'#C8B090', type:'Analog', note:'Sage-to-earth — natural ease' },
+        { topColour:'Forest green top',      topHex:'#3A6840', bottomColour:'Terracotta trousers',  bottomHex:'#C44A2A', type:'Comp',   note:'Forest-terracotta — organic' },
+      ]
+    },
+  ],
+  // ── 4 · THURSDAY · Jupiter / Guru ─────────────────────
+  4: [
+    { name:'Sun Yellow & Turmeric',
+      colours:['Yellow','Turmeric','Cream'], hex:['#E8C840','#D4A017','#F5EFD0'],
+      outfits:[
+        { topColour:'Yellow kurta',          topHex:'#E8C840', bottomColour:'Cream salwar',         bottomHex:'#F5EFD0', type:'Mono',   note:'Auspicious sun-yellow flow' },
+        { topColour:'Turmeric dupatta',      topHex:'#D4A017', bottomColour:'Ivory or off-white',   bottomHex:'#FFF9F0', type:'Analog', note:'Warm yellow-cream sunrise' },
+        { topColour:'Sun yellow blouse',     topHex:'#E8C840', bottomColour:'Deep violet-blue',     bottomHex:'#3A2870', type:'Comp',   note:'Yellow-violet — celebratory' },
+      ]
+    },
+    { name:'Marigold & Deep Gold',
+      colours:['Marigold','Saffron Gold','Amber'], hex:['#F0A818','#E09010','#C87010'],
+      outfits:[
+        { topColour:'Marigold kurta',        topHex:'#F0A818', bottomColour:'Deep gold trousers',   bottomHex:'#C87010', type:'Mono',   note:'Festival marigold depth' },
+        { topColour:'Saffron dupatta',       topHex:'#E09010', bottomColour:'Burnt orange',         bottomHex:'#CC5500', type:'Analog', note:'Marigold-to-orange warm sweep' },
+        { topColour:'Amber top',             topHex:'#C87010', bottomColour:'Midnight blue',        bottomHex:'#1A2050', type:'Comp',   note:'Amber-blue — royal ceremonial' },
+      ]
+    },
+    { name:'Pale Lemon & Butter',
+      colours:['Butter Yellow','Pale Lemon','Warm Ivory'], hex:['#F8E878','#FFFACC','#F0E8A8'],
+      outfits:[
+        { topColour:'Butter yellow kurta',   topHex:'#F8E878', bottomColour:'Warm ivory',           bottomHex:'#FFF9F0', type:'Mono',   note:'Morning-light tonal softness' },
+        { topColour:'Pale lemon dupatta',    topHex:'#FFFACC', bottomColour:'Light sage green',     bottomHex:'#C8D898', type:'Analog', note:'Pale yellow-green spring look' },
+        { topColour:'Butter yellow blouse',  topHex:'#F8E878', bottomColour:'Lavender trousers',    bottomHex:'#B8A0C8', type:'Comp',   note:'Yellow-lavender — gentle contrast' },
+      ]
+    },
+    { name:'Mustard & Ochre',
+      colours:['Mustard','Ochre','Golden Brown'], hex:['#D4A020','#C08810','#906010'],
+      outfits:[
+        { topColour:'Mustard kurta',         topHex:'#D4A020', bottomColour:'Ochre salwar',         bottomHex:'#C08810', type:'Mono',   note:'Deep mustard warmth' },
+        { topColour:'Ochre dupatta',         topHex:'#C08810', bottomColour:'Rust or terracotta',   bottomHex:'#B04018', type:'Analog', note:'Ochre-to-rust warm earth' },
+        { topColour:'Mustard blouse',        topHex:'#D4A020', bottomColour:'Deep teal',            bottomHex:'#1A6860', type:'Comp',   note:'Mustard-teal — bold & grounded' },
+      ]
+    },
+  ],
+  // ── 5 · FRIDAY · Venus / Shukra ───────────────────────
+  5: [
+    { name:'Rose Pink & Lilac',
+      colours:['Pink','Lilac','Pastel Rose'], hex:['#E87080','#C090C8','#F0A8B0'],
+      outfits:[
+        { topColour:'Rose pink kurta',       topHex:'#E87080', bottomColour:'Pastel rose salwar',   bottomHex:'#F0A8B0', type:'Mono',   note:'Rosy feminine tonal softness' },
+        { topColour:'Lilac dupatta',         topHex:'#C090C8', bottomColour:'Soft rose blouse',     bottomHex:'#E87080', type:'Analog', note:'Pink-to-lavender Venus palette' },
+        { topColour:'Pastel rose top',       topHex:'#F0A8B0', bottomColour:'Soft sage or mint',    bottomHex:'#A8C8A8', type:'Comp',   note:'Rose-sage — elegant contrast' },
+      ]
+    },
+    { name:'Fuchsia & Magenta',
+      colours:['Fuchsia','Deep Magenta','Hot Pink'], hex:['#E030A0','#C020A0','#F060B0'],
+      outfits:[
+        { topColour:'Fuchsia kurta',         topHex:'#E030A0', bottomColour:'White or ivory',       bottomHex:'#FAFAF5', type:'Comp',   note:'Bold fuchsia on white — Venus' },
+        { topColour:'Hot pink dupatta',      topHex:'#F060B0', bottomColour:'Deep magenta salwar',  bottomHex:'#C020A0', type:'Mono',   note:'Vibrant pink tonal depth' },
+        { topColour:'Deep magenta blouse',   topHex:'#C020A0', bottomColour:'Deep emerald',         bottomHex:'#1E6B3A', type:'Comp',   note:'Magenta-green — bold drama' },
+      ]
+    },
+    { name:'Blush & Peach Blossom',
+      colours:['Blush','Warm Peach','Petal Pink'], hex:['#F0A8A0','#F8C8B0','#E89898'],
+      outfits:[
+        { topColour:'Blush kurta',           topHex:'#F0A8A0', bottomColour:'Warm peach salwar',    bottomHex:'#F8C8B0', type:'Mono',   note:'Soft peach-blush glow' },
+        { topColour:'Petal pink dupatta',    topHex:'#E89898', bottomColour:'Ivory or cream',       bottomHex:'#FFF5EC', type:'Analog', note:'Pink-to-white delicate warmth' },
+        { topColour:'Warm peach top',        topHex:'#F8C8B0', bottomColour:'Slate or muted teal',  bottomHex:'#607890', type:'Comp',   note:'Peach-slate — sophisticated' },
+      ]
+    },
+    { name:'Lavender & Violet',
+      colours:['Lavender','Soft Violet','Wisteria'], hex:['#B098D8','#8870B8','#C8A8E0'],
+      outfits:[
+        { topColour:'Lavender kurta',        topHex:'#B098D8', bottomColour:'Wisteria trousers',    bottomHex:'#C8A8E0', type:'Mono',   note:'Dreamy violet tonal look' },
+        { topColour:'Soft violet blouse',    topHex:'#8870B8', bottomColour:'Pale periwinkle',      bottomHex:'#A0A8D8', type:'Analog', note:'Purple-to-blue cosmic flow' },
+        { topColour:'Lavender dupatta',      topHex:'#B098D8', bottomColour:'Warm golden-yellow',   bottomHex:'#E8C840', type:'Comp',   note:'Lavender-gold — celestial' },
+      ]
+    },
+  ],
+  // ── 6 · SATURDAY · Saturn / Shani ─────────────────────
+  6: [
+    { name:'Dark Indigo & Navy',
+      colours:['Dark Indigo','Navy','Deep Violet'], hex:['#1A1A2E','#2C2444','#1C3555'],
+      outfits:[
+        { topColour:'Dark indigo kurta',     topHex:'#1A1A2E', bottomColour:'Deep navy trousers',   bottomHex:'#1C3555', type:'Mono',   note:'Deep karmic tonal strength' },
+        { topColour:'Navy dupatta',          topHex:'#1C3555', bottomColour:'Charcoal salwar',       bottomHex:'#3A3A3A', type:'Analog', note:'Navy-to-charcoal flow' },
+        { topColour:'Deep violet blouse',    topHex:'#2C2444', bottomColour:'Warm gold or amber',    bottomHex:'#D4A020', type:'Comp',   note:'Deep violet-gold — regal' },
+      ]
+    },
+    { name:'Midnight Blue',
+      colours:['Midnight Blue','Dark Royal','Steel Navy'], hex:['#1A2040','#283060','#405080'],
+      outfits:[
+        { topColour:'Midnight blue kurta',   topHex:'#1A2040', bottomColour:'Steel navy salwar',    bottomHex:'#405080', type:'Mono',   note:'Deep ocean tonal depth' },
+        { topColour:'Dark royal dupatta',    topHex:'#283060', bottomColour:'Deep teal',            bottomHex:'#1A5058', type:'Analog', note:'Blue-to-teal deep ocean flow' },
+        { topColour:'Midnight blue top',     topHex:'#1A2040', bottomColour:'Warm copper',          bottomHex:'#B87333', type:'Comp',   note:'Midnight-copper — Saturn elegance' },
+      ]
+    },
+    { name:'Charcoal & Slate',
+      colours:['Charcoal','Slate Grey','Deep Pewter'], hex:['#3A3A3A','#606070','#484858'],
+      outfits:[
+        { topColour:'Charcoal kurta',        topHex:'#3A3A3A', bottomColour:'Slate grey trousers',  bottomHex:'#606070', type:'Mono',   note:'Disciplined monochrome tone' },
+        { topColour:'Deep pewter blouse',    topHex:'#484858', bottomColour:'Dark navy bottom',     bottomHex:'#1A2040', type:'Analog', note:'Grey-to-navy understated flow' },
+        { topColour:'Slate grey top',        topHex:'#606070', bottomColour:'Ivory or warm white',  bottomHex:'#FAF8F5', type:'Comp',   note:'Grey-white — sculptural contrast' },
+      ]
+    },
+    { name:'Midnight Violet & Plum',
+      colours:['Midnight Violet','Deep Plum','Dark Aubergine'], hex:['#2A1840','#402050','#5A1838'],
+      outfits:[
+        { topColour:'Midnight violet kurta', topHex:'#2A1840', bottomColour:'Deep plum salwar',     bottomHex:'#402050', type:'Mono',   note:'Mystical violet depth' },
+        { topColour:'Dark aubergine blouse', topHex:'#5A1838', bottomColour:'Deep burgundy',        bottomHex:'#7A0028', type:'Analog', note:'Plum-to-wine warm dark flow' },
+        { topColour:'Midnight violet top',   topHex:'#2A1840', bottomColour:'Saffron-gold',         bottomHex:'#E09010', type:'Comp',   note:'Violet-gold — ceremonial elegance' },
+      ]
+    },
+  ],
 };
 
 // ─────────────────────────────────────────────────────────
@@ -2176,6 +2527,7 @@ function renderWeekAhead() {
   days.forEach((d, i) => {
     const dow = d.getDay();
     const p = PLANETS[dow];
+    const variant = PLANET_VARIANTS[dow][getWeekVariant(d)];
     const isToday = i === 0;
 
     // personal day number
@@ -2185,8 +2537,8 @@ function renderWeekAhead() {
       pdHtml = `<div class="week-pd">${pd}</div><div class="week-pd-label">Day</div>`;
     }
 
-    // colour dots (2)
-    const dotsHtml = p.hex.slice(0,2).map(h =>
+    // colour dots from weekly variant
+    const dotsHtml = variant.hex.slice(0,2).map(h =>
       `<div class="week-dot" style="background:${h};"></div>`
     ).join('');
 
@@ -2198,7 +2550,7 @@ function renderWeekAhead() {
         <div style="font-size:0.6rem;color:var(--page-muted);margin-bottom:6px;">${dateLabel}</div>
         <div class="week-dot-row">${dotsHtml}</div>
         <div class="week-planet">${p.planet}</div>
-        <div style="font-size:0.6rem;color:var(--page-muted);font-style:italic;line-height:1.3;">${p.colours[0]}</div>
+        <div style="font-size:0.6rem;color:var(--page-muted);font-style:italic;line-height:1.3;">${variant.colours[0]}</div>
         ${pdHtml}
       </div>`;
   });
@@ -2253,6 +2605,7 @@ function renderWeekDayDetail(date, i) {
 
   const dow = date.getDay();
   const p = PLANETS[dow];
+  const variant = PLANET_VARIANTS[dow][getWeekVariant(date)];
   const pan = panchang(date);
   const isToday = i === 0;
 
@@ -2275,13 +2628,10 @@ function renderWeekDayDetail(date, i) {
       </div>`;
   }
 
-  // Outfit suggestions using the selected day's planet
-  const outfits = getOutfits(p, state);
-
   // Weather note
   const weatherNote = isToday
     ? `<div style="font-size:0.67rem;color:var(--page-muted);margin-top:5px;font-style:italic;">See today's card for live weather.</div>`
-    : `<div style="font-size:0.67rem;color:var(--page-muted);margin-top:5px;font-style:italic;">Weather is shown for today only.</div>`;
+    : `<div style="font-size:0.67rem;color:var(--page-muted);margin-top:5px;font-style:italic;">Weather shown for today only.</div>`;
 
   // Panchang note
   const panchaNote = pan.isPurnima
@@ -2290,20 +2640,44 @@ function renderWeekDayDetail(date, i) {
       ? 'Amavasya — a day for introspection. Grounding earthy tones support clarity.'
       : `${pan.paksha === 'Shukla' ? 'Waxing fortnight — lean towards brightness and expansion.' : 'Waning fortnight — lean towards depth and release.'}`;
 
-  // Colour swatches in hero
-  const swatchHtml = p.hex.map((h, idx) => `
+  // Colour swatches in hero — use variant hex
+  const swatchHtml = variant.hex.map((h, idx) => `
     <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
       <div style="width:20px;height:20px;border-radius:50%;background:${h};border:2px solid rgba(255,255,255,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>
-      <div style="font-size:0.55rem;color:rgba(255,255,255,0.6);">${p.colours[idx] || ''}</div>
+      <div style="font-size:0.55rem;color:rgba(255,255,255,0.6);">${variant.colours[idx] || ''}</div>
+    </div>`).join('');
+
+  // Outfit combos HTML
+  const combosHtml = variant.outfits.map(o => `
+    <div class="outfit-combo">
+      <div class="outfit-combo-row">
+        <div class="outfit-combo-swatch" style="background:${o.topHex};"></div>
+        <div class="outfit-combo-info">
+          <div class="outfit-combo-piece">Top</div>
+          <div class="outfit-combo-name">${o.topColour}</div>
+        </div>
+      </div>
+      <div class="outfit-combo-row">
+        <div class="outfit-combo-swatch" style="background:${o.bottomHex};"></div>
+        <div class="outfit-combo-info">
+          <div class="outfit-combo-piece">Bottom</div>
+          <div class="outfit-combo-name">${o.bottomColour}</div>
+        </div>
+      </div>
+      <div class="outfit-combo-footer">
+        <span class="outfit-combo-note">${o.note}</span>
+        <span class="outfit-type-badge">${o.type}</span>
+      </div>
     </div>`).join('');
 
   det.innerHTML = `
     <div class="week-detail">
-      <div class="week-detail-hero" style="--wd-p1:${p.hex[0]};--wd-p3:${p.hex[2] || p.hex[0]};">
+      <div class="week-detail-hero" style="--wd-p1:${variant.hex[0]};--wd-p3:${variant.hex[2] || variant.hex[0]};">
         <button class="week-detail-close" onclick="closeWeekDetail()">← Close</button>
         <div class="week-detail-planet-label">${p.planet} · ${p.name}</div>
-        <div class="week-detail-day-name">${p.colours[0]} &amp; ${p.colours[1]}</div>
+        <div class="week-detail-day-name">${variant.colours[0]} &amp; ${variant.colours[1]}</div>
         <div class="week-detail-date">${dateStr}</div>
+        <div class="week-variant-label">${variant.name}</div>
         <div class="week-detail-swatches">${swatchHtml}</div>
       </div>
       <div class="week-detail-body">
@@ -2315,7 +2689,7 @@ function renderWeekDayDetail(date, i) {
             <div class="wd-value">${p.planet} · ${p.name}</div>
             <div class="wd-sub">${getPlanetQuality(dow)}</div>
             <div class="wd-pills">
-              ${p.hex.map((h, idx) => `<span class="wd-pill"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${h};margin-right:4px;vertical-align:middle;border:1px solid rgba(0,0,0,0.1);"></span>${p.colours[idx] || ''}</span>`).join('')}
+              ${variant.hex.map((h, idx) => `<span class="wd-pill"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${h};margin-right:4px;vertical-align:middle;border:1px solid rgba(0,0,0,0.1);"></span>${variant.colours[idx] || ''}</span>`).join('')}
             </div>
           </div>
         </div>
@@ -2334,9 +2708,10 @@ function renderWeekDayDetail(date, i) {
 
         <div class="wd-row">
           <span class="wd-icon">👗</span>
-          <div>
-            <div class="wd-label">What to wear</div>
-            <div class="wd-pills">${outfits.map(o => `<span class="wd-pill">${o}</span>`).join('')}</div>
+          <div style="width:100%;">
+            <div class="wd-label">This week's outfit combinations</div>
+            <div class="wd-sub" style="margin-bottom:8px;">Week ${getISOWeek(date)} · ${variant.name}</div>
+            <div class="outfit-combos">${combosHtml}</div>
             ${weatherNote}
           </div>
         </div>
