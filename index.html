@@ -869,7 +869,7 @@
       .about-grid,
       .yoga-grid,
       .colour-grid,
-      .consult-grid,
+      .consult-content,
       .connect-inner {
         grid-template-columns: 1fr;
       }
@@ -894,11 +894,7 @@
       /* About stats: 3-col still fine at tablet width */
       .about-stats { grid-template-columns: repeat(3, 1fr); }
 
-      /* Consult card: show below WA button when stacked, like the palette mock */
-      .consult-card {
-        position: static;
-        margin-top: 1.5rem;
-      }
+      /* Consult: pill grid stays 2-col when stacked — it's compact enough */
 
       /* Reduce section gap on phones */
       :root { --gap: clamp(2rem, 5vw, 3.5rem); }
@@ -1061,16 +1057,14 @@
       border-bottom: 1px solid var(--rule);
     }
 
-    .consult-grid {
+    /* Two-column: text left, pill grid right.
+       WA button sits full-width below both columns. */
+    .consult-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: clamp(2rem, 5vw, 5rem);
       align-items: start;
-    }
-
-    /* Sticky card on desktop only — tracks the heading as you read */
-    @media (min-width: 961px) {
-      .consult-card { position: sticky; top: calc(64px + 1.5rem); }
+      margin-bottom: 2rem;
     }
 
     .consult-heading {
@@ -1086,17 +1080,53 @@
       color: var(--ink-muted);
       line-height: 1.85;
       font-size: 0.96rem;
-      width: 100%;
     }
 
     .consult-body + .consult-body { margin-top: 1.2rem; }
 
+    /* 2×2 feature pill grid */
+    .consult-pills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .consult-pill {
+      padding: 1.1rem;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      background: var(--cream);
+    }
+
+    .consult-pill-icon {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .consult-pill-text {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.55;
+    }
+
+    /* Pull-quote above WA button */
+    .consult-quote-line {
+      margin-top: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--red);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--ink-muted);
+    }
+
+    /* WA button — full-width below the two columns */
     .consult-wa-btn {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.65rem;
-      margin-top: 2rem;
       padding: 0.9rem 1.6rem;
       background: #25D366;
       color: #fff;
@@ -1115,58 +1145,6 @@
       width: 18px;
       height: 18px;
       flex-shrink: 0;
-    }
-
-    .consult-card {
-      background: var(--ink);
-      color: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      padding: clamp(1.5rem, 3vw, 2.2rem);
-    }
-
-    .consult-card-title {
-      font-family: var(--font-sans);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 1.25rem;
-    }
-
-    .consult-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .consult-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.75);
-    }
-
-    .consult-list li::before {
-      content: '✦';
-      color: var(--red);
-      font-size: 0.6rem;
-      flex-shrink: 0;
-      margin-top: 0.35em;
-    }
-
-    .consult-quote {
-      padding-top: 1.4rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.55);
     }
 
     /* ─────────────────────────────────────────
@@ -1304,10 +1282,14 @@
         border-bottom-color: rgba(255,255,255,0.08);
       }
 
-      .consult-card {
+      .consult-pill {
         background: #1C1812;
-        border: 1px solid rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.08);
       }
+
+      .consult-pill-text { color: rgba(255,255,255,0.5); }
+
+      .consult-quote-line { color: rgba(255,255,255,0.4); }
     }
   </style>
 </head>
@@ -1610,7 +1592,8 @@
   ═══════════════════════════════════════ -->
   <section id="colour-consult" class="section">
     <div class="container">
-      <div class="consult-grid">
+
+      <div class="consult-content">
 
         <div>
           <span class="eyebrow">Personal Colour Consult</span>
@@ -1629,31 +1612,42 @@
             your undertone, your energy, your season of life — and offering colour combinations
             that even trained stylists miss. Not a formula. A reading, given with care.
           </p>
-          <a href="https://wa.me/919008085070?text=Hi%20Sripriya!%20I%20came%20across%20your%20website%20and%20I%27d%20love%20to%20try%20a%20personal%20colour%20consult%20with%20you%20%F0%9F%8C%B8" target="_blank" rel="noopener" class="consult-wa-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.115 1.529 5.845L.057 23.571a.75.75 0 0 0 .93.898l5.883-1.54A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.498-5.207-1.37l-.374-.217-3.875 1.015 1.03-3.765-.232-.386A10 10 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-            </svg>
-            Try a colour consult on WhatsApp
-          </a>
         </div>
 
         <div>
-          <div class="consult-card">
-            <div class="consult-card-title">What a consult covers</div>
-            <ul class="consult-list">
-              <li>Your skin undertone &amp; seasonal colour family</li>
-              <li>Colours that drain vs. colours that illuminate you</li>
-              <li>Occasion-specific palettes — daily wear, ceremony, rest</li>
-              <li>How colour shifts with your current life phase &amp; energy</li>
-            </ul>
-            <blockquote class="consult-quote">
-              "Colour is the first thing people notice.<br>Let it say the right thing."
-            </blockquote>
+          <div class="consult-pills-grid">
+            <div class="consult-pill">
+              <div class="consult-pill-icon">🎨</div>
+              <div class="consult-pill-text">Your skin undertone &amp; seasonal colour family</div>
+            </div>
+            <div class="consult-pill">
+              <div class="consult-pill-icon">✨</div>
+              <div class="consult-pill-text">Colours that drain vs. colours that illuminate you</div>
+            </div>
+            <div class="consult-pill">
+              <div class="consult-pill-icon">👗</div>
+              <div class="consult-pill-text">Occasion palettes — daily wear, ceremony, rest</div>
+            </div>
+            <div class="consult-pill">
+              <div class="consult-pill-icon">🌙</div>
+              <div class="consult-pill-text">How colour shifts with your life phase &amp; energy</div>
+            </div>
           </div>
+          <blockquote class="consult-quote-line">
+            "Colour is the first thing people notice. Let it say the right thing."
+          </blockquote>
         </div>
 
       </div>
+
+      <a href="https://wa.me/919008085070?text=Hi%20Sripriya!%20I%20came%20across%20your%20website%20and%20I%27d%20love%20to%20try%20a%20personal%20colour%20consult%20with%20you%20%F0%9F%8C%B8" target="_blank" rel="noopener" class="consult-wa-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.115 1.529 5.845L.057 23.571a.75.75 0 0 0 .93.898l5.883-1.54A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.498-5.207-1.37l-.374-.217-3.875 1.015 1.03-3.765-.232-.386A10 10 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        Try a colour consult on WhatsApp
+      </a>
+
     </div>
   </section>
 
