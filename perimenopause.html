@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Perimenopause Reset — A 7-Day Yoga Journey · Sripriya</title>
+  <meta name="description" content="A gentle 7-day yoga course for perimenopause — daily flows, breath work, nourishing food, lifestyle and affirmations to move through the change with ease." />
+
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-mj4cSXFLqlV5D3HhxNzp5.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS  (shared with index.html)
+    ───────────────────────────────────────── */
+    :root {
+      --red:        #8B1A1A;
+      --red-light:  #B8403A;
+      --blue:       #8FAFC0;
+      --blue-pale:  #D6E6EE;
+      --blue-wash:  #EEF5F9;
+      --cream:      #FAF8F5;
+      --warm-white: #FFFFFF;
+      --ink:        #1E1E1E;
+      --ink-muted:  #5A5A5A;
+      --rule:       #E2DDD8;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w:      1120px;
+      --gap:        clamp(2rem, 6vw, 5rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: clamp(15px, 1.5vw, 17px);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+    .section { padding-block: var(--gap); }
+    .narrow { max-width: 760px; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+    .serif-heading { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; }
+    .divider { width: 3rem; height: 1px; background: var(--red); display: block; margin-block: 1.5rem; }
+
+    /* ─────────────────────────────────────────
+       NAVIGATION  (shared)
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-muted); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.55rem 1.4rem; border: 1px solid var(--red); color: var(--red);
+      border-radius: 2px; transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--red); color: #fff; }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; background: none; border: none; cursor: pointer;
+      padding: 4px; border-radius: 4px; transition: background 0.15s;
+    }
+    .nav-hamburger:hover { background: rgba(0,0,0,0.05); }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--ink);
+      border-radius: 2px; transition: transform 0.25s, opacity 0.25s; transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none; position: fixed; top: 64px; inset-inline: 0; z-index: 99;
+      background: rgba(250,248,245,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule); padding: 0 clamp(1.25rem, 5vw, 3rem);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1), padding 0.32s;
+    }
+    .mobile-nav.open { max-height: 420px; padding-top: 1.25rem; padding-bottom: 1.5rem; }
+    .mobile-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 1.25rem; }
+    .mobile-nav ul li a {
+      display: block; font-size: 0.95rem; font-weight: 400; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ink-muted); padding: 0.75rem 0;
+      border-bottom: 1px solid var(--rule); transition: color 0.15s;
+    }
+    .mobile-nav ul li:first-child a { border-top: 1px solid var(--rule); }
+    .mobile-nav ul li a:hover { color: var(--red); }
+    .mobile-nav-cta {
+      display: block; text-align: center; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 0.85rem;
+      background: var(--red); color: #fff; border-radius: 2px; transition: opacity 0.15s;
+    }
+    .mobile-nav-cta:hover { opacity: 0.88; }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .course-hero {
+      padding-top: calc(64px + clamp(3rem, 8vw, 5.5rem));
+      padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+      background:
+        radial-gradient(120% 80% at 80% 0%, var(--blue-wash) 0%, transparent 60%),
+        var(--cream);
+      border-bottom: 1px solid var(--rule);
+    }
+    .breadcrumb {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 1.75rem;
+    }
+    .breadcrumb a { color: var(--blue); }
+    .breadcrumb a:hover { color: var(--red); }
+    .course-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 6.5vw, 5rem);
+      font-weight: 300; line-height: 1.04; letter-spacing: -0.01em;
+      max-width: 16ch;
+    }
+    .course-title em { font-style: italic; color: var(--red); }
+    .course-lede {
+      font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+      color: var(--ink-muted); font-weight: 300; line-height: 1.7;
+      max-width: 52ch; margin-top: 1.75rem;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+    }
+    .pill {
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 100px; background: var(--blue-wash); color: #4A6E82;
+    }
+
+    /* ─────────────────────────────────────────
+       INTRO / HOW TO USE
+    ───────────────────────────────────────── */
+    .intro { background: var(--warm-white); border-bottom: 1px solid var(--rule); }
+    .intro-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
+    }
+    .intro h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); }
+    .intro p { color: var(--ink-muted); line-height: 1.85; }
+    .intro p + p { margin-top: 1.1rem; }
+    .pull-quote {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--red); line-height: 1.5;
+      border-left: 2px solid var(--red); padding-left: 1.25rem; margin-top: 2rem;
+    }
+    .howto {
+      background: var(--cream); border: 1px solid var(--rule); border-radius: 6px;
+      padding: clamp(1.5rem, 3vw, 2rem);
+    }
+    .howto h3 {
+      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.1rem;
+    }
+    .howto ul { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .howto li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--ink-muted); line-height: 1.55; }
+    .howto li span.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 0.55em; }
+
+    /* ─────────────────────────────────────────
+       OVERVIEW — 7-DAY MAP
+    ───────────────────────────────────────── */
+    .overview { background: var(--cream); }
+    .overview-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .overview-head h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .day-map {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    .day-card {
+      background: var(--warm-white); border: 1px solid var(--rule); border-radius: 8px;
+      padding: 1.4rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .day-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .day-card .num {
+      font-family: var(--font-serif); font-size: 2.4rem; font-weight: 300;
+      color: var(--red); line-height: 1;
+    }
+    .day-card .d-label {
+      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--blue); font-weight: 500;
+    }
+    .day-card .d-title { font-family: var(--font-serif); font-size: 1.4rem; line-height: 1.2; }
+    .day-card .d-desc { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.55; }
+    .day-card .d-min { margin-top: auto; padding-top: 0.75rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+
+    /* ─────────────────────────────────────────
+       DAY SECTIONS (detailed)
+    ───────────────────────────────────────── */
+    .day { border-top: 1px solid var(--rule); }
+    .day:nth-child(even) { background: var(--warm-white); }
+    .day-header { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 2rem; }
+    .day-header .big-num {
+      font-family: var(--font-serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 300;
+      color: var(--blue-pale); line-height: 0.8; flex-shrink: 0;
+    }
+    .day-header .h-text .eyebrow { margin-bottom: 0.35rem; }
+    .day-header .h-text h2 { font-size: clamp(1.8rem, 3.6vw, 2.9rem); }
+    .day-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+
+    .block-label {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .block-label::before { content: ''; width: 18px; height: 1px; background: var(--red); display: inline-block; }
+    .prose { color: var(--ink-muted); line-height: 1.8; font-size: 0.95rem; }
+    .prose p + p { margin-top: 0.9rem; }
+    .prose strong { color: var(--ink); font-weight: 500; }
+
+    /* practice sequence list */
+    .practice {
+      background: var(--cream); border: 1px solid var(--rule); border-radius: 8px;
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .day:nth-child(even) .practice { background: var(--warm-white); }
+    .practice-meta {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .seq { list-style: none; display: flex; flex-direction: column; }
+    .seq li {
+      display: grid; grid-template-columns: auto 1fr; gap: 0.9rem; align-items: start;
+      padding: 0.7rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .seq li:last-child { border-bottom: none; padding-bottom: 0; }
+    .seq .step {
+      font-family: var(--font-serif); font-size: 1rem; color: var(--red);
+      width: 1.6rem; flex-shrink: 0; line-height: 1.5;
+    }
+    .seq .pose-name { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+    .seq .pose-name em { color: var(--ink-muted); font-style: italic; font-weight: 400; font-size: 0.85rem; }
+    .seq .pose-cue { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.5; }
+    .seq .pose-time { font-size: 0.72rem; color: var(--blue); letter-spacing: 0.04em; white-space: nowrap; }
+
+    /* affirmation card */
+    .affirm {
+      margin-top: 1.5rem; padding: 1.1rem 1.4rem; border-left: 2px solid var(--red);
+      background: rgba(139,26,26,0.04); border-radius: 0 6px 6px 0;
+    }
+    .affirm .a-label { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+    .affirm .a-text { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.4; color: var(--ink); }
+
+    /* generic tip list */
+    .tip-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.5rem; }
+    .tip-list li { display: flex; gap: 0.7rem; font-size: 0.9rem; color: var(--ink-muted); line-height: 1.55; }
+    .tip-list li span.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 0.55em; }
+
+    /* ─────────────────────────────────────────
+       FOOD REFERENCE
+    ───────────────────────────────────────── */
+    #nourish { background: var(--blue-wash); border-block: 1px solid #C8D9E5; }
+    .food-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .food-head h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .food-head p { color: var(--ink-muted); max-width: 56ch; margin: 1rem auto 0; }
+    .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .food-card { background: var(--warm-white); border: 1px solid #C8D9E5; border-radius: 8px; padding: 1.4rem 1.5rem 1.5rem; }
+    .food-card .f-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+    .food-card h3 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.6rem; }
+    .food-card p { font-size: 0.86rem; color: var(--ink-muted); line-height: 1.6; }
+    .food-card .foods { margin-top: 0.75rem; font-size: 0.82rem; color: #4A6E82; }
+    .food-note {
+      margin-top: 1.5rem; text-align: center; font-family: var(--font-serif); font-style: italic;
+      font-size: 1.15rem; color: #4A6E82;
+    }
+
+    /* ─────────────────────────────────────────
+       AFFIRMATIONS COLLECTION
+    ───────────────────────────────────────── */
+    #affirmations { background: var(--ink); color: #fff; }
+    #affirmations .eyebrow { color: var(--blue); }
+    #affirmations h2 { font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; max-width: 18ch; }
+    #affirmations h2 em { font-style: italic; color: var(--blue); }
+    .affirm-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .affirm-q {
+      padding: 1.4rem 1.6rem; border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px; background: rgba(255,255,255,0.04);
+      font-family: var(--font-serif); font-style: italic; font-size: 1.25rem; line-height: 1.45;
+    }
+    .affirm-q span { display: block; font-family: var(--font-sans); font-style: normal; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+
+    /* ─────────────────────────────────────────
+       DISCLAIMER + CTA
+    ───────────────────────────────────────── */
+    .disclaimer { background: var(--cream); border-bottom: 1px solid var(--rule); }
+    .disclaimer-box {
+      max-width: 760px; margin-inline: auto; text-align: center;
+      font-size: 0.85rem; color: var(--ink-muted); line-height: 1.7;
+    }
+    .disclaimer-box strong { color: var(--ink); }
+
+    .cta-final { background: var(--warm-white); text-align: center; }
+    .cta-final h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 20ch; margin-inline: auto; }
+    .cta-final h2 em { font-style: italic; color: var(--red); }
+    .cta-final p { color: var(--ink-muted); max-width: 48ch; margin: 1.25rem auto 2rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 0.85rem 2rem; background: var(--red); color: #fff;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 2px; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-light); }
+    .btn-ghost {
+      display: inline-block; padding: 0.85rem 2rem; border: 1px solid var(--blue);
+      color: var(--ink-muted); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; border-radius: 2px; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--ink-muted); color: var(--ink); }
+
+    /* ─────────────────────────────────────────
+       FOOTER  (shared)
+    ───────────────────────────────────────── */
+    footer { padding-block: 2rem; border-top: 1px solid var(--rule); background: var(--cream); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--font-serif); font-size: 1.1rem; color: var(--ink); }
+    .footer-logo span { color: var(--red); }
+    .footer-copy { font-size: 0.75rem; color: var(--ink-muted); }
+    .footer-mantra { font-family: var(--font-serif); font-style: italic; font-size: 0.85rem; color: var(--ink-muted); }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .mobile-nav { display: block; }
+      .intro-grid, .day-body { grid-template-columns: 1fr; }
+      .day-map { grid-template-columns: repeat(2, 1fr); }
+      .food-grid { grid-template-columns: 1fr 1fr; }
+      .affirm-grid { grid-template-columns: 1fr; }
+      :root { --gap: clamp(2rem, 5vw, 3.5rem); }
+    }
+    @media (max-width: 600px) {
+      .container { padding-inline: 1.1rem; }
+      .nav-cta { display: none; }
+      .day-map { grid-template-columns: 1fr; }
+      .food-grid { grid-template-columns: 1fr; }
+      .day-header { gap: 0.85rem; }
+      .seq li { grid-template-columns: 1fr; }
+      .seq .step { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .cta-btns { flex-direction: column; }
+      .cta-btns a { width: 100%; }
+    }
+
+    /* ─────────────────────────────────────────
+       DARK MODE  (mirrors index.html)
+    ───────────────────────────────────────── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --red:        #C5923A;
+        --red-light:  #E8B96A;
+        --blue:       #8FAFC0;
+        --blue-pale:  rgba(143,175,192,0.22);
+        --blue-wash:  rgba(143,175,192,0.06);
+        --cream:      #0C0A07;
+        --warm-white: #1C1812;
+        --ink:        #F0EBE0;
+        --ink-muted:  #9A8878;
+        --rule:       rgba(255,255,255,0.08);
+      }
+      body { background: #0C0A07; }
+      nav { background: rgba(12,10,7,0.88); border-bottom-color: rgba(255,255,255,0.08); }
+      .eyebrow { color: #C5923A; }
+      .pill { background: rgba(143,175,192,0.08); color: #8FAFC0; }
+      .course-hero { background: radial-gradient(120% 80% at 80% 0%, rgba(143,175,192,0.08) 0%, transparent 60%), #0C0A07; }
+      .day-card:hover { border-color: #8FAFC0; }
+      .day-header .big-num { color: rgba(143,175,192,0.18); }
+      .affirm { background: rgba(197,146,58,0.07); border-left-color: #C5923A; }
+      .affirm .a-label { color: #C5923A; }
+      #nourish { background: #11161a; border-block-color: rgba(255,255,255,0.08); }
+      .food-card { background: #1C1812; border-color: rgba(255,255,255,0.08); }
+      .food-card .foods { color: #8FAFC0; }
+      .food-note { color: #8FAFC0; }
+      #affirmations { background: #0B0B18; }
+      .disclaimer, .cta-final, .intro { background: #181410; border-color: rgba(255,255,255,0.08); }
+      .mobile-nav { background: rgba(12,10,7,0.97); }
+      .mobile-nav ul li a { color: rgba(240,235,224,0.6); }
+      .mobile-nav ul li a:hover { color: #C5923A; }
+      .nav-hamburger span { background: #F0EBE0; }
+      .mobile-nav-cta { background: #C5923A; }
+      .btn-ghost { border-color: rgba(143,175,192,0.4); color: #9A8878; }
+      .btn-ghost:hover { border-color: #8FAFC0; color: #F0EBE0; }
+      footer { background: #0C0A07; border-top-color: rgba(255,255,255,0.08); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Sri<span>priya</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#yoga">Yoga</a></li>
+        <li><a href="#days">The 7 Days</a></li>
+        <li><a href="#nourish">Nourish</a></li>
+        <li><a href="index.html#connect">Connect</a></li>
+      </ul>
+      <a href="index.html#connect" class="nav-cta">Book a session</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <ul>
+      <li><a href="index.html#about"  onclick="closeMobileNav()">About</a></li>
+      <li><a href="index.html#yoga"   onclick="closeMobileNav()">Yoga</a></li>
+      <li><a href="#days"             onclick="closeMobileNav()">The 7 Days</a></li>
+      <li><a href="#nourish"          onclick="closeMobileNav()">Nourish</a></li>
+      <li><a href="index.html#connect" onclick="closeMobileNav()">Connect</a></li>
+    </ul>
+    <a href="index.html#connect" class="mobile-nav-cta" onclick="closeMobileNav()">Book a session</a>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="course-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Sripriya</a> &nbsp;/&nbsp; Yoga &nbsp;/&nbsp; The Perimenopause Reset</p>
+      <h1 class="course-title">The Perimenopause <em>Reset</em></h1>
+      <p class="course-lede">
+        A gentle, seven-day journey through the change — daily flows, breath work,
+        nourishing food, simple lifestyle shifts and affirmations to help you move through
+        perimenopause with strength, softness and ease. No experience needed. Just you,
+        your breath, and a little space on the floor.
+      </p>
+      <div class="hero-meta">
+        <span class="pill">7 days</span>
+        <span class="pill">15–50 min a day</span>
+        <span class="pill">All levels</span>
+        <span class="pill">Yoga · Breath · Food · Rest</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ INTRO ═══ -->
+  <section class="intro section">
+    <div class="container intro-grid">
+      <div>
+        <span class="eyebrow">Why this course</span>
+        <h2 class="serif-heading">A kinder way through the change</h2>
+        <span class="divider"></span>
+        <p>
+          Perimenopause is not an illness — it is a passage. For a few years before your periods
+          finally stop, your hormones rise and fall like tides, and your body, mood and sleep can
+          feel like they belong to someone else. It can be confusing. It does not have to be lonely.
+        </p>
+        <p>
+          This course gathers everything I share with the women I teach — gentle movement to keep
+          your bones and muscles strong, breath to cool the heat and calm the mind, food you can find
+          in your own kitchen, and words to speak to yourself with tenderness. Seven short days to
+          build a practice you can carry for the rest of this season of life.
+        </p>
+        <p class="pull-quote">
+          You are not losing yourself. You are becoming more yourself.
+        </p>
+      </div>
+      <aside class="howto">
+        <h3>How to use this course</h3>
+        <ul>
+          <li><span class="dot"></span><div>Move through one day at a time, or repeat any day that serves you. There is no rush.</div></li>
+          <li><span class="dot"></span><div>Wear soft clothes. A mat, a cushion and a wall are all you need; keep a block or folded blanket nearby.</div></li>
+          <li><span class="dot"></span><div>Let the breath lead. If a pose strains, soften or skip it — sensation, never pain.</div></li>
+          <li><span class="dot"></span><div>Read each day's affirmation aloud. Spoken daily, the mind begins to believe it.</div></li>
+          <li><span class="dot"></span><div>Hydrate, and practise on a fairly empty stomach where you can.</div></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══ OVERVIEW MAP ═══ -->
+  <section class="overview section" id="days">
+    <div class="container">
+      <div class="overview-head">
+        <span class="eyebrow">The journey</span>
+        <h2 class="serif-heading">Seven days, one gentle arc</h2>
+      </div>
+      <div class="day-map">
+        <a class="day-card" href="#day1">
+          <div class="num">1</div>
+          <div class="d-label">Understand</div>
+          <div class="d-title">Meeting the Change</div>
+          <div class="d-desc">What perimenopause is, and a grounding practice to begin.</div>
+          <div class="d-min">≈ 20 min</div>
+        </a>
+        <a class="day-card" href="#day2">
+          <div class="num">2</div>
+          <div class="d-label">Move</div>
+          <div class="d-title">Gentle Flow &amp; Breath</div>
+          <div class="d-desc">A full, breath-led flow to free the body and lift the mood.</div>
+          <div class="d-min">≈ 45–50 min</div>
+        </a>
+        <a class="day-card" href="#day3">
+          <div class="num">3</div>
+          <div class="d-label">Nourish</div>
+          <div class="d-title">Food as Medicine</div>
+          <div class="d-desc">Simple, local foods that steady hormones — plus a calming practice.</div>
+          <div class="d-min">≈ 25 min</div>
+        </a>
+        <a class="day-card" href="#day4">
+          <div class="num">4</div>
+          <div class="d-label">Soothe</div>
+          <div class="d-title">Mind, Mood &amp; Affirmation</div>
+          <div class="d-desc">Lifestyle shifts and breath to calm anxiety and clear the fog.</div>
+          <div class="d-min">≈ 25 min</div>
+        </a>
+        <a class="day-card" href="#day5">
+          <div class="num">5</div>
+          <div class="d-label">Rest</div>
+          <div class="d-title">Breath for Deep Sleep</div>
+          <div class="d-desc">A 15-minute evening wind-down for nights that finally rest.</div>
+          <div class="d-min">≈ 15 min</div>
+        </a>
+        <a class="day-card" href="#day6">
+          <div class="num">6</div>
+          <div class="d-label">Strengthen</div>
+          <div class="d-title">Strength &amp; Stability</div>
+          <div class="d-desc">Weight-bearing poses to protect your bones and balance.</div>
+          <div class="d-min">≈ 35 min</div>
+        </a>
+        <a class="day-card" href="#day7">
+          <div class="num">7</div>
+          <div class="d-label">Carry forward</div>
+          <div class="d-title">Your Daily Ritual</div>
+          <div class="d-desc">A short practice to keep — relaxed, happy, waking refreshed.</div>
+          <div class="d-min">≈ 10–15 min</div>
+        </a>
+        <a class="day-card" href="#nourish" style="justify-content:center;">
+          <div class="d-label">Reference</div>
+          <div class="d-title">Food &amp; Lifestyle Guide</div>
+          <div class="d-desc">Your at-a-glance kitchen and lifestyle companion →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 1 ═══ -->
+  <section class="day section" id="day1">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">01</div>
+        <div class="h-text">
+          <span class="eyebrow">Day One · Understand</span>
+          <h2 class="serif-heading">Meeting the Change</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              <strong>Perimenopause</strong> is the natural transition leading up to menopause — the
+              years when your ovaries gradually make less oestrogen. It often begins in your
+              <strong>early-to-mid 40s</strong> (sometimes the late 30s) and lasts, on average,
+              <strong>about four years</strong> — though for some it is a few months and for others
+              closer to a decade.
+            </p>
+            <p>
+              You remain in perimenopause until you have gone a <strong>full twelve months without a
+              period</strong>. That single milestone is <strong>menopause</strong> itself; every day
+              after is post-menopause. So menopause is one day — perimenopause is the whole journey
+              towards it.
+            </p>
+            <p>
+              Because oestrogen and progesterone <strong>rise and fall unevenly</strong> before they
+              settle, symptoms come and go. Common signs: irregular or changing periods, hot flushes,
+              night sweats, broken sleep, mood swings, anxiety or low mood, brain fog, fatigue, aching
+              joints, drier skin, lower libido, and weight that gathers around the middle. As oestrogen
+              falls it also affects <strong>bone density and heart health</strong> — which is exactly
+              why movement and care matter now.
+            </p>
+            <p>
+              Yoga will not stop the tide, but it steadies the boat — calming the nervous system,
+              easing stress hormones, supporting sleep and mood, keeping joints supple and bones strong,
+              and gently reuniting you with a body that may feel unfamiliar.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Grounding practice</span><span>≈ 20 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Easy seat &amp; belly breath <em>Sukhasana</em></div><div class="pose-cue">Sit tall, palms on belly. Breathe slow and low — 2 min.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Alternate-nostril breath <em>Nadi Shodhana</em></div><div class="pose-cue">Balances the nervous system and the mind. 5 min.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">Cat–Cow <em>Marjaryasana–Bitilasana</em></div><div class="pose-cue">Warm the spine with breath — 8 slow rounds.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">Child's pose <em>Balasana</em></div><div class="pose-cue">Forehead down, soften the back. 1 min.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Reclined twist <em>Supta Matsyendrasana</em></div><div class="pose-cue">Both sides, releasing the lower back. 1 min each.</div></div></li>
+              <li><span class="step">6</span><div><div class="pose-name">Rest <em>Savasana</em></div><div class="pose-cue">Lie still, let the practice settle. 5 min.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">I meet this change with curiosity, not fear. My body is wise.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 2 ═══ -->
+  <section class="day section" id="day2">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">02</div>
+        <div class="h-text">
+          <span class="eyebrow">Day Two · Move</span>
+          <h2 class="serif-heading">Gentle Flow &amp; Breath</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              Movement matters more now than ever. A weight-bearing flow <strong>protects your bones</strong>,
+              builds the muscle that naturally slips away with falling oestrogen, and moves stagnant
+              energy so mood and circulation lift. But this is not about pushing — it is <strong>gentle and
+              breath-led</strong>. Each breath leads each movement.
+            </p>
+            <p>
+              Move slowly. Let the inhale lengthen you and the exhale soften you. If you feel heat
+              rising, slow the pace and lengthen your out-breath. Use a block under your hands in
+              standing poses, and keep a wall nearby for balance. Today's flow runs a full
+              <strong>45–50 minutes</strong> — give yourself the whole arc, from warm-up to deep rest.
+            </p>
+          </div>
+          <div class="block-label" style="margin-top:1.75rem;">A note on breath</div>
+          <div class="prose">
+            <p>
+              Pair the movement with steady <em>Ujjayi</em> (ocean) breath — a soft hush at the back of
+              the throat, in and out through the nose. It warms the body, holds your focus, and turns
+              the flow into a moving meditation.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Full flow</span><span>≈ 45–50 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Warm-up</div><div class="pose-cue">Seated breath, neck &amp; shoulder rolls, Cat–Cow, thread-the-needle. ≈ 8 min.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Gentle Sun Salutations <em>Surya Namaskar</em></div><div class="pose-cue">4 slow rounds, one breath per movement. ≈ 10 min.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">Warrior II <em>Virabhadrasana II</em></div><div class="pose-cue">Strong legs, open chest. Both sides, 5 breaths.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">Triangle <em>Trikonasana</em></div><div class="pose-cue">Lengthen the side body; block under the hand if needed.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Tree <em>Vrksasana</em></div><div class="pose-cue">Balance builds bone. Wall nearby, both sides.</div></div></li>
+              <li><span class="step">6</span><div><div class="pose-name">Goddess <em>Utkata Konasana</em></div><div class="pose-cue">Wide squat, breathe into the heat. 5 breaths.</div></div></li>
+              <li><span class="step">7</span><div><div class="pose-name">Bridge <em>Setu Bandhasana</em></div><div class="pose-cue">Lift hips on the inhale. 3 rounds.</div></div></li>
+              <li><span class="step">8</span><div><div class="pose-name">Cobra <em>Bhujangasana</em></div><div class="pose-cue">Gentle backbend, elbows soft.</div></div></li>
+              <li><span class="step">9</span><div><div class="pose-name">Pigeon &amp; seated forward fold</div><div class="pose-cue">Open hips, then fold and release. Both sides.</div></div></li>
+              <li><span class="step">10</span><div><div class="pose-name">Legs-up-the-wall &amp; rest <em>Viparita Karani · Savasana</em></div><div class="pose-cue">Bhramari breath, then stillness. ≈ 8 min.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">With every breath I create space. I am strong and supple.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 3 ═══ -->
+  <section class="day section" id="day3">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">03</div>
+        <div class="h-text">
+          <span class="eyebrow">Day Three · Nourish</span>
+          <h2 class="serif-heading">Food as Medicine</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              What you eat can genuinely soften this transition — and it need not be expensive or
+              imported. The best foods for perimenopause are often already in your kitchen.
+            </p>
+            <ul class="tip-list">
+              <li><span class="dot"></span><div><strong>Gentle plant oestrogens</strong> — flaxseed (<em>alsi</em>), sesame (<em>til</em>), soy, chickpeas and lentils softly echo the body's own oestrogen.</div></li>
+              <li><span class="dot"></span><div><strong>For bones</strong> — ragi (finger millet), sesame, curd/yoghurt, drumstick (moringa) leaves and dark leafy greens are rich in calcium.</div></li>
+              <li><span class="dot"></span><div><strong>For mood &amp; sleep</strong> — pumpkin seeds, bananas, nuts and greens carry magnesium.</div></li>
+              <li><span class="dot"></span><div><strong>To cool the heat</strong> — papaya, pomegranate, melon, cucumber and coconut water ease hot flushes.</div></li>
+              <li><span class="dot"></span><div><strong>To calm inflammation</strong> — turmeric, ginger and garlic; omega-3 from walnuts, flaxseed and fish.</div></li>
+              <li><span class="dot"></span><div><strong>Protect muscle</strong> — include some protein at every meal: dal, beans, curd, eggs, paneer, nuts.</div></li>
+            </ul>
+            <p style="margin-top:1rem;">
+              Gently ease off the common flush-triggers: <strong>excess caffeine, alcohol, refined
+              sugar and very spicy food</strong>. The simple rule — eat a rainbow, eat whole, eat at
+              regular times.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Digestive &amp; cooling practice</span><span>≈ 25 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Seated Cat–Cow</div><div class="pose-cue">Wake the belly and spine. 8 rounds.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Wind-relieving pose <em>Pavanamuktasana</em></div><div class="pose-cue">Hug knees to belly, rock gently. Aids digestion.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">Seated twist <em>Ardha Matsyendrasana</em></div><div class="pose-cue">Massages the organs. Both sides, 5 breaths.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">Bridge <em>Setu Bandhasana</em></div><div class="pose-cue">Gentle lift, 3 rounds.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Reclined bound angle <em>Supta Baddha Konasana</em></div><div class="pose-cue">Soles together, breathe into the belly. 3 min.</div></div></li>
+              <li><span class="step">6</span><div><div class="pose-name">Cooling breath <em>Sheetali / Sheetkari</em></div><div class="pose-cue">Inhale across the tongue — wonderfully cooling. 5 min.</div></div></li>
+              <li><span class="step">7</span><div><div class="pose-name">Rest <em>Savasana</em></div><div class="pose-cue">2–3 min of stillness.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">I nourish my body with kindness. What I eat is an act of self-love.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 4 ═══ -->
+  <section class="day section" id="day4">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">04</div>
+        <div class="h-text">
+          <span class="eyebrow">Day Four · Soothe</span>
+          <h2 class="serif-heading">Mind, Mood &amp; Affirmation</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              Fluctuating hormones reach the brain too — irritability, anxiety, sudden tears and brain
+              fog are real, common, and <strong>not your fault</strong>. A few small, steady lifestyle
+              shifts give the mind firmer ground:
+            </p>
+            <ul class="tip-list">
+              <li><span class="dot"></span><div>Move a little every day — even a 20-minute walk lifts mood.</div></li>
+              <li><span class="dot"></span><div>Step into <strong>morning sunlight</strong> — for vitamin D, mood and your sleep rhythm.</div></li>
+              <li><span class="dot"></span><div>Drink enough water; eat at regular times.</div></li>
+              <li><span class="dot"></span><div>Protect your rest — gentler mornings, kinder boundaries.</div></li>
+              <li><span class="dot"></span><div>Stay connected — talk, share, lean on others. You are not alone in this.</div></li>
+              <li><span class="dot"></span><div>Ease back evening caffeine, alcohol and screens.</div></li>
+            </ul>
+          </div>
+          <div class="block-label" style="margin-top:1.75rem;">On affirmations</div>
+          <div class="prose">
+            <p>
+              The mind believes what it hears most often. Spoken daily, affirmations gently rewrite the
+              inner story — from <em>"something is wrong with me"</em> to <em>"I am changing, and I am
+              whole."</em> Pair them with slow breath so they land in the <strong>body</strong>, not
+              just the head. Place a hand on your heart, breathe, and say the words as if to a dear
+              friend — because you are.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Calming practice</span><span>≈ 25 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Humming-bee breath <em>Bhramari</em></div><div class="pose-cue">Soft hum on the exhale — calms anxiety quickly. 5 min.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Seated forward fold <em>Paschimottanasana</em></div><div class="pose-cue">Fold gently, knees soft. Turns the gaze inward.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">Supported Child's pose <em>Balasana</em></div><div class="pose-cue">Rest on a cushion or bolster. 2 min.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">Legs-up-the-wall <em>Viparita Karani</em></div><div class="pose-cue">Quiets the mind, eases tired legs. 4 min.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Affirmation in stillness <em>Savasana</em></div><div class="pose-cue">Hand on heart, repeat today's words on each exhale. 5 min.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">I am not losing myself — I am becoming more myself.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 5 ═══ -->
+  <section class="day section" id="day5">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">05</div>
+        <div class="h-text">
+          <span class="eyebrow">Day Five · Rest</span>
+          <h2 class="serif-heading">Breath for Deep Sleep</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              Sleep is often the first thing perimenopause disturbs — night sweats, a racing mind, the
+              3 a.m. waking. Your <strong>breath is the most powerful, free sleep tool you own</strong>.
+              Long, slow exhalations switch on the body's "rest-and-digest" mode, slow the heart, cool
+              the body and quiet the thoughts.
+            </p>
+            <p>
+              And it works both ways: breathing well <strong>through the day</strong> changes how you
+              feel — calmer mood, clearer head, steadier energy — and how deeply you sleep at night. A
+              good day and a good night feed each other.
+            </p>
+            <ul class="tip-list">
+              <li><span class="dot"></span><div>Keep the same <strong>sleep and wake time</strong>, even on weekends.</div></li>
+              <li><span class="dot"></span><div>A <strong>cool, dark, screen-free</strong> room; light, airy nightwear.</div></li>
+              <li><span class="dot"></span><div>No caffeine after noon; a lighter, earlier dinner.</div></li>
+              <li><span class="dot"></span><div>A wind-down ritual — dim the lights, a warm shower, this breath practice.</div></li>
+              <li><span class="dot"></span><div>If you wake in the night, breathe <strong>long exhales</strong> instead of reaching for the phone.</div></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Evening wind-down flow</span><span>15 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Legs-up-the-wall <em>Viparita Karani</em></div><div class="pose-cue">Settle, soften, breathe low. 4 min.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Reclined bound angle <em>Supta Baddha Konasana</em></div><div class="pose-cue">Belly breath, heart open. 3 min.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">Reclined twist <em>Supta Matsyendrasana</em></div><div class="pose-cue">Wring out the day. Both sides, 1 min each.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">Humming-bee breath <em>Bhramari</em></div><div class="pose-cue">Soft hum, lengthening exhale. 3 min.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Extended-exhale breath <em>4–7–8</em></div><div class="pose-cue">In for 4, hold 7, out for 8 — already in bed. ≈ 2 min.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">I release the day. My body knows how to rest.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 6 ═══ -->
+  <section class="day section" id="day6">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">06</div>
+        <div class="h-text">
+          <span class="eyebrow">Day Six · Strengthen</span>
+          <h2 class="serif-heading">Strength &amp; Stability</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              As oestrogen falls, <strong>bones thin and muscle is lost more easily</strong> — so this
+              is the season to build strength, not shrink from it. Weight-bearing standing poses and
+              balance work protect your bones, joints and independence for decades to come. Strong
+              women age well.
+            </p>
+            <p>
+              Hold the poses a few breaths longer than feels easy — that gentle effort is what signals
+              your bones and muscles to stay strong. Keep a wall or chair close for balance, and let
+              your breath stay steady even as the legs work. <strong>Strength here is kindness to your
+              future self.</strong>
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Strength practice</span><span>≈ 35 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Warm-up</div><div class="pose-cue">Sun salutations, 3 slow rounds. ≈ 6 min.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Chair <em>Utkatasana</em></div><div class="pose-cue">Sit into the heels, arms rise. Hold 5 breaths.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">Warrior I &amp; II <em>Virabhadrasana I &amp; II</em></div><div class="pose-cue">Build heat and leg strength. Both sides.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">Goddess holds <em>Utkata Konasana</em></div><div class="pose-cue">Wide squat, hold and breathe. 5 breaths.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Tree &amp; standing balance <em>Vrksasana</em></div><div class="pose-cue">Balance for bone strength. Wall nearby.</div></div></li>
+              <li><span class="step">6</span><div><div class="pose-name">Plank &amp; Bird-dog</div><div class="pose-cue">Knees down as needed — core &amp; back. Hold steady.</div></div></li>
+              <li><span class="step">7</span><div><div class="pose-name">Locust <em>Salabhasana</em></div><div class="pose-cue">Strengthens the whole back line. 3 rounds.</div></div></li>
+              <li><span class="step">8</span><div><div class="pose-name">Bridge, then rest <em>Setu Bandhasana · Savasana</em></div><div class="pose-cue">Cool down with Nadi Shodhana. ≈ 6 min.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">I am strong. I am steady. I stand firmly in this stage of my life.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DAY 7 ═══ -->
+  <section class="day section" id="day7">
+    <div class="container">
+      <div class="day-header">
+        <div class="big-num">07</div>
+        <div class="h-text">
+          <span class="eyebrow">Day Seven · Carry forward</span>
+          <h2 class="serif-heading">Your Daily Ritual</h2>
+        </div>
+      </div>
+      <div class="day-body">
+        <div>
+          <div class="block-label">Understand</div>
+          <div class="prose">
+            <p>
+              A short practice done daily beats a long one done rarely. From everything you have tasted
+              this week, keep a simple <strong>10–15 minute ritual</strong> that leaves you relaxed,
+              lifts your mood, and helps you wake up refreshed. Do it most mornings, or each evening —
+              whichever your life allows.
+            </p>
+            <p>
+              Some days you will move through all of it; some days just three slow breaths. <strong>Both
+              count.</strong> Consistency, not perfection, is what carries you gently through the years
+              ahead.
+            </p>
+            <p>
+              This is not the ending of your vitality — it is a doorway. Move with intention, eat with
+              kindness, breathe through the heat, rest without guilt, and speak to yourself softly. You
+              have everything you need.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="practice">
+            <div class="practice-meta"><span>Keep-forever ritual</span><span>≈ 10–15 min</span></div>
+            <ol class="seq">
+              <li><span class="step">1</span><div><div class="pose-name">Belly breathing</div><div class="pose-cue">Arrive, settle the nervous system. 3 min.</div></div></li>
+              <li><span class="step">2</span><div><div class="pose-name">Cat–Cow &amp; a few Sun Salutations</div><div class="pose-cue">Wake the spine, warm the body.</div></div></li>
+              <li><span class="step">3</span><div><div class="pose-name">One balance pose <em>Tree</em></div><div class="pose-cue">A moment of focus and bone strength.</div></div></li>
+              <li><span class="step">4</span><div><div class="pose-name">One hip-opener or forward fold</div><div class="pose-cue">Release where you hold tension.</div></div></li>
+              <li><span class="step">5</span><div><div class="pose-name">Breath <em>Nadi Shodhana or Bhramari</em></div><div class="pose-cue">2 min to balance and calm.</div></div></li>
+              <li><span class="step">6</span><div><div class="pose-name">Stillness &amp; one affirmation</div><div class="pose-cue">Choose the line that speaks to you today. 2 min.</div></div></li>
+            </ol>
+          </div>
+          <div class="affirm">
+            <div class="a-label">Today's affirmation</div>
+            <div class="a-text">Every day, in every breath, I return home to myself.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NOURISH / FOOD & LIFESTYLE GUIDE ═══ -->
+  <section class="section" id="nourish">
+    <div class="container">
+      <div class="food-head">
+        <span class="eyebrow">Reference</span>
+        <h2 class="serif-heading">Food &amp; Lifestyle Guide</h2>
+        <p>Keep this close — simple, local, affordable ways to support your body through perimenopause, beyond the mat.</p>
+      </div>
+      <div class="food-grid">
+        <div class="food-card">
+          <div class="f-icon">🌾</div>
+          <h3>Hormone helpers</h3>
+          <p>Plant compounds that gently echo oestrogen and steady the swings.</p>
+          <div class="foods"><strong>Eat:</strong> flaxseed, sesame (til), soy, chickpeas, lentils.</div>
+        </div>
+        <div class="food-card">
+          <div class="f-icon">🦴</div>
+          <h3>For strong bones</h3>
+          <p>Calcium and vitamin D protect bone as oestrogen declines.</p>
+          <div class="foods"><strong>Eat:</strong> ragi, curd/yoghurt, sesame, moringa &amp; leafy greens; sunlight daily.</div>
+        </div>
+        <div class="food-card">
+          <div class="f-icon">🧘🏽‍♀️</div>
+          <h3>Mood &amp; sleep</h3>
+          <p>Magnesium and omega-3 ease anxiety and help you rest.</p>
+          <div class="foods"><strong>Eat:</strong> pumpkin seeds, walnuts, bananas, greens, flaxseed.</div>
+        </div>
+        <div class="food-card">
+          <div class="f-icon">🥥</div>
+          <h3>Cool the heat</h3>
+          <p>Hydrating, cooling foods take the edge off hot flushes.</p>
+          <div class="foods"><strong>Eat:</strong> papaya, pomegranate, melon, cucumber, coconut water.</div>
+        </div>
+        <div class="food-card">
+          <div class="f-icon">💪🏽</div>
+          <h3>Protect muscle</h3>
+          <p>Some protein at every meal keeps you strong and steadies energy.</p>
+          <div class="foods"><strong>Eat:</strong> dal, beans, curd, paneer, eggs, nuts.</div>
+        </div>
+        <div class="food-card">
+          <div class="f-icon">🍃</div>
+          <h3>Gently limit</h3>
+          <p>Common triggers for flushes, broken sleep and mood dips.</p>
+          <div class="foods"><strong>Ease off:</strong> excess caffeine, alcohol, refined sugar, very spicy food.</div>
+        </div>
+      </div>
+      <p class="food-note">Eat a rainbow. Eat whole. Eat at regular times. Move daily. Rest deeply.</p>
+    </div>
+  </section>
+
+  <!-- ═══ AFFIRMATIONS COLLECTION ═══ -->
+  <section class="section" id="affirmations">
+    <div class="container">
+      <span class="eyebrow">Carry these with you</span>
+      <h2 class="serif-heading">Words to <em>return to</em></h2>
+      <div class="affirm-grid">
+        <div class="affirm-q"><span>Day 1</span>I meet this change with curiosity, not fear. My body is wise.</div>
+        <div class="affirm-q"><span>Day 2</span>With every breath I create space. I am strong and supple.</div>
+        <div class="affirm-q"><span>Day 3</span>I nourish my body with kindness. What I eat is an act of self-love.</div>
+        <div class="affirm-q"><span>Day 4</span>I am not losing myself — I am becoming more myself.</div>
+        <div class="affirm-q"><span>Day 5</span>I release the day. My body knows how to rest.</div>
+        <div class="affirm-q"><span>Day 6</span>I am strong. I am steady. I stand firmly in this stage of my life.</div>
+        <div class="affirm-q"><span>Day 7</span>Every day, in every breath, I return home to myself.</div>
+        <div class="affirm-q"><span>Anytime</span>This is not an ending. It is a doorway — and I walk through it whole.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DISCLAIMER ═══ -->
+  <section class="disclaimer section">
+    <div class="container">
+      <p class="disclaimer-box">
+        <strong>A gentle note.</strong> This course is offered for general wellbeing and education and
+        is not medical advice. Every body and every perimenopause is different. Please see your doctor
+        for severe symptoms, very heavy or unusual bleeding, or before beginning any new exercise —
+        especially if you have a health condition, an injury, osteoporosis, or are pregnant. Move
+        within your own comfort, and stop if anything causes pain.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="cta-final section">
+    <div class="container">
+      <span class="eyebrow">Walk it together</span>
+      <h2 class="serif-heading">Would you like to <em>practise with me?</em></h2>
+      <p>
+        If you'd like guidance, a live class, or a practice shaped around your own body and symptoms,
+        I'd love to walk this season with you — online or near Auroville.
+      </p>
+      <div class="cta-btns">
+        <a href="index.html#connect" class="btn-primary">Book a session</a>
+        <a href="index.html#yoga" class="btn-ghost">More about my yoga</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Sri<span>priya</span></a>
+      <p class="footer-mantra">Follow your passion. Always.</p>
+      <p class="footer-copy">© 2026 Sripriya · sripriya.me</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('navHamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function openMobileNav() {
+      hamburger.classList.add('open');
+      mobileNav.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileNav.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileNav() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.contains('open') ? closeMobileNav() : openMobileNav();
+    });
+    document.addEventListener('click', e => {
+      if (mobileNav.classList.contains('open') &&
+          !mobileNav.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+  </script>
+</body>
+</html>
