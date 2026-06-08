@@ -284,6 +284,20 @@
     .affirm .a-label { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
     .affirm .a-text { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.4; color: var(--ink); }
 
+    /* day illustration */
+    .day-illus {
+      margin: 0 0 1.75rem; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--rule); background: var(--blue-wash);
+    }
+    .day-illus img { width: 100%; height: clamp(300px, 40vh, 460px); object-fit: cover; object-position: center; display: block; }
+
+    /* overview collage */
+    .day-collage {
+      max-width: 920px; margin: 0 auto clamp(2rem, 4vw, 3rem);
+      border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); background: var(--blue-wash);
+    }
+    .day-collage img { width: 100%; display: block; }
+
     /* generic tip list */
     .tip-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.5rem; }
     .tip-list li { display: flex; gap: 0.7rem; font-size: 0.9rem; color: var(--ink-muted); line-height: 1.55; }
@@ -521,6 +535,9 @@
         <span class="eyebrow">The journey</span>
         <h2 class="serif-heading">Seven days, one gentle arc</h2>
       </div>
+      <figure class="day-collage">
+        <img src="assets/peri-hero-collage.jpg" alt="The Perimenopause Reset — seven days illustrated" loading="lazy" onerror="this.closest('.day-collage').remove()" />
+      </figure>
       <div class="day-map">
         <a class="day-card" href="#day1">
           <div class="num">1</div>
@@ -592,6 +609,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day1-breathe.jpg" alt="Sripriya — Day 1, seated breathing" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
@@ -655,6 +675,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day2-flow.jpg" alt="Sripriya — Day 2, gentle flow and breath" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
@@ -716,6 +739,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day3-nourish.jpg" alt="Sripriya — Day 3, nourishing food" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
@@ -771,6 +797,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day4-affirm.jpg" alt="Sripriya — Day 4, hands at heart in affirmation" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
@@ -830,6 +859,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day5-rest.jpg" alt="Sripriya — Day 5, restful breath for sleep" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
@@ -884,6 +916,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day6-strength.jpg" alt="Sripriya — Day 6, strength and stability" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
@@ -935,6 +970,9 @@
       </div>
       <div class="day-body">
         <div>
+          <figure class="day-illus">
+            <img src="assets/peri-day7-ritual.jpg" alt="Sripriya — Day 7, walking, the daily ritual" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+          </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
             <p>
