@@ -337,6 +337,19 @@
     .affirm-q span { display: block; font-family: var(--font-sans); font-style: normal; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
 
     /* ─────────────────────────────────────────
+       ABOUT THE TEACHER
+    ───────────────────────────────────────── */
+    .about { background: var(--warm-white); }
+    .about-grid { display: grid; grid-template-columns: 0.82fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .about-grid.no-img { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; text-align: center; }
+    .about-portrait { border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); background: var(--blue-wash); }
+    .about-portrait img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center top; display: block; }
+    .about-text h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    .about-text h2 em { font-style: italic; color: var(--red); }
+    .about-text p { color: var(--ink-muted); margin-top: 1.1rem; line-height: 1.75; }
+    .about-text .signoff { margin-top: 1.4rem; font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; color: var(--ink); }
+
+    /* ─────────────────────────────────────────
        DISCLAIMER + CTA
     ───────────────────────────────────────── */
     .disclaimer { background: var(--cream); border-bottom: 1px solid var(--rule); }
@@ -382,6 +395,8 @@
       .nav-hamburger { display: flex; }
       .mobile-nav { display: block; }
       .intro-grid, .day-body { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-portrait { max-width: 440px; margin-inline: auto; }
       .day-map { grid-template-columns: repeat(2, 1fr); }
       .food-grid { grid-template-columns: 1fr 1fr; }
       .affirm-grid { grid-template-columns: 1fr; }
@@ -430,7 +445,7 @@
       .food-card .foods { color: #8FAFC0; }
       .food-note { color: #8FAFC0; }
       #affirmations { background: #0B0B18; }
-      .disclaimer, .cta-final, .intro { background: #181410; border-color: rgba(255,255,255,0.08); }
+      .disclaimer, .cta-final, .intro, .about { background: #181410; border-color: rgba(255,255,255,0.08); }
       .mobile-nav { background: rgba(12,10,7,0.97); }
       .mobile-nav ul li a { color: rgba(240,235,224,0.6); }
       .mobile-nav ul li a:hover { color: #C5923A; }
@@ -740,7 +755,7 @@
       <div class="day-body">
         <div>
           <figure class="day-illus">
-            <img src="assets/peri-day3-nourish.jpg" alt="Sripriya — Day 3, nourishing food" loading="lazy" onerror="this.closest('.day-illus').remove()" />
+            <img src="assets/peri-day3-nourish.jpg" alt="Sripriya — Day 3, nourishing food" loading="lazy" style="object-position: center 8%;" onerror="this.closest('.day-illus').remove()" />
           </figure>
           <div class="block-label">Understand</div>
           <div class="prose">
@@ -1078,6 +1093,35 @@
         <div class="affirm-q"><span>Day 6</span>I am strong. I am steady. I stand firmly in this stage of my life.</div>
         <div class="affirm-q"><span>Day 7</span>Every day, in every breath, I return home to myself.</div>
         <div class="affirm-q"><span>Anytime</span>This is not an ending. It is a doorway — and I walk through it whole.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT THE TEACHER ═══ -->
+  <section class="about section" id="teacher">
+    <div class="container">
+      <div class="about-grid">
+        <figure class="about-portrait">
+          <img src="assets/peri-about.jpg" alt="Sripriya, yoga teacher" loading="lazy"
+               onerror="var g=this.closest('.about-grid'); if(g){g.classList.add('no-img');} var f=this.closest('.about-portrait'); if(f){f.remove();}" />
+        </figure>
+        <div class="about-text">
+          <span class="eyebrow">Your teacher</span>
+          <h2 class="serif-heading">Meet <em>Sripriya</em></h2>
+          <span class="divider"></span>
+          <p>
+            Sripriya is a yoga teacher based near Auroville in South India. She came to yoga
+            not as a performer of difficult shapes, but as a woman seeking steadiness through
+            her own changing seasons — and that is exactly how she shares it: gentle, breath-led,
+            and possible for every body.
+          </p>
+          <p>
+            Her teaching makes room for strength and softness in equal measure — whether you are
+            easing stiffness, settling the mind, or simply learning to feel at home in yourself
+            again. The practice, she believes, belongs to you.
+          </p>
+          <p class="signoff">With you, one breath at a time. — Sripriya</p>
+        </div>
       </div>
     </div>
   </section>
