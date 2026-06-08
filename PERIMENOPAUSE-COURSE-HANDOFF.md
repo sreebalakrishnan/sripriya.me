@@ -84,19 +84,28 @@ disclaimer, and a "book a session" CTA.
 - Still need scene refs for **Days 2, 3, 5, 7** → generate from prompts below.
 
 ### Art direction
-Watercolour to match the existing site portrait (`assets/sripriya.jpg`). Keep all 7 in the
-SAME style and SAME face. Tip: generate Day 1 first, then use that result as the character
-reference for Days 2–7. Always attach the **front meditation photo** for face/jawline.
+Match the **realistic hand-painted watercolour portrait** style of the existing homepage hero
+painting (`assets/sripriya.jpg`) — warm, lifelike, loose brushwork with visible paper texture
+and white paper at the edges; NOT a flat cartoon. Keep all 7 in the SAME style and SAME face.
+Tips: (1) **attach `assets/sripriya.jpg` as the style + face reference in every prompt**;
+(2) generate Day 1 first, then use that result as the character reference for Days 2–7;
+(3) also attach the relevant real pose photo for Days 1/4/6.
 
 ### Shared style block — prepend to EVERY prompt
-> Soft, warm watercolour illustration, hand-painted look — loose expressive brushstrokes,
-> visible paper texture, gentle washes. The same woman in every image: a South Asian / Indian
-> woman in her late 40s, warm wavy shoulder-length chestnut-brown hair with sun highlights,
-> defined jawline, warm brown eyes, soft natural smile (use the attached reference photo for
-> her face and keep her jawline and likeness). Palette: cream / warm off-white background
-> (#FAF8F5), deep terracotta-red (#8B1A1A) and soft dusty-blue (#8FAFC0) accents, ochre and
-> sage tones. Airy, minimal composition, lots of negative space, no text or lettering,
-> vertical 3:4 portrait.
+> Realistic hand-painted watercolour portrait, in the exact style of the attached reference
+> painting — naturalistic proportions and a true likeness (NOT a cartoon or flat illustration).
+> Warm, lifelike skin tones; loose, expressive brushstrokes with soft wet-on-wet washes; fine
+> detail on the face and hands; visible watercolour-paper texture with white paper showing at the
+> edges, the background loosely painted and fading into the white of the page. The same woman
+> throughout: a South Asian / Indian woman in her late 40s, wavy shoulder-length chestnut-brown
+> hair with warm highlights, defined jawline, warm brown eyes, gentle natural expression (use the
+> attached photo for her face and keep her jawline and likeness). Warm palette — ochre, terracotta
+> (#8B1A1A) and soft sage greens with dusty-blue (#8FAFC0) accents on a cream/white ground; soft
+> natural daylight. No text or lettering. Vertical 3:4 portrait.
+
+> When generating, attach TWO images: `assets/sripriya.jpg` (for the painting style + face) and
+> the relevant pose photo (for the pose/setting), with: "Match the watercolour style and face of
+> the first image; use the second image for the pose and setting."
 
 ### Per-day scenes (append to the style block)
 - **Day 1 — Breathe:** seated cross-legged in easy pose, spine tall, eyes closed, one hand on
