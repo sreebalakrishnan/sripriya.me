@@ -1024,6 +1024,9 @@
       flex-shrink: 0;
       border: 1px solid rgba(0, 0, 0, 0.15);
     }
+    /* when the day's own portrait is showing, the outfit carries the
+       colour — soften the veil to a whisper */
+    .photo-frame.day-photo::after { opacity: 0.15; }
     .pill-day {
       display: inline-flex;
       align-items: center;
@@ -1702,7 +1705,24 @@
         <div class="hero-photo">
           <div class="photo-frame">
             <img src="assets/sripriya.jpg" alt="Sripriya" id="hero-photo" />
-            <script>if(Math.random()<.5)document.getElementById('hero-photo').src='assets/sripriya-bike.jpg';</script>
+            <script>
+              // Day-of-week portrait (outfit matches the colour guide); falls
+              // back to the regular photos until assets/hero-days/ is filled.
+              (function () {
+                var img = document.getElementById('hero-photo');
+                img.onerror = function () {
+                  img.onerror = null;
+                  img.src = Math.random() < .5 ? 'assets/sripriya-bike.jpg' : 'assets/sripriya.jpg';
+                };
+                img.addEventListener('load', function () {
+                  if (img.src.indexOf('hero-days') !== -1) {
+                    var f = img.closest('.photo-frame');
+                    if (f) f.classList.add('day-photo');
+                  }
+                });
+                img.src = 'assets/hero-days/hero-day' + new Date().getDay() + '.jpg';
+              })();
+            </script>
             <div class="photo-placeholder-label">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
