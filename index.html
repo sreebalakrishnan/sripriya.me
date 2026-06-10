@@ -950,6 +950,44 @@
     }
 
     /* ─────────────────────────────────────────
+       FEATURED COURSE BANNER
+    ───────────────────────────────────────── */
+    .course-banner {
+      background: linear-gradient(135deg, var(--blue-wash) 0%, #FDFBF8 55%, var(--blue-wash) 100%);
+      border-block: 1px solid var(--rule);
+    }
+    .course-banner-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .course-banner-text h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    .course-banner-text h2 em { font-style: italic; color: var(--red); }
+    .course-banner-text p { color: var(--ink-muted); line-height: 1.8; max-width: 54ch; }
+    .course-banner-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .course-banner-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem; }
+    .course-banner-art {
+      display: block; border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--rule); background: var(--warm-white, #fff);
+      box-shadow: 0 14px 50px rgba(139, 26, 26, 0.08);
+      transition: transform 0.25s;
+    }
+    .course-banner-art:hover { transform: translateY(-4px); }
+    .course-banner-art img { width: 100%; height: auto; display: block; }
+    @media (max-width: 960px) {
+      .course-banner-grid { grid-template-columns: 1fr; }
+      .course-banner-art { max-width: 420px; }
+    }
+    @media (max-width: 600px) {
+      .course-banner-ctas { flex-direction: column; }
+      .course-banner-ctas a { width: 100%; text-align: center; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .course-banner { background: #181410; }
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
        Breakpoints:
          960px  — all phones (incl. Pro Max landscape 932px) + small tablets
@@ -1551,6 +1589,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#yoga">Yoga</a></li>
+        <li><a href="perimenopause.html">Course</a></li>
         <li><a href="#colour">Colour</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#connect">Connect</a></li>
@@ -1569,6 +1608,7 @@
     <ul>
       <li><a href="#about"         onclick="closeMobileNav()">About</a></li>
       <li><a href="#yoga"          onclick="closeMobileNav()">Yoga</a></li>
+      <li><a href="perimenopause.html" onclick="closeMobileNav()">Course</a></li>
       <li><a href="#colour"        onclick="closeMobileNav()">Colour</a></li>
       <li><a href="#testimonials"  onclick="closeMobileNav()">Reviews</a></li>
       <li><a href="#connect"       onclick="closeMobileNav()">Connect</a></li>
@@ -1644,6 +1684,39 @@
       </div>
     </div>
   </div>
+
+
+  <!-- ═══════════════════════════════════════
+       FEATURED COURSE
+  ═══════════════════════════════════════ -->
+  <section id="course" class="section course-banner">
+    <div class="container course-banner-grid">
+      <div class="course-banner-text">
+        <span class="eyebrow">New · Live online course</span>
+        <h2 class="serif-heading">The Perimenopause <em>Reset</em></h2>
+        <span class="divider"></span>
+        <p>
+          A gentle, seven-day journey through the change — movement, breath, nourishment
+          and rest, guided live on Zoom and shaped around your own body. No experience
+          needed. Sign up anytime; your seven days begin when you're ready.
+        </p>
+        <div class="course-banner-pills">
+          <span class="pill">7 days</span>
+          <span class="pill">Live on Zoom</span>
+          <span class="pill">All levels</span>
+          <span class="pill">Join anytime</span>
+        </div>
+        <div class="course-banner-ctas">
+          <a href="perimenopause.html" class="btn-primary">Explore the course</a>
+          <a href="https://wa.me/919008085070?text=Hi%20Sripriya!%20I%27d%20love%20to%20join%20your%207-Day%20Perimenopause%20Reset.%20How%20do%20I%20begin%3F%20%F0%9F%8C%B8"
+             class="btn-ghost" target="_blank" rel="noopener">Enrol on WhatsApp</a>
+        </div>
+      </div>
+      <a class="course-banner-art" href="perimenopause.html" aria-label="The Perimenopause Reset — explore the course">
+        <img src="assets/peri-day2-flow.jpg" alt="The Perimenopause Reset — a 7-day live online course on Zoom" loading="lazy" />
+      </a>
+    </div>
+  </section>
 
 
   <!-- ═══════════════════════════════════════
