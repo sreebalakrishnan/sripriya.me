@@ -988,6 +988,33 @@
     }
 
     /* ─────────────────────────────────────────
+       COLOUR OF THE DAY (hero tint, set by JS)
+    ───────────────────────────────────────── */
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--day-colour, transparent) 0%, transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: 0.95;
+      pointer-events: none;
+    }
+    .pill-day {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid var(--day-colour, var(--rule));
+      text-decoration: none;
+    }
+    .pill-day .day-dot {
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
        Breakpoints:
          960px  — all phones (incl. Pro Max landscape 932px) + small tablets
@@ -2265,6 +2292,38 @@
         closeMobileNav();
       }
     });
+
+    // ── Colour of the day: tint the hero to match the colour guide ──
+    // Palette mirrors the Vedic day colours in colour.html
+    (function () {
+      const DAY_COLOURS = [
+        { day: 'Sunday',    wear: 'copper & gold',    hex: '#CC5500' },
+        { day: 'Monday',    wear: 'white & silver',   hex: '#B8C8D8' },
+        { day: 'Tuesday',   wear: 'red & crimson',    hex: '#CC2222' },
+        { day: 'Wednesday', wear: 'emerald green',    hex: '#2E8B57' },
+        { day: 'Thursday',  wear: 'yellow & turmeric',hex: '#D4A017' },
+        { day: 'Friday',    wear: 'pink & rose',      hex: '#E87080' },
+        { day: 'Saturday',  wear: 'indigo & navy',    hex: '#2C2444' },
+      ];
+      const c = DAY_COLOURS[new Date().getDay()];
+      const frame = document.querySelector('.photo-frame');
+      if (frame) frame.style.setProperty('--day-colour', c.hex);
+      const accent = document.querySelector('.photo-accent');
+      if (accent) {
+        accent.style.borderColor = c.hex;
+        accent.style.background = c.hex + '22';
+      }
+      const pills = document.querySelector('.hero-pills');
+      if (pills) {
+        const a = document.createElement('a');
+        a.href = 'colour.html';
+        a.className = 'pill pill-day';
+        a.style.setProperty('--day-colour', c.hex);
+        a.innerHTML = '<span class="day-dot" style="background:' + c.hex + '"></span>'
+                    + c.day + ' · wear ' + c.wear + ' →';
+        pills.appendChild(a);
+      }
+    })();
   </script>
 </body>
 </html>
