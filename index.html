@@ -950,6 +950,99 @@
     }
 
     /* ─────────────────────────────────────────
+       FEATURED COURSE BANNER
+    ───────────────────────────────────────── */
+    .course-banner {
+      background: linear-gradient(135deg, var(--blue-wash) 0%, #FDFBF8 55%, var(--blue-wash) 100%);
+      border-block: 1px solid var(--rule);
+    }
+    .course-banner-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .course-banner-text h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    .course-banner-text h2 em { font-style: italic; color: var(--red); }
+    .course-banner-text p { color: var(--ink-muted); line-height: 1.8; max-width: 54ch; }
+    .course-banner-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .course-banner-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem; }
+    .course-banner-art {
+      display: block; border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--rule); background: var(--warm-white, #fff);
+      box-shadow: 0 14px 50px rgba(139, 26, 26, 0.08);
+      transition: transform 0.25s;
+    }
+    .course-banner-art:hover { transform: translateY(-4px); }
+    .course-banner-art img { width: 100%; height: auto; display: block; }
+    @media (max-width: 960px) {
+      .course-banner-grid { grid-template-columns: 1fr; }
+      .course-banner-art { max-width: 420px; }
+    }
+    @media (max-width: 600px) {
+      .course-banner-ctas { flex-direction: column; }
+      .course-banner-ctas a { width: 100%; text-align: center; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .course-banner { background: #181410; }
+    }
+
+    /* ─────────────────────────────────────────
+       COLOUR OF THE DAY (hero tint, set by JS)
+    ───────────────────────────────────────── */
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--day-colour, transparent) 0%, transparent 52%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .day-chip {
+      position: absolute;
+      left: 0.9rem;
+      bottom: 0.9rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1E1E1E;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    }
+    .day-chip .day-dot {
+      width: 0.7em;
+      height: 0.7em;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+    /* when the day's own portrait is showing, the outfit carries the
+       colour — soften the veil to a whisper */
+    .photo-frame.day-photo::after { opacity: 0.15; }
+    .pill-day {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid var(--day-colour, var(--rule));
+      text-decoration: none;
+    }
+    .pill-day .day-dot {
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
        Breakpoints:
          960px  — all phones (incl. Pro Max landscape 932px) + small tablets
@@ -1551,6 +1644,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#yoga">Yoga</a></li>
+        <li><a href="perimenopause.html">Course</a></li>
         <li><a href="#colour">Colour</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#connect">Connect</a></li>
@@ -1569,6 +1663,7 @@
     <ul>
       <li><a href="#about"         onclick="closeMobileNav()">About</a></li>
       <li><a href="#yoga"          onclick="closeMobileNav()">Yoga</a></li>
+      <li><a href="perimenopause.html" onclick="closeMobileNav()">Course</a></li>
       <li><a href="#colour"        onclick="closeMobileNav()">Colour</a></li>
       <li><a href="#testimonials"  onclick="closeMobileNav()">Reviews</a></li>
       <li><a href="#connect"       onclick="closeMobileNav()">Connect</a></li>
@@ -1610,7 +1705,24 @@
         <div class="hero-photo">
           <div class="photo-frame">
             <img src="assets/sripriya.jpg" alt="Sripriya" id="hero-photo" />
-            <script>if(Math.random()<.5)document.getElementById('hero-photo').src='assets/sripriya-bike.jpg';</script>
+            <script>
+              // Day-of-week portrait (outfit matches the colour guide); falls
+              // back to the regular photos until assets/hero-days/ is filled.
+              (function () {
+                var img = document.getElementById('hero-photo');
+                img.onerror = function () {
+                  img.onerror = null;
+                  img.src = Math.random() < .5 ? 'assets/sripriya-bike.jpg' : 'assets/sripriya.jpg';
+                };
+                img.addEventListener('load', function () {
+                  if (img.src.indexOf('hero-days') !== -1) {
+                    var f = img.closest('.photo-frame');
+                    if (f) f.classList.add('day-photo');
+                  }
+                });
+                img.src = 'assets/hero-days/hero-day' + new Date().getDay() + '.jpg';
+              })();
+            </script>
             <div class="photo-placeholder-label">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
@@ -1644,6 +1756,39 @@
       </div>
     </div>
   </div>
+
+
+  <!-- ═══════════════════════════════════════
+       FEATURED COURSE
+  ═══════════════════════════════════════ -->
+  <section id="course" class="section course-banner">
+    <div class="container course-banner-grid">
+      <div class="course-banner-text">
+        <span class="eyebrow">New · Live online course</span>
+        <h2 class="serif-heading">The Perimenopause <em>Reset</em></h2>
+        <span class="divider"></span>
+        <p>
+          A gentle, seven-day journey through the change — movement, breath, nourishment
+          and rest, guided live on Zoom and shaped around your own body. No experience
+          needed. Sign up anytime; your seven days begin when you're ready.
+        </p>
+        <div class="course-banner-pills">
+          <span class="pill">7 days</span>
+          <span class="pill">Live on Zoom</span>
+          <span class="pill">All levels</span>
+          <span class="pill">Join anytime</span>
+        </div>
+        <div class="course-banner-ctas">
+          <a href="perimenopause.html" class="btn-primary">Explore the course</a>
+          <a href="https://wa.me/919008085070?text=Hi%20Sripriya!%20I%27d%20love%20to%20join%20your%207-Day%20Perimenopause%20Reset.%20How%20do%20I%20begin%3F%20%F0%9F%8C%B8"
+             class="btn-ghost" target="_blank" rel="noopener">Enrol on WhatsApp</a>
+        </div>
+      </div>
+      <a class="course-banner-art" href="perimenopause.html" aria-label="The Perimenopause Reset — explore the course">
+        <img src="assets/peri-day5-rest.jpg" alt="The Perimenopause Reset — a 7-day live online course on Zoom" loading="lazy" />
+      </a>
+    </div>
+  </section>
 
 
   <!-- ═══════════════════════════════════════
@@ -1765,7 +1910,7 @@
             </div>
           </div>
           <a href="perimenopause.html" class="yoga-card-link" style="margin-top:2rem;">
-            New · The Perimenopause Reset — a free 7-day yoga journey
+            New · The Perimenopause Reset — a 7-day live online course on Zoom
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
             </svg>
@@ -2192,6 +2337,46 @@
         closeMobileNav();
       }
     });
+
+    // ── Colour of the day: tint the hero to match the colour guide ──
+    // Palette mirrors the Vedic day colours in colour.html
+    (function () {
+      const DAY_COLOURS = [
+        { day: 'Sunday',    wear: 'copper & gold',    hex: '#CC5500' },
+        { day: 'Monday',    wear: 'white & silver',   hex: '#B8C8D8' },
+        { day: 'Tuesday',   wear: 'red & crimson',    hex: '#CC2222' },
+        { day: 'Wednesday', wear: 'emerald green',    hex: '#2E8B57' },
+        { day: 'Thursday',  wear: 'yellow & turmeric',hex: '#D4A017' },
+        { day: 'Friday',    wear: 'pink & rose',      hex: '#E87080' },
+        { day: 'Saturday',  wear: 'indigo & navy',    hex: '#2C2444' },
+      ];
+      const c = DAY_COLOURS[new Date().getDay()];
+      const frame = document.querySelector('.photo-frame');
+      if (frame) {
+        frame.style.setProperty('--day-colour', c.hex);
+        const chip = document.createElement('a');
+        chip.href = 'colour.html';
+        chip.className = 'day-chip';
+        chip.innerHTML = '<span class="day-dot" style="background:' + c.hex + '"></span>'
+                       + c.day + ' · ' + c.wear;
+        frame.appendChild(chip);
+      }
+      const accent = document.querySelector('.photo-accent');
+      if (accent) {
+        accent.style.borderColor = c.hex;
+        accent.style.background = c.hex + '22';
+      }
+      const pills = document.querySelector('.hero-pills');
+      if (pills) {
+        const a = document.createElement('a');
+        a.href = 'colour.html';
+        a.className = 'pill pill-day';
+        a.style.setProperty('--day-colour', c.hex);
+        a.innerHTML = '<span class="day-dot" style="background:' + c.hex + '"></span>'
+                    + c.day + ' · wear ' + c.wear + ' →';
+        pills.appendChild(a);
+      }
+    })();
   </script>
 </body>
 </html>
