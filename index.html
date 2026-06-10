@@ -994,10 +994,35 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, var(--day-colour, transparent) 0%, transparent 60%);
-      mix-blend-mode: soft-light;
-      opacity: 0.95;
+      background: linear-gradient(to top, var(--day-colour, transparent) 0%, transparent 52%);
+      opacity: 0.5;
       pointer-events: none;
+    }
+    .day-chip {
+      position: absolute;
+      left: 0.9rem;
+      bottom: 0.9rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1E1E1E;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    }
+    .day-chip .day-dot {
+      width: 0.7em;
+      height: 0.7em;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(0, 0, 0, 0.15);
     }
     .pill-day {
       display: inline-flex;
@@ -2307,7 +2332,15 @@
       ];
       const c = DAY_COLOURS[new Date().getDay()];
       const frame = document.querySelector('.photo-frame');
-      if (frame) frame.style.setProperty('--day-colour', c.hex);
+      if (frame) {
+        frame.style.setProperty('--day-colour', c.hex);
+        const chip = document.createElement('a');
+        chip.href = 'colour.html';
+        chip.className = 'day-chip';
+        chip.innerHTML = '<span class="day-dot" style="background:' + c.hex + '"></span>'
+                       + c.day + ' · ' + c.wear;
+        frame.appendChild(chip);
+      }
       const accent = document.querySelector('.photo-accent');
       if (accent) {
         accent.style.borderColor = c.hex;
